@@ -1,6 +1,6 @@
 # push_swap
 
-# 📘 Merged Comparison Table of Sorting Algorithms
+## 📘 Merged Comparison Table of Sorting Algorithms
 
 ```
 | Algorithm                | Best Case                                           | Average Case    | Worst Case              | Space Complexity (aux.) | Stable?                               |

@@ -6,13 +6,18 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 11:17:20 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 13:52:11 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 16:41:40 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sa(int *a, int size_b)
+// operation d'échange.
+// j'ai initialisé les fonctions en int pour gérer les cas
+// d'erreur.
+
+
+int	sa(int *a, int size_b) // Échange les deux premiers éléments du sommet de la pile a.
 {
 	int temp;
 	
@@ -24,7 +29,7 @@ int	sa(int *a, int size_b)
 	return (0);
 }
 
-int	sb(int *b, int size_b)
+int	sb(int *b, int size_b) // Échange les deux premiers éléments du sommet de la pile b.
 {
 	int temp;
 	
@@ -36,7 +41,7 @@ int	sb(int *b, int size_b)
 	return (0);
 }
 
-int	ss(int *b, int *a, int size_a, int size_b)
+int	ss(int *b, int *a, int size_a, int size_b) // Effectuer sa et sb simultanément
 {
 	if (size_a =< 1 || size_b =< 1)
 		return (0);
@@ -45,7 +50,7 @@ int	ss(int *b, int *a, int size_a, int size_b)
 	return (0);
 }
 
-int	pa(int *b, int *a, int size_b, int size_a)
+int	pa(int *b, int *a, int size_b, int size_a) // Prendre le premier élément du sommet de b et le placer au sommet de a.
 {
 	if (size_b <= 0 || size_a <= 0)
 		return (0)
@@ -54,7 +59,7 @@ int	pa(int *b, int *a, int size_b, int size_a)
 	a[0] = b[0];
 }
 
-int	pb(int *b, int *a, int size_b, int size_a)
+int	pb(int *b, int *a, int size_b, int size_a) // Prend le premier élément en haut de a et le place en haut de b.
 {
 	if (size_b <= 0 || size_a <= 0)
 		return (0)
@@ -63,7 +68,7 @@ int	pb(int *b, int *a, int size_b, int size_a)
 	b[0] = a[0];
 }
 
-int	ra(int *a, int size_a)
+int	ra(int *a, int size_a) // Décale tous les éléments de la pile a d'une position vers le haut.
 {
 	int temp;
 	int	i;
@@ -82,7 +87,7 @@ int	ra(int *a, int size_a)
 	return (0);
 }
 
-int	rb(int *b, int size_b)
+int	rb(int *b, int size_b) // Décale tous les éléments de la pile b d'une position vers le haut.
 {
 	int temp;
 	int	i;
@@ -101,7 +106,7 @@ int	rb(int *b, int size_b)
 	return (0);
 }
 
-int rr(int *b, int *a, int size_b, int size_a)
+int rr(int *b, int *a, int size_b, int size_a) // ra et rb simultanément.
 {
 	if (size_b < 2 || size_a < 2 )
 		return (0);
@@ -110,7 +115,7 @@ int rr(int *b, int *a, int size_b, int size_a)
 	return (0);
 }
 
-int	rra(int *a, int size_a)
+int	rra(int *a, int size_a) // Décale tous les éléments de la pile a d'une position vers le bas.
 {
 	int temp;
 	int	i;
@@ -128,7 +133,7 @@ int	rra(int *a, int size_a)
 	return (0);
 }
 
-int	rrb(int *b, int size_b)
+int	rrb(int *b, int size_b) // Décale tous les éléments de la pile b d'une position vers le bas.
 {
 	int temp;
 	int	i;
@@ -147,7 +152,7 @@ int	rrb(int *b, int size_b)
 	return (0);
 }
 
-int	rrr(int *b, int *a, int size_b, int size_a)
+int	rrr(int *b, int *a, int size_b, int size_a) // rra et rrb simultanément.
 {
 	if (size_b < 2 || size_a < 2)
 		return (0);

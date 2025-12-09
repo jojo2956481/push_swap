@@ -1,3 +1,5 @@
+This project has been created as part of the 42 curriculum by pgougne and lebeyssa
+
 # push_swap
 
 ## 📘 Merged Comparison Table of Sorting Algorithms

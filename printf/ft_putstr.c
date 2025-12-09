@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 08:55:43 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/02 14:33:09 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 15:47:05 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	ft_putstr(char *s)
 		ft_putchar(s[i]);
 		i++;
 	}
-	return (ft_strlen(s));
+	return (ft_strlen_p(s));
 }

@@ -6,15 +6,15 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:27:31 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 08:46:03 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 16:27:33 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *nptr)
 {
-	int	resultat;
-	int	sign;
-	int	i;
+	long	resultat;
+	int		sign;
+	int		i;
 
 	i = 0;
 	sign = 1;

@@ -6,14 +6,14 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:12:45 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/08 12:44:47 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 15:46:31 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_strlen(const char *str)
+int	ft_strlen_p(const char *str)
 {
 	long int	i;
 

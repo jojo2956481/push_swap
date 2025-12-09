@@ -6,7 +6,7 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/06 13:31:56 by lebeyssa          #+#    #+#              #
-#    Updated: 2025/12/09 10:13:47 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2025/12/09 15:29:31 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC= ft_isalnum.c\
 		ft_putchar_fd.c\
 		ft_putstr_fd.c\
 		ft_putendl_fd.c\
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c\
 		ft_lstnew_bonus.c\
 		ft_lstadd_front_bonus.c\
 		ft_lstsize_bonus.c\
@@ -74,7 +74,7 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 clean : 
-	rm -f $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean : clean
 	rm -f $(NAME)

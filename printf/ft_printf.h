@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:17:07 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/08 12:25:04 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 15:46:42 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_putnbr(int n);
 int		ft_putstr(char *s);
 int		ft_loop(char *str, va_list args);
 int		ft_dipatch(char c, va_list args);
-int		ft_strlen(const char *str);
+int		ft_strlen_p(const char *str);
 int		ft_putptr(unsigned long ptr);
 int		ft_putnbr_unsigned(unsigned int n);
 int		ft_putnbr_base(unsigned int n, int swbase);

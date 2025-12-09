@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 15:22:09 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/02 14:36:39 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/09 15:47:33 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_putnbr_base(unsigned int n, int swbase)
 {
 	unsigned int	base_len;
 
-	base_len = ft_strlen(base(swbase));
+	base_len = ft_strlen_p(base(swbase));
 	if (n >= base_len)
 		ft_putnbr_base((n / base_len), swbase);
 	write(1, &base(swbase)[n % base_len], 1);

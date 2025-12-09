@@ -30,4 +30,3 @@
 - https://fr.wikipedia.org/wiki/Algorithme_de_tri
 
 - http://lwh.free.fr/pages/algo/tri/tri.htm
-

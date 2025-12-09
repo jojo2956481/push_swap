@@ -6,13 +6,13 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 09:23:07 by lebeyssa          #+#    #+#              #
-#    Updated: 2025/12/09 10:09:15 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2025/12/09 13:12:21 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 FLAG := -Wall -Wextra -Werror
-INC := push_swap.c
+INC := push_swap.h
 NAME := push_swap
 AR := ar rcs
 OBJ_DIR := .objet

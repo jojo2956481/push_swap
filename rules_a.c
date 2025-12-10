@@ -73,21 +73,3 @@ int	rra(int *a, int size_a)
 	a[0] = temp;
 	return (1);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int     tab[10] = {0, 4, 7, 5, 6, 2, 9, 8, 3, 10};
-// 	int     size;
-// 	int     i;
-
-// 	size = 10;
-// 	i = 0;
-// 	rra(tab, size);
-// 	while (i < size)
-// 	{
-// 			printf("%d", tab[i]);
-// 			i++;
-// 	}
-// 	return (0);
-// }

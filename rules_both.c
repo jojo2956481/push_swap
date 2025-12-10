@@ -17,8 +17,8 @@ int	ss(int *b, int *a, int size_a, int size_b)
 {
 	if (size_a <= 1 || size_b <= 1)
 		return (0);
-	SB(b, size);
-	SA(a, size);
+	sb(b, size_b);
+	sa(a, size_a);
 	return (1);
 }
 
@@ -27,8 +27,8 @@ int	rr(int *b, int *a, int size_b, int size_a)
 {
 	if (size_b < 2 || size_a < 2)
 		return (0);
-	rb(int *b, int size_b);
-	ra(int *a, int size_a);
+	rb(b, size_b);
+	ra(a, size_a);
 	return (0);
 }
 
@@ -37,25 +37,7 @@ int	rrr(int *b, int *a, int size_b, int size_a)
 {
 	if (size_b < 2 || size_a < 2)
 		return (0);
-	rrb(int *b, int size_b);
-	rra(int *a, int size_a);
+	rrb(b, size_b);
+	rra(a, size_a);
 	return (1);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int     tab[10] = {0, 4, 7, 5, 6, 2, 9, 8, 3, 10};
-// 	int     size;
-// 	int     i;
-
-// 	size = 10;
-// 	i = 0;
-// 	rra(tab, size);
-// 	while (i < size)
-// 	{
-// 			printf("%d", tab[i]);
-// 			i++;
-// 	}
-// 	return (0);
-// }

@@ -46,12 +46,12 @@ int	rb(int *b, int size_b)
 		return (0);
 	temp = b[0];
 	i = 0;
-	while (i < size_a - 1)
+	while (i < size_b - 1)
 	{
 		b[i] = b[i + 1];
 		i++;
 	}
-	b[size_a - 1] = temp;
+	b[size_b - 1] = temp;
 	return (1);
 }
 
@@ -73,21 +73,3 @@ int	rrb(int *b, int size_b)
 	b[0] = temp;
 	return (1);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int     tab[10] = {0, 4, 7, 5, 6, 2, 9, 8, 3, 10};
-// 	int     size;
-// 	int     i;
-
-// 	size = 10;
-// 	i = 0;
-// 	rra(tab, size);
-// 	while (i < size)
-// 	{
-// 			printf("%d", tab[i]);
-// 			i++;
-// 	}
-// 	return (0);
-// }

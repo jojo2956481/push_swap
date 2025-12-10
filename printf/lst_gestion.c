@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   lst_gestion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 08:55:43 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 15:47:05 by lebeyssa         ###   ########lyon.fr   */
+/*   Created: 2025/11/17 10:14:24 by pgougne           #+#    #+#             */
+/*   Updated: 2025/11/17 10:14:25 by pgougne          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
-int	ft_putstr(char *s)
+t_printf	*create_lst(char type, char *sup_arg, t_printf *lst, int place)
 {
-	long int	i;
+	t_printf	*new_node;
 
-	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	return (ft_strlen_p(s));
+	new_node = lst_new(type, sup_arg, place);
+	if (!new_node)
+		return (NULL);
+	if (!lst)
+		return (new_node);
+	lst_add_back(lst, new_node);
+	return (lst);
 }

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   man_c.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 15:22:09 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 15:47:33 by lebeyssa         ###   ########lyon.fr   */
+/*   Created: 2025/11/19 08:34:00 by pgougne           #+#    #+#             */
+/*   Updated: 2025/11/19 08:34:05 by pgougne          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
-int	ft_putnbr_base(unsigned int n, int swbase)
+void	man_c(t_printf *lst, int arg)
 {
-	unsigned int	base_len;
+	char	c;
 
-	base_len = ft_strlen_p(base(swbase));
-	if (n >= base_len)
-		ft_putnbr_base((n / base_len), swbase);
-	write(1, &base(swbase)[n % base_len], 1);
-	return (ft_intlen_base(n));
+	if (lst->type == 'c')
+		c = (char)arg;
+	lst->content = malloc(2);
+	if (!lst->content)
+		return ;
+	((char *)lst->content)[0] = c;
+	((char *)lst->content)[1] = '\0';
 }

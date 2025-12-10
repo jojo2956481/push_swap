@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-int find_min(int *min_heap, int nb_block, int *pos, int blocksize, int *idx_min)
+int find_min(int *min_heap, int nb_block, int *pos, int *idx_min)
 {
 	int min;
 	int i;
@@ -10,7 +10,7 @@ int find_min(int *min_heap, int nb_block, int *pos, int blocksize, int *idx_min)
 	min = min_heap[0];
 	while (i < nb_block)
 	{
-		if (pos[i] < blocksize && min_heap[i] < min)
+		if (pos[i] < 3 && min_heap[i] < min)
 		{
 			min = min_heap[i];
 			*idx_min = i;
@@ -19,35 +19,33 @@ int find_min(int *min_heap, int nb_block, int *pos, int blocksize, int *idx_min)
 	}
 	return (min);
 }
-/*
-int	filling_output(int *tab_output, int *pos, int blocksize, int *idx_min, int size_tab)
+
+void	filling_output(int *min_heap, int *pos, int *tab, int idx_min, int size_tab)
 {
-	tab_output[n++] = min;
 	pos[idx_min]++;
-	int block_start = idx_min * blocksize;
+	int block_start = idx_min * 3;
 	int next_index = block_start + pos[idx_min];
 	if (next_index < size_tab)
 		min_heap[idx_min] = tab[next_index];
 	else
 		min_heap[idx_min] = 2147483647;
 }
-*/
+
 int *block_sort(int *tab, int size_tab)
 {
-	int blocksize = 3;
 	int	*min_heap;
 	int i = 0;
 	int j;
 	int k;
 	int	*tab_output;
-	int	nb_block = size_tab / blocksize;
-	if (size_tab % blocksize != 0)
+	int	nb_block = size_tab / 3;
+	if (size_tab % 3 != 0)
 		nb_block++;
 	tab_output = malloc(sizeof(int) * size_tab);
-	min_heap = (int *)malloc(sizeof(int) * (size_tab / blocksize));
+	min_heap = (int *)malloc(sizeof(int) * (size_tab / 3));
 	while (i < size_tab)
 	{
-		int end = i + blocksize;
+		int end = i + 3;
 		if (end > size_tab)
 			end = size_tab;
 		j = i;
@@ -66,14 +64,14 @@ int *block_sort(int *tab, int size_tab)
 			}
 			j++;
 		}
-		i += blocksize;
+		i += 3;
 	}
 	i = 0;
 	j = 0;
 	while (i < size_tab)
 	{
 		min_heap[j++] = tab[i];
-		i += blocksize;
+		i += 3;
 	}
 	int *pos = malloc(sizeof(int) * nb_block);
 	for (i = 0; i < nb_block; i++)
@@ -83,17 +81,12 @@ int *block_sort(int *tab, int size_tab)
 	int idx_min;
 	while (n < size_tab)
 	{
-		min = find_min(min_heap, nb_block, pos, blocksize, &idx_min);
+		min = find_min(min_heap, nb_block, pos, &idx_min);
 		tab_output[n++] = min;
-		pos[idx_min]++;
-		int block_start = idx_min * blocksize;
-		int next_index = block_start + pos[idx_min];
-		if (next_index < size_tab)
-			min_heap[idx_min] = tab[next_index];
-		else
-			min_heap[idx_min] = 2147483647;
-		//filling_output(tab_output, pos, blocksize, idx_min, size_tab);
+		filling_output(min_heap, pos, tab, idx_min, size_tab);
 	}
+	free(min_heap);
+	free(pos);
 	return (tab_output);
 }
 
@@ -107,6 +100,6 @@ int main(void)
 
 	for (int i = 0; i < 8; i++)
 		printf(" %d |", tab_output[i]);
-
+	free(tab_output);
 	return 0;
 }

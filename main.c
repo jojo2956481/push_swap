@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:23:30 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 16:36:34 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2025/12/10 09:49:30 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,28 @@
 (./pusg_swap 12 846 84 24 12 en tab = {12, 846, 84, 24, 12}).
 check si l'input est un int et si c'est un digit.
 je check pas encore les doublons.*/
+
+
+int	check_same(int *tab, size)
+{
+	int	i;
+	int	j;
+
+    i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[j] == tab[i])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 
 // check digit
 int	ft_checkdigit(char **str, int size)
@@ -77,9 +99,18 @@ int	main(int argc, char **argv)
 		return (0);
 	size = ft_checkdigit(argv, (argc - 1));
 	if (size == 0)
+	{
+		ft_printf("%s\n", "Error");
 		return (0);
+	}
 	tab = ft_calloc(size, sizeof(int));
 	fill_tab(tab, size, argv);
+	if (check_same(int *tab, size) == 0)
+	{
+		free(tab);
+		ft_printf("%s\n", "Error");
+		return (0);
+	}
 	i = 0;
 	while (i < size)
 	{

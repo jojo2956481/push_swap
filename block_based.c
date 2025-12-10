@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "push_swap.h"
+
 int find_min(int *min_heap, int nb_block, int *pos, int *idx_min)
 {
 	int min;
@@ -31,14 +33,46 @@ void	filling_output(int *min_heap, int *pos, int *tab, int idx_min, int size_tab
 		min_heap[idx_min] = 2147483647;
 }
 
+int	*output_management(int size_tab, int *min_heap, int *tab, int *tab_output)
+{
+	int	nb_block;
+	int *pos;
+	int idx_min;
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	nb_block = size_tab / 3;
+	if (size_tab % 3 != 0)
+		nb_block++;
+	while (i < size_tab)
+	{
+		min_heap[j++] = tab[i];
+		i += 3;
+	}
+	pos = malloc(sizeof(int) * nb_block);
+	i = 0;
+	while (i < nb_block)
+		pos[i++] = 0;
+	i = 0;
+	while (i < size_tab)
+	{
+		tab_output[i++] = find_min(min_heap, nb_block, pos, &idx_min);
+		filling_output(min_heap, pos, tab, idx_min, size_tab);
+	}
+	free(min_heap);
+	free(pos);
+	return (tab_output);
+}
+
 int *block_sort(int *tab, int size_tab)
 {
 	int	*min_heap;
 	int i = 0;
-	int j;
-	int k;
 	int	*tab_output;
 	int	nb_block = size_tab / 3;
+
 	if (size_tab % 3 != 0)
 		nb_block++;
 	tab_output = malloc(sizeof(int) * size_tab);
@@ -48,45 +82,11 @@ int *block_sort(int *tab, int size_tab)
 		int end = i + 3;
 		if (end > size_tab)
 			end = size_tab;
-		j = i;
-		while (j < end)
-		{
-			k = i;
-			while (k < end - 1)
-			{
-				if (tab[k] > tab[k + 1])
-				{
-					int tmp = tab[k];
-					tab[k] = tab[k + 1];
-					tab[k + 1] = tmp;
-				}
-				k++;
-			}
-			j++;
-		}
+		bubble_sort(&tab[i], end - i);
 		i += 3;
 	}
 	i = 0;
-	j = 0;
-	while (i < size_tab)
-	{
-		min_heap[j++] = tab[i];
-		i += 3;
-	}
-	int *pos = malloc(sizeof(int) * nb_block);
-	for (i = 0; i < nb_block; i++)
-		pos[i] = 0;
-	int n = 0;
-	int	min;
-	int idx_min;
-	while (n < size_tab)
-	{
-		min = find_min(min_heap, nb_block, pos, &idx_min);
-		tab_output[n++] = min;
-		filling_output(min_heap, pos, tab, idx_min, size_tab);
-	}
-	free(min_heap);
-	free(pos);
+	output_management(size_tab, min_heap, tab, tab_output);
 	return (tab_output);
 }
 

@@ -13,27 +13,23 @@ SRC := suparg_bonus.c parsing.c man_c.c\
         ft_strndup.c print_basic_case_and_first_bonus.c print_second_bonus.c\
         ft_printf.c man_base_int.c
 
-LIBFTSRC= ft_strlen.o ft_memcpy.o ft_strncmp.o ft_strdup.o ft_memcmp.o ft_atoi.o
+
 
 SRC_DIR := src/
 OBJ := $(SRC:.c=.o)
 OBJ_DIR := .objs/
 OBJS := $(addprefix $(OBJ_DIR), $(OBJ))
-ALL_D := $(OBJS:.o=.d)
-LIBFTDIR := libft/
-LIBFTOBJ := $(addprefix $(LIBFTDIR), $(LIBFTSRC))
+LIBFTDIR := libft/libft.a
 
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFTOBJ)
-	$(AR) $(ARFLAGS) $@ $(OBJS) $(LIBFTOBJ)
+$(NAME): $(OBJS) $(LIBFTDIR)
+	$(AR) $(ARFLAGS) $@ $(OBJS) $(LIBFTDIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -I$(SRC_DIR) -I$(LIBFTDIR) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
 
 $(LIBFTOBJ):
 	@$(MAKE) --no-print-directory -C $(LIBFTDIR) all

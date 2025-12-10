@@ -14,12 +14,13 @@
 #include "ft_printf.h"
 #include <limits.h>
 #include <stdlib.h>
+/* debut du parsing : formate l'input
+(./pusg_swap 12 846 84 24 12 en tab = {12, 846, 84, 24, 12}).
+check si l'input est un int et si c'est un digit.
+je check pas encore les doublons.*/
 
-// debut du parsing : formate l'input (./pusg_swap 12 846 84 24 12 en tab = {12, 846, 84, 24, 12}).
-// check si l'input est un int et si c'est un digit.
-// je check pas encore les doublons.
-
-int	ft_checkdigit(char **str, int size) // check digit
+// check digit
+int	ft_checkdigit(char **str, int size)
 {
 	int	i;
 	int	j;
@@ -42,18 +43,17 @@ int	ft_checkdigit(char **str, int size) // check digit
 	return (size);
 }
 
-int	fill_tab(int *tab, int size_tab, char **str) // remplie le tableau d'int
+// remplie le tableau d'int
+int	fill_tab(int *tab, int size_tab, char **str)
 {
 	int	i;
 	int	j;
 	int	x;
 
-	
 	x = 0;
 	i = 1;
 	while (x < size_tab)
 	{
-		
 		tab[x] = ft_atoi(str[i]);
 		if (ft_atoi(str[i]) < INT_MIN || ft_atoi(str[i]) > INT_MAX)
 		{
@@ -63,7 +63,6 @@ int	fill_tab(int *tab, int size_tab, char **str) // remplie le tableau d'int
 		}
 		x++;
 		i++;
-
 	}
 	return (0);
 }
@@ -73,7 +72,7 @@ int	main(int argc, char **argv)
 	int	size;
 	int	*tab;
 	int	i;
-	
+
 	if (argc <= 1)
 		return (0);
 	size = ft_checkdigit(argv, (argc - 1));

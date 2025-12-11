@@ -12,6 +12,35 @@
 
 #include "push_swap.h"
 
+int	bubble_sort_block(int *tab, int size)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	count;
+
+	j = -1;
+	count = 0;
+	while (++j < size -1)
+	{
+		i = 0;
+		while (i < size - 1 - j)
+		{
+			k = 0;
+			while (k++ < i)
+				count += ra(tab, size);
+			if (tab[0] > tab[1])
+				count += sa(tab, size);
+			k = 0;
+			while (k++ < size - i)
+				count += ra(tab, size);
+			i++;
+		}
+	}
+	return (count);
+}
+
+
 void	print(int *tab_a, int *tab_b)
 {
 	int i = 0;
@@ -36,7 +65,7 @@ void	print(int *tab_a, int *tab_b)
 	__builtin_printf("\n\n\n");
 }
 
-void	sorting_blocks(int size_tab, int *tab)
+void	sorting_blocks(int *tab, int size_tab)
 {
 	int	i;
 	int	end;
@@ -52,54 +81,89 @@ void	sorting_blocks(int size_tab, int *tab)
 	}
 }
 
-void push_block_to_b(int *a, int *b, int *size_a, int *size_b)
+int	find_min(int *tab, int size_tab)
 {
-	int	n;
+	int	i;
+	int	min;
+	int	idx;
 
-	n = 0;
-	while (n < 3)
+	min = tab[0];
+	i = 0;
+	idx = i;
+	while (++i < size_tab)
 	{
-		pb(a, b, size_a, size_b);
-		n++;
+		if (tab[i] < min)
+		{
+			min = tab[i];
+			idx = i;
+		}
 	}
+	return (idx);
 }
 
-int	*block_sort(int *tab_a, int *size_a)
+int *block_sort(int *tab_a, int *size_a)
 {
-	int	nb_block;
-	int *tab_b;
-	int size_b;
+	int     nb_block;
+	int    *tab_b;
+	//int     size_b = 0;
+	//int     idx;
 
-	size_b = 0;
 	tab_b = calloc(*size_a, sizeof(int));
 	if (!tab_b)
 		return (NULL);
 	nb_block = *size_a / 3;
 	if (*size_a % 3 != 0)
 		nb_block++;
-	sorting_blocks(*size_a, tab_a);
-	print(tab_a, tab_b);
 	int	i;
 	i = 0;
-	while (i < nb_block)
+	while (nb_block > i)
 	{
-		push_block_to_b(tab_a, tab_b, size_a, &size_b);
+		bubble_sort_block(tab_a, 3);
+		print(tab_a, tab_b);
+		ra(tab_a, *size_a);
+		ra(tab_a, *size_a);
+		ra(tab_a, *size_a);
+
+		//pb(tab_a, tab_b, size_a, &size_b);
+		//pb(tab_a, tab_b, size_a, &size_b);
+		//pb(tab_a, tab_b, size_a, &size_b);
+
 		i++;
 	}
+
 	print(tab_a, tab_b);
-	rrb(tab_b, size_b);
-	pa(tab_a, tab_b, size_a, &size_b);
-	return (tab_b);
+	//idx = find_min(tab_b, size_b);
+	//if (idx <= size_b / 2)
+	//	while (idx-- > 0)
+	//		rb(tab_b, size_b);
+	//else
+	//	while (idx++ < size_b)
+	//		rrb(tab_b, size_b);
+	//while (size_b > 0)
+	//	pa(tab_a, tab_b, size_a, &size_b);
+	//print(tab_a, tab_b);
+	free(tab_b);
+	return (tab_a);
+
 }
 
 
 #include <stdio.h>
 int main(void)
 {
-	int tab_a[10] = {5, 9, 1, 7, 3, 5, 5, 8, 1};
+	int tab_a[10] = {4,8,7, 3,6,2, 5,9,1};
 	int size_a = 9;
-	int	*tab_b = block_sort(tab_a, &size_a);
-	print(tab_a, tab_b);
-	free(tab_b);
+	block_sort(tab_a, &size_a);
+	//int i = 0;
+	//__builtin_printf("|-----------------|\n");
+	//__builtin_printf("| tab_a     tab_b |\n");
+	//__builtin_printf("|-----------------|\n");
+	//while (i < size_a)
+	//{
+	//	__builtin_printf("|% 4d   || % 4d   |\n", tab_a[i], tab_b[i]);
+	//	i++;
+	//}
+	//__builtin_printf("\n\n\n");
+	//free(tab_b);
 	return 0;
 }

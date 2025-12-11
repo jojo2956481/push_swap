@@ -17,11 +17,11 @@
 //int	main(int argc, char **argv);
 
 int     sa(int *a, int size_a);
-int     pa(int *b, int *a, int size_b, int size_a);
+int     pa(int *b, int *a, int *size_b, int *size_a);
 int     ra(int *a, int size_a);
 int     rra(int *a, int size_a);
 int     sb(int *b, int size_b);
-int     pb(int *b, int *a, int size_b, int size_a);
+int		pb(int *a, int *b, int *size_a, int *size_b);
 int     rb(int *b, int size_b);
 int     rrb(int *b, int size_b);
 int     ss(int *b, int *a, int size_a, int size_b);

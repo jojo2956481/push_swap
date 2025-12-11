@@ -110,16 +110,22 @@ int	*block_sort(int *tab, int size_tab)
 	free(min_heap);
 	return (tab_output);
 }
-/*
+
 #include <stdio.h>
 int main(void)
 {
-	int tab[8] = {1, 8, 7, 2, 3, 5, 4, 6};
-	int	*tab_output;
-	tab_output = block_sort(tab, 8);
-
-	for (int i = 0; i < 8; i++)
-		printf(" %d |", tab_output[i]);
+	int tab_a[10] = {5,9,1,7,3,5};
+	int tab_b[10] = {};
+	sorting_blocks(10, tab_a);
+	int i = 0;
+	__builtin_printf("|-----------------|\n");
+	__builtin_printf("| tab_a     tab_b |\n");
+	__builtin_printf("|-----------------|\n");
+	while (i < 10)
+	{
+		__builtin_printf("|% 4d   || % 4d   |\n", tab_a[i], tab_b[i]);
+		i++;
+	}
 	free(tab_output);
 	return 0;
-}*/
+}

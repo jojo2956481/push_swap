@@ -26,20 +26,19 @@ int	sb(int *b, int size_b)
 }
 
 // Take the first element at the top of a and put it at the top of b.
-int	pb(int *a, int *b, int size_a, int size_b)
+int pb(int *a, int *b, int *size_a, int *size_b)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	if (size_b <= 0 || size_a <= 0)
-		return (0);
-	if (!a[0])
-		return (0);
-	while (size_b--)
-		b[size_b] = b[size_b - 1];
+	if (*size_a <= 0)
+		return 0;
+	for (i = *size_b; i > 0; i--)
+		b[i] = b[i - 1];
 	b[0] = a[0];
-	while (++size_b < size_a - 1)
-		a[size_b] = a[size_b + 1];
+	for (i = 0; i < *size_a - 1; i++)
+		a[i] = a[i + 1];
+	(*size_a)--;
+	(*size_b)++;
 	return (1);
 }
 
@@ -72,7 +71,7 @@ int	rrb(int *b, int size_b)
 		return (0);
 	temp = b[size_b - 1];
 	i = size_b - 1;
-	while (i >= 1)
+	while (i > 0)
 	{
 		b[i] = b[i - 1];
 		i--;
@@ -80,12 +79,12 @@ int	rrb(int *b, int size_b)
 	b[0] = temp;
 	return (1);
 }
-
+/*
 int main(void)
 {
 	int tab_a[10] = {1,2,3,4,5};
 	int tab_b[10] = {11,22,33,44,55};
-	pb(tab_a, tab_b, 10, 10);
+	rrb( tab_b, 10);
 	int i = 0;
 	__builtin_printf("|-----------------|\n");
 	__builtin_printf("| tab_a     tab_b |\n");
@@ -96,4 +95,4 @@ int main(void)
 		i++;
 	}
 	return (0);
-}
+}*/

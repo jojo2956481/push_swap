@@ -16,7 +16,9 @@
 int	sa(int *a, int size_a)
 {
 	int	temp;
+	//static int	count = 0;
 
+	//printf("%d : sa\n", ++count);
 	if (size_a <= 1)
 		return (0);
 	temp = a[0];
@@ -26,13 +28,20 @@ int	sa(int *a, int size_a)
 }
 
 // Take the first element at the top of b and put it at the top of a.
-int	pa(int *b, int *a, int size_b, int size_a)
+int	pa(int *a, int *b, int size_a, int size_b)
 {
+	int	i;
+
+	i = 0;
 	if (size_b <= 0 || size_a <= 0)
 		return (0);
 	if (!b[0])
 		return (0);
+	while (size_a--)
+		a[size_a] = a[size_a - 1];
 	a[0] = b[0];
+	while (++size_a < size_b - 1)
+		b[size_a] = b[size_a + 1];
 	return (1);
 }
 
@@ -41,7 +50,9 @@ int	ra(int *a, int size_a)
 {
 	int	temp;
 	int	i;
+	//static int	count = 0;
 
+	//printf("%d : ra\n", ++count);
 	if (size_a < 2)
 		return (0);
 	temp = a[0];
@@ -72,4 +83,21 @@ int	rra(int *a, int size_a)
 	}
 	a[0] = temp;
 	return (1);
+}
+
+int main(void)
+{
+	int tab_a[10] = {1,2,3,4,5};
+	int tab_b[10] = {11,22,33,44,55};
+ 	pa(tab_a, tab_b, 10, 10);
+	int i = 0;
+	__builtin_printf("|----------------|\n");
+	__builtin_printf("| tab_a    tab_b |\n");
+	__builtin_printf("|----------------|\n");
+	while (i < 10)
+	{
+		__builtin_printf("|% 4d   | % 4d   |\n", tab_a[i], tab_b[i]);
+		i++;
+	}
+	return (0);
 }

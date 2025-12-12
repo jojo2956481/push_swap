@@ -40,12 +40,11 @@ int	bubble_sort_block(int *tab, int size)
 	return (count);
 }
 
-
 void	print(int *tab_a, int *tab_b)
 {
 	int i = 0;
 	__builtin_printf("|-----------------|\n");
-	__builtin_printf("| tab_a     tab_b |\n");
+	__builtin_printf("| idx     tab_a |\n");
 	__builtin_printf("|-----------------|\n");
 	if (tab_b == NULL)
 	{
@@ -65,36 +64,20 @@ void	print(int *tab_a, int *tab_b)
 	__builtin_printf("\n\n\n");
 }
 
-void	sorting_blocks(int *tab, int size_tab)
-{
-	int	i;
-	int	end;
-
-	i = 0;
-	while (i < size_tab)
-	{
-		end = i + 3;
-		if (end > size_tab)
-			end = size_tab;
-		bubble_sort(&tab[i], end - i);
-		i += 3;
-	}
-}
-
-int	find_min(int *tab, int size_tab)
+int	find_min(int *tab, int size_tab, int *idx_min)
 {
 	int	i;
 	int	min;
 	int	idx;
 
-	min = tab[0];
+	min = tab[idx_min[0]];
 	i = 0;
 	idx = i;
 	while (++i < size_tab)
 	{
-		if (tab[i] < min)
+		if (tab[idx_min[i]] < min)
 		{
-			min = tab[i];
+			min = tab[idx_min[i]];
 			idx = i;
 		}
 	}
@@ -105,53 +88,87 @@ int *block_sort(int *tab_a, int *size_a)
 {
 	int     nb_block;
 	int    *tab_b;
-	//int     size_b = 0;
+	int    *tab_a_cpy;
+	int     size_b = 0;
 	//int     idx;
+	int	i;
+	int	*idx_min;
+	int	min = 0;
 
 	tab_b = calloc(*size_a, sizeof(int));
 	if (!tab_b)
 		return (NULL);
+	i = 0;
+	while (i < *size_a)
+	{
+		tab_a_cpy[i] = tab_a[i];
+		i++;
+	}
 	nb_block = *size_a / 3;
 	if (*size_a % 3 != 0)
 		nb_block++;
-	int	i;
 	i = 0;
 	while (nb_block > i)
 	{
 		bubble_sort_block(tab_a, 3);
-		print(tab_a, tab_b);
 		ra(tab_a, *size_a);
 		ra(tab_a, *size_a);
 		ra(tab_a, *size_a);
-
-		//pb(tab_a, tab_b, size_a, &size_b);
-		//pb(tab_a, tab_b, size_a, &size_b);
-		//pb(tab_a, tab_b, size_a, &size_b);
-
 		i++;
+	}
+	__builtin_printf("echo||||||||||||||||||||||||||||||||||||||||||||||||||||");
+	print(tab_a, tab_a);
+
+	idx_min = (int *)malloc(sizeof(int) * nb_block);
+	if (!idx_min)
+		return (NULL);
+	i = 0;
+	while (i < nb_block)
+	{
+		idx_min[i] = i*3;
+		i++;
+	}
+	__builtin_printf("HERE||||||||||||||||||||||||||||||||||||||||||||||||||||");
+	print(idx_min, tab_a);
+	while (*size_a != 0)
+	{
+		min = find_min(tab_a, 3, idx_min);
+		i = 0;
+		while (i < idx_min[min])
+		{
+			ra(tab_a, *size_a);
+			i++;
+		}
+		while (++min < nb_block)
+		{
+			idx_min[min] = idx_min[min]-1;
+		}
+		pb(tab_a, tab_b, size_a, &size_b);
+		while (i > 0)
+		{
+			rra(tab_a, *size_a);
+			i--;
+		}
+		__builtin_printf("HERE||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		print(idx_min, tab_a);
 	}
 
 	print(tab_a, tab_b);
-	//idx = find_min(tab_b, size_b);
-	//if (idx <= size_b / 2)
-	//	while (idx-- > 0)
-	//		rb(tab_b, size_b);
-	//else
-	//	while (idx++ < size_b)
-	//		rrb(tab_b, size_b);
-	//while (size_b > 0)
-	//	pa(tab_a, tab_b, size_a, &size_b);
-	//print(tab_a, tab_b);
+	while (size_b != 0)
+	{
+		pa(tab_a, tab_b, size_a, &size_b);
+	}
+	print(tab_a, tab_b);
 	free(tab_b);
+	free(idx_min);
 	return (tab_a);
-
 }
 
 
 #include <stdio.h>
 int main(void)
 {
-	int tab_a[10] = {4,8,7, 3,6,2, 5,9,1};
+	int tab_a[10] = {4,8,7, 3,6,1, 5,9,2};
 	int size_a = 9;
 	block_sort(tab_a, &size_a);
 	//int i = 0;

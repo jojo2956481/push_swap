@@ -27,13 +27,13 @@ int	sa(int *a, int size_a)
 }
 
 // Take the first element at the top of b and put it at the top of a.
-int pa(int *a, int *b, int *size_a, int *size_b)
+int	pa(int *a, int *b, int *size_a, int *size_b)
 {
-	int i;
+	int	i;
 
 	__builtin_printf("pa\n");
 	if (*size_b <= 0)
-		return 0;
+		return (0);
 	for (i = *size_a; i > 0; i--)
 		a[i] = a[i - 1];
 	a[0] = b[0];

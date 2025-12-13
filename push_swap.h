@@ -27,9 +27,5 @@ int		rrb(int *b, int size_b);
 int		ss(int *b, int *a, int size_a, int size_b);
 int		rr(int *b, int *a, int size_b, int size_a);
 int		rrr(int *b, int *a, int size_b, int size_a);
-int		bubble_sort(int *tab, int size);
-void	init_min_heap(int *tab, int size_tab, int *min_heap); //block based
-int		*init_pos(int nb_block); //block based
-void	sort_by_blocks(int *tab_a, int *size_a); //block based
 
 #endif

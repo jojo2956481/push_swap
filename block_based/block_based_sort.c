@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "block_based.h"
 
 int	find_min(int *tab, int size_tab, int *idx_min)
 {

@@ -21,38 +21,33 @@
 int sort_three(int *tab, int to_low)
 {
 	int count = 0;
-	int a = tab[0];
-	int b = tab[1];
-	int c = tab[2];
+
 	if (to_low == 1)
 		return (0);
 	if (to_low == 2)
 	{
-		if (a < b)
+		if (tab[0] > tab[1])
 			sa(tab, 3);
 		return (1);
 	}
-	if (a < b && b < c)
+	if (tab[0] < tab[1] && tab[1] < tab[2])
 		return 0;
-	if (a > b && b < c && a < c)
-		return count + sa(tab, 3);
-	if (a < b && b > c && a > c)
-	{
-		count += rra(tab, 3);
+	if (tab[0] > tab[1] && tab[1] < tab[2] && tab[0] < tab[2])
 		count += sa(tab, 3);
-		return count;
-	}
-	if (a > b && b > c)
+	else if (tab[0] > tab[1] && tab[1] < tab[2] && tab[0] > tab[2])
+		count += ra(tab, 3);
+	else if (tab[0] < tab[1] && tab[1] > tab[2] && tab[0] < tab[2])
 	{
 		count += sa(tab, 3);
-		count += rra(tab, 3);
-		return count;
+		count += ra(tab, 3);
 	}
-	if (a > c && c > b)
-		return count + ra(tab, 3);
-	if (b > a && a > c)
-		return count + rra(tab, 3);
-
+	else if (tab[0] < tab[1] && tab[1] > tab[2] && tab[0] > tab[2])
+		count += rra(tab, 3);
+	else if (tab[0] > tab[1] && tab[1] > tab[2])
+	{
+		count += sa(tab, 3);
+		count += rra(tab, 3);
+	}
 	return count;
 }
 
@@ -86,6 +81,7 @@ int	init_utils(int **idx_min, int *size_a)
 	nb_block = *size_a / 3;
 	if (*size_a % 3 != 0)
 		nb_block++;
+
 	*idx_min = malloc(sizeof(int) * nb_block);
 	if (!*idx_min)
 		return (0);
@@ -100,14 +96,20 @@ int	init_utils(int **idx_min, int *size_a)
 void	sort_by_blocks(int *tab_a, int *size_a)
 {
 	int	i;
+	int	n;
 
 	i = 0;
 	while (*size_a > i)
 	{
-		sort_three(tab_a, *size_a - i);
-		ra(tab_a, *size_a);
-		ra(tab_a, *size_a);
-		ra(tab_a, *size_a);
+		n = 3;
+		if (*size_a - i < 3)
+			n = *size_a - i;
+		sort_three(tab_a, n);
+		while (n > 0)
+		{
+			ra(tab_a, *size_a);
+			n--;
+		}
 		i += 3;
 	}
 }
@@ -117,7 +119,7 @@ int	go_to_idx(int *tab_a, int *idx_min, int *size_a, int nb_block)
 	int	min;
 	int	i;
 
-	min = find_min(tab_a, 3, idx_min);
+	min = find_min(tab_a, nb_block, idx_min);
 	i = 0;
 	while (i < idx_min[min])
 	{
@@ -127,21 +129,6 @@ int	go_to_idx(int *tab_a, int *idx_min, int *size_a, int nb_block)
 	while (++min < nb_block)
 		idx_min[min] = idx_min[min] - 1;
 	return (i);
-}
-
-void	print(int *tab_a, int *tab_b)
-{
-	int i;
-	i = 0;
-	__builtin_printf("|-----------------|\n");
-	__builtin_printf("| idx     tab_a |\n");
-	__builtin_printf("|-----------------|\n");
-	while (i < 11)
-	{
-		__builtin_printf("|% 4d   ||% 4d   |\n", tab_a[i], tab_b[i]);
-		i++;
-	}
-	__builtin_printf("\n\n\n");
 }
 
 int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
@@ -155,7 +142,6 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 	if (nb_block == 0)
 		return (NULL);
 	sort_by_blocks(tab_a, size_a);
-	print(tab_a, tab_b);
 	while (*size_a != 0)
 	{
 		i = go_to_idx(tab_a, idx_min, size_a, nb_block);
@@ -169,25 +155,26 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 	return (tab_a);
 }
 
+
 #include <stdio.h>
 int main(void)
 {
-	int tab_a[12] = {10,9,6,  4,8,5,  1,2,3,  3};
-	int tab_b[12] = {};
-	int size_a = 10;
+	int tab_a[18] = {15, 11, 8, 2, 1, 14, 13, 18, 5, 7, 17, 9, 4, 3, 10, 6, 16, 12};
+	int tab_b[18] = {};
+	int size_a = 18;
 	int size_b = 0;
 	int i = 0;
 
 	block_sort(tab_a, tab_b, &size_a, &size_b);
 
-	printf("|-----------------|\n");
-	printf("|      tab_a      |\n");
-	printf("|-----------------|\n");
-
-	while (i < size_a)
-	{
-		printf("|% 6d    |\n", tab_a[i]);
-		i++;
-	}
+	//printf("|-----------------|\n");
+	//printf("|      tab_a      |\n");
+	//printf("|-----------------|\n");
+//
+	//while (i < size_a)
+	//{
+	//	printf("|% 6d    |\n", tab_a[i]);
+	//	i++;
+	//}
 	return 0;
 }

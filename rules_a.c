@@ -16,9 +16,8 @@
 int	sa(int *a, int size_a)
 {
 	int	temp;
-	//static int	count = 0;
 
-	//printf("%d : sa\n", ++count);
+	__builtin_printf("sa\n");
 	if (size_a <= 1)
 		return (0);
 	temp = a[0];
@@ -32,6 +31,7 @@ int pa(int *a, int *b, int *size_a, int *size_b)
 {
 	int i;
 
+	__builtin_printf("pa\n");
 	if (*size_b <= 0)
 		return 0;
 	for (i = *size_a; i > 0; i--)
@@ -49,9 +49,8 @@ int	ra(int *a, int size_a)
 {
 	int	temp;
 	int	i;
-	//static int	count = 0;
 
-	//printf("%d : ra\n", ++count);
+	__builtin_printf("ra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[0];

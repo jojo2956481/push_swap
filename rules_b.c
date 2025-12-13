@@ -30,6 +30,7 @@ int pb(int *a, int *b, int *size_a, int *size_b)
 {
 	int i;
 
+	__builtin_printf("pb\n");
 	if (*size_a <= 0)
 		return 0;
 	for (i = *size_b; i > 0; i--)

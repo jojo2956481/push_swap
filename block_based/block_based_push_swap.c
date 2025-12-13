@@ -10,46 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//here, pb seulement multiple de 3
-//here, pb seulement multiple de 3
-//here, pb seulement multiple de 3
-//here, pb seulement multiple de 3
-//here, pb seulement multiple de 3
-//here, pb seulement multiple de 3
-
-int sort_three(int *tab, int to_low)
-{
-	int count = 0;
-
-	if (to_low == 1)
-		return (0);
-	if (to_low == 2)
-	{
-		if (tab[0] > tab[1])
-			sa(tab, 3);
-		return (1);
-	}
-	if (tab[0] < tab[1] && tab[1] < tab[2])
-		return 0;
-	if (tab[0] > tab[1] && tab[1] < tab[2] && tab[0] < tab[2])
-		count += sa(tab, 3);
-	else if (tab[0] > tab[1] && tab[1] < tab[2] && tab[0] > tab[2])
-		count += ra(tab, 3);
-	else if (tab[0] < tab[1] && tab[1] > tab[2] && tab[0] < tab[2])
-	{
-		count += sa(tab, 3);
-		count += ra(tab, 3);
-	}
-	else if (tab[0] < tab[1] && tab[1] > tab[2] && tab[0] > tab[2])
-		count += rra(tab, 3);
-	else if (tab[0] > tab[1] && tab[1] > tab[2])
-	{
-		count += sa(tab, 3);
-		count += rra(tab, 3);
-	}
-	return count;
-}
+#include "../push_swap.h"
 
 int	find_min(int *tab, int size_tab, int *idx_min)
 {
@@ -81,7 +42,6 @@ int	init_utils(int **idx_min, int *size_a)
 	nb_block = *size_a / 3;
 	if (*size_a % 3 != 0)
 		nb_block++;
-
 	*idx_min = malloc(sizeof(int) * nb_block);
 	if (!*idx_min)
 		return (0);
@@ -91,27 +51,6 @@ int	init_utils(int **idx_min, int *size_a)
 		i++;
 	}
 	return (nb_block);
-}
-
-void	sort_by_blocks(int *tab_a, int *size_a)
-{
-	int	i;
-	int	n;
-
-	i = 0;
-	while (*size_a > i)
-	{
-		n = 3;
-		if (*size_a - i < 3)
-			n = *size_a - i;
-		sort_three(tab_a, n);
-		while (n > 0)
-		{
-			ra(tab_a, *size_a);
-			n--;
-		}
-		i += 3;
-	}
 }
 
 int	go_to_idx(int *tab_a, int *idx_min, int *size_a, int nb_block)
@@ -155,26 +94,29 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 	return (tab_a);
 }
 
-
+/*
 #include <stdio.h>
 int main(void)
 {
-	int tab_a[18] = {15, 11, 8, 2, 1, 14, 13, 18, 5, 7, 17, 9, 4, 3, 10, 6, 16, 12};
-	int tab_b[18] = {};
-	int size_a = 18;
+	int tab_a[30] = {12, 14, 30, 21, 1, 7, 29,
+2 ,22 ,18, 11 ,24, 28, 10 ,19 ,16, 25, 15, 8
+ ,27, 13, 3, 4, 17, 20, 26, 9, 5, 6, 23 };
+	int tab_b[30] = {};
+	int size_a = 30;
 	int size_b = 0;
 	int i = 0;
 
 	block_sort(tab_a, tab_b, &size_a, &size_b);
 
-	//printf("|-----------------|\n");
-	//printf("|      tab_a      |\n");
-	//printf("|-----------------|\n");
-//
-	//while (i < size_a)
-	//{
-	//	printf("|% 6d    |\n", tab_a[i]);
-	//	i++;
-	//}
+	printf("|-----------------|\n");
+	printf("|      tab_a      |\n");
+	printf("|-----------------|\n");
+
+	while (i < size_a)
+	{
+		printf("|% 6d    |\n", tab_a[i]);
+		i++;
+	}
 	return 0;
 }
+*/

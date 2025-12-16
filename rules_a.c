@@ -70,6 +70,7 @@ int	rra(int *a, int size_a)
 	int	temp;
 	int	i;
 
+	__builtin_printf("ra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[size_a - 1];

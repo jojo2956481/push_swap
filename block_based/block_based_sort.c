@@ -13,25 +13,25 @@
 #include "../push_swap.h"
 #include "block_based.h"
 
-int	find_min(int *tab, int size_tab, int *idx_min)
+int find_min(int *tab, int size_tab, int *idx_min)
 {
-	int	i;
-	int	min;
-	int	idx;
+    int i;
+    int min;
+    int idx;
 
-	min = tab[idx_min[0]];
-	i = 0;
-	idx = i;
-	while (i < size_tab)
-	{
-		if (tab[idx_min[i]] < min)
-		{
-			min = tab[idx_min[i]];
-			idx = i;
-		}
-		i++;
-	}
-	return (idx);
+    i = 0;
+    min = tab[idx_min[0]];
+    idx = 0;
+    while (i < size_tab)
+    {
+        if (tab[idx_min[i]] < min && idx_min[i] > 0)
+        {
+            min = tab[idx_min[i]];
+            idx = i;
+        }
+        i++;
+    }
+    return (idx);
 }
 
 int	init_utils(int **idx_min, int *size_a)
@@ -58,14 +58,16 @@ int	go_to_idx(int *tab_a, int *idx_min, int *size_a, int nb_block)
 {
 	int	min;
 	int	i;
+	int	target_idx;
 
 	min = find_min(tab_a, nb_block, idx_min);
+	target_idx = idx_min[min];
 	i = 0;
-	while (i < idx_min[min])
-	{
-		ra(tab_a, *size_a);
-		i++;
-	}
+    while (i < target_idx)
+    {
+        ra(tab_a, *size_a);
+        i++;
+    }
 	while (++min < nb_block)
 		idx_min[min] = idx_min[min] - 1;
 	return (i);
@@ -95,15 +97,24 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 	return (tab_a);
 }
 
-/*
+
 #include <stdio.h>
 int main(void)
 {
-	int tab_a[30] = {12, 14, 30, 21, 1, 7, 29,
-2 ,22 ,18, 11 ,24, 28, 10 ,19 ,16, 25, 15, 8
- ,27, 13, 3, 4, 17, 20, 26, 9, 5, 6, 23 };
-	int tab_b[30] = {};
-	int size_a = 30;
+	int tab_a[100] = {
+57, 12, 86, 4, 91, 33, 70, 45, 19, 28,
+62, 77, 11, 36, 95, 8, 3, 64, 21, 73,
+49, 68, 55, 90, 39, 2, 85, 46, 10, 13,
+6, 41, 60, 88, 26, 79, 54, 5, 97, 15,
+44, 71, 32, 24, 1, 42, 93, 29, 63, 38,
+16, 22, 17, 7, 52, 34, 61, 35, 51, 31,
+65, 48, 27, 96, 14, 74, 18, 20, 47, 53,
+92, 66, 40, 23, 37, 56, 50, 30, 98, 25,
+59, 94, 84, 43, 72, 75, 67, 58, 87, 89,
+82, 83, 81, 76, 78, 9, 99, 80, 100, 69
+};
+	int tab_b[100] = {};
+	int size_a = 100;
 	int size_b = 0;
 	int i = 0;
 
@@ -120,4 +131,3 @@ int main(void)
 	}
 	return 0;
 }
-*/

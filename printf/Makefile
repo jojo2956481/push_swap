@@ -1,53 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/11/17 15:05:06 by lebeyssa          #+#    #+#              #
+#    Updated: 2025/12/17 13:14:58 by lebeyssa         ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
 CC := cc
-CFLAGS := -Wall -Werror -Wextra
-DEPFLAGS := -MMD -MP
-
-AR := ar
-ARFLAGS := -rcs
-
+FLAG := -Wall -Wextra -Werror
+INC := ft_printf.h
 NAME := libftprintf.a
+AR := ar rcs
+OBJ_DIR := .objet
+SRC := ft_dispatch.c ft_printf.c ft_putstr.c ft_putnbr.c\
+	ft_putnbr_base.c ft_putptr.c ft_putnbr_unsigned.c ft_util.c
+OBJ := $(patsubst %.c, %.o, $(SRC))
 
-SRC := suparg_bonus.c parsing.c man_c.c\
-        man_p.c man_u.c assigning_content.c\
-        man_base.c lst_std.c lst_gestion.c\
-        ft_strndup.c print_basic_case_and_first_bonus.c print_second_bonus.c\
-        ft_printf.c man_base_int.c
+OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
+all : $(NAME)
 
+$(NAME) : $(OBJS) $(SRC) $(INC) Makefile
+	@$(AR) $@ $^
 
-SRC_DIR := src/
-OBJ := $(SRC:.c=.o)
-OBJ_DIR := .objs/
-OBJS := $(addprefix $(OBJ_DIR), $(OBJ))
-LIBFTDIR := libft/libft.a
-
-.PHONY: all
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIBFTDIR)
-	$(AR) $(ARFLAGS) $@ $(OBJS) $(LIBFTDIR)
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DEPFLAGS) -I$(SRC_DIR) -I$(LIBFTDIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
-$(LIBFTOBJ):
-	@$(MAKE) --no-print-directory -C $(LIBFTDIR) all
-
-.PHONY: bonus
-bonus: re
-
-.PHONY: clean
-clean:
+clean :
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) --no-print-directory -C $(LIBFTDIR) clean
 
-.PHONY: fclean
-fclean: clean
+fclean : clean
 	@rm -f $(NAME)
-	@$(MAKE) --no-print-directory -C $(LIBFTDIR) fclean
 
-.PHONY: re
-re: fclean all
+re : fclean all
 
--include $(ALL_D)
+.PHONY : clean fclean re all

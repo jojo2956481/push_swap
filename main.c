@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./printf/libft/libft.h"
-#include "./printf/src/ft_printf.h"
-#include "./block_based/block_based.h"
+#include "libft.h"
+#include "ft_printf.h"
+#include "block_based.h"
 #include <limits.h>
 #include <stdlib.h>
 /* debut du parsing : formate l'input
@@ -33,12 +33,12 @@ int	check_same(int *tab, int size)
 		while (j < size)
 		{
 			if (tab[j] == tab[i])
-				return (1);
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 
@@ -66,11 +66,9 @@ int	ft_checkdigit(char **str, int size)
 	return (size);
 }
 
-// remplie le tableau d'int
 int	fill_tab(int *tab, int size_tab, char **str)
 {
 	int	i;
-	int	j;
 	int	x;
 
 	x = 0;
@@ -117,7 +115,7 @@ int	main(int argc, char **argv)
 	}
 	size_b = 0;
 	fill_tab(tab, size, argv);
-	if (check_same(tab, size) == 0)
+	if (!check_same(tab, size))
 	{
 		free(tab);
 		ft_printf("%s\n", "Error");

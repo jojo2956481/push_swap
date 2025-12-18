@@ -16,4 +16,4 @@
 void	sort_by_blocks(int *tab_a, int *size_a);
 int		*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b);
 
-#endif //BLOCK_BASED_H
+#endif

@@ -12,13 +12,13 @@
 
 CC := cc
 FLAG := -Wall -Wextra -Werror -g
-INC := push_swap.h
+INC := -I. -Ilibft -Iprintf -Iblock_based
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
-		ft_utile.c insertion_sort.c chunk_sort.c chunk_test.c
-	
-OBJ := $(patsubst %.c, %.o, $(SRC))
+		block_based/block_based_sort.c block_based/sorting_blocks.c
+
+OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 LIBFT := libft/libft.a
@@ -28,28 +28,28 @@ LIBS := $(LIBFT) $(PRINTF)
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(SRC) $(INC) $(LIBS) Makefile
+$(NAME): $(OBJS) $(LIBS)
 	$(CC) $(FLAG) $(OBJS) $(LIBS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(FLAGS) -I libft -I printf -I $(INC) -c $< -o $@
+	@mkdir -p $(dir $@)
+	$(CC) $(FLAG) $(INC) -c $< -o $@
 
 $(LIBFT):
-	make -C libft
+	$(MAKE) -C libft --no-print-directory
 
 $(PRINTF):
-	make -C printf
+	$(MAKE) -C printf --no-print-directory
 
-clean :
-	rm -rf $(OBJ_DIR) 
-	make -C libft clean
-	make -C printf clean
+clean:
+	rm -rf $(OBJ_DIR)
+	$(MAKE) -C libft clean --no-print-directory
+	$(MAKE) -C printf clean --no-print-directory
 
-fclean : clean
+fclean: clean
 	rm -f $(NAME)
-	make -C libft fclean
-	make -C printf fclean
+	$(MAKE) -C libft fclean --no-print-directory
+	$(MAKE) -C printf fclean --no-print-directory
 
 re : fclean all
 

@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#include "./printf/libft/libft.h"
+#include "./printf/src/ft_printf.h"
+#include "./block_based/block_based.h"
 #include <limits.h>
 #include <stdlib.h>
 /* debut du parsing : formate l'input
@@ -20,7 +21,7 @@ check si l'input est un int et si c'est un digit.
 je check pas encore les doublons.*/
 
 
-int	check_same(int *tab, size)
+int	check_same(int *tab, int size)
 {
 	int	i;
 	int	j;
@@ -93,29 +94,43 @@ int	main(int argc, char **argv)
 {
 	int	size;
 	int	*tab;
+	int	*tab_b;
+	int	size_b;
 	int	i;
 
 	if (argc <= 1)
-		return (0);
+		return (1);
 	size = ft_checkdigit(argv, (argc - 1));
 	if (size == 0)
 	{
 		ft_printf("%s\n", "Error");
-		return (0);
+		return (1);
 	}
 	tab = ft_calloc(size, sizeof(int));
+	if (tab == NULL)
+		return (1);
+	tab_b = ft_calloc(size, sizeof(int));
+	if (tab_b == NULL)
+	{
+		free(tab);
+		return (1);
+	}
+	size_b = 0;
 	fill_tab(tab, size, argv);
-	if (check_same(int *tab, size) == 0)
+	if (check_same(tab, size) == 0)
 	{
 		free(tab);
 		ft_printf("%s\n", "Error");
-		return (0);
+		return (1);
 	}
+	block_sort(tab, tab_b, &size, &size_b);
 	i = 0;
 	while (i < size)
 	{
 		ft_printf("%d\n", tab[i]);
 		i++;
 	}
+	free(tab_b);
+	free(tab);
 	return (0);
 }

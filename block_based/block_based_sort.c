@@ -97,7 +97,7 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 	return (tab_a);
 }
 
-
+/*
 #include <stdio.h>
 int main(void)
 {
@@ -131,3 +131,4 @@ int main(void)
 	}
 	return 0;
 }
+*/

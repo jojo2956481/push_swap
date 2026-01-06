@@ -22,8 +22,6 @@ int ft_sqrt(int n)
         return (n);
     r = 1;
     while (r * r <= n / 2)
-    {
         r++;
-    }
     return (r);
 }

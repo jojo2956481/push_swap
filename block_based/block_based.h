@@ -14,6 +14,12 @@
 # define BLOCK_BASED_H
 
 void	sort_by_blocks(int *tab_a, int *size_a);
+int		*block_sort_cpy(int *tab_a, int	*tab_b, int *size_a, int *size_b);
 int		*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b);
+int		*block_sort_without_rules(int *tab_a, int size_a);
+void	init_min_heap_cpy(int *tab, int size_tab, int *min_heap);
+int		*init_pos_cpy(int nb_block);
+void	bubble_sort_cpy(int *tab, int n);
+int		ft_sqrt(int n);
 
 #endif

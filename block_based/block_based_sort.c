@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   block_based.c                                      :+:      :+:    :+:   */
+/*   sorting_copy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,25 +13,30 @@
 #include "../push_swap.h"
 #include "block_based.h"
 
-int find_min(int *tab, int size_tab, int *idx_min)
-{
-    int i;
-    int min;
-    int idx;
+#include <unistd.h>
 
-    i = 0;
-    min = tab[idx_min[0]];
-    idx = 0;
-    while (i < size_tab)
-    {
-        if (tab[idx_min[i]] < min && idx_min[i] > 0)
-        {
-            min = tab[idx_min[i]];
-            idx = i;
-        }
-        i++;
-    }
-    return (idx);
+int find_min(int *cpy_tab, int nb_block, int *idx_min, int size_total)
+{
+	int i = 0;
+	int best_block = -1;
+	int min_val = 2147483647;
+
+	while (i < nb_block)
+	{
+		int current_idx = idx_min[i];
+		int block_limit = (i * 3) + 3;
+
+		if (current_idx < block_limit && current_idx < size_total)
+		{
+			if (cpy_tab[current_idx] < min_val)
+			{
+				min_val = cpy_tab[current_idx];
+				best_block = i;
+			}
+		}
+		i++;
+	}
+	return (best_block);
 }
 
 int	init_utils(int **idx_min, int *size_a)
@@ -54,45 +59,79 @@ int	init_utils(int **idx_min, int *size_a)
 	return (nb_block);
 }
 
-int	go_to_idx(int *tab_a, int *idx_min, int *size_a, int nb_block)
+int	go_to_idx(int *cpy_tab, int *idx_min, int *size_a, int nb_block)
 {
 	int	min;
-	int	i;
-	int	target_idx;
-
-	min = find_min(tab_a, nb_block, idx_min);
-	target_idx = idx_min[min];
-	i = 0;
-    while (i < target_idx)
-    {
-        ra(tab_a, *size_a);
-        i++;
-    }
+	int s;
+	s = *size_a;
+	min = find_min(cpy_tab, nb_block, idx_min, *size_a);
 	while (++min < nb_block)
 		idx_min[min] = idx_min[min] - 1;
-	return (i);
+	return (cpy_tab[min]);
+}
+
+int find_pos(int *tab, int size, int value)
+{
+	int i = 0;
+	while (i < size)
+	{
+		if (tab[i] == value)
+			return (i);
+		i++;
+	}
+	return (0);
 }
 
 int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 {
-	int	nb_block;
-	int	i;
 	int	*idx_min;
+	int	*cpy_tab;
+	int	nb_block;
+	int	b_idx;
+	int	target_val;
+	int	pos;
 
-	idx_min = NULL;
+	cpy_tab = block_sort_without_rules(tab_a, *size_a);
 	nb_block = init_utils(&idx_min, size_a);
-	if (nb_block == 0)
-		return (NULL);
-	sort_by_blocks(tab_a, size_a);
-	while (*size_a != 0)
+	int total_elements = *size_a;
+	while (*size_a > 0)
 	{
-		i = go_to_idx(tab_a, idx_min, size_a, nb_block);
+		b_idx = find_min(cpy_tab, nb_block, idx_min, total_elements);
+		target_val = cpy_tab[idx_min[b_idx]];
+		pos = find_pos(tab_a, *size_a, target_val);
+		if (pos <= *size_a / 2)
+		{
+			while (tab_a[0] != target_val)
+				ra(tab_a, *size_a);
+		}
+		else
+		{
+			while (tab_a[0] != target_val)
+				rra(tab_a, *size_a);
+		}
 		pb(tab_a, tab_b, size_a, size_b);
-		while (i-- > 0)
-			rra(tab_a, *size_a);
+		idx_min[b_idx]++;
 	}
-	while (*size_b != 0)
+	while (*size_b > 0)
 		pa(tab_a, tab_b, size_a, size_b);
 	free(idx_min);
+	free(cpy_tab);
 	return (tab_a);
 }
+
+/*
+int main(void)
+{
+	int tab_a[] = {5,6,3,8,9};
+	int tab_b[5];
+	int size_a = 5;
+	int size_b = 0;
+	int i = 0;
+
+	block_sort(tab_a, tab_b, &size_a, &size_b);
+	while (i < size_a)
+	{
+		__builtin_printf("%d\n", tab_a[i]);
+		i++;
+	}
+}*/

@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	size = check_args(argc - 1, argv);
 	if (size == 0)
 	{
-		ft_printf("%s\n", "Error"); // PASSER UN ARGUMENT POUR CHANGER DE SORTI
+		ft_printf("%s\n", "Error");
 		return (1);
 	}
 	tab = ft_calloc(size, sizeof(int));
@@ -90,9 +90,9 @@ int	main(int argc, char **argv)
 	size_b = 0;
 	fill_tab(tab, size, argv);
 	block_sort(tab, tab_b, &size, &size_b);
-	i = 0;/*
+	i = 0;
 	while (i < size)
-		ft_printf("%d\n", tab[i++]);*/
+		ft_printf("%d\n", tab[i++]);
 	free(tab_b);
 	free(tab);
 	return (0);

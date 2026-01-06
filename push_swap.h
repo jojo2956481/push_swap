@@ -27,6 +27,5 @@ int		rrb(int *b, int size_b);
 int		ss(int *b, int *a, int size_a, int size_b);
 int		rr(int *b, int *a, int size_b, int size_a);
 int		rrr(int *b, int *a, int size_b, int size_a);
-int		bubble_sort(int *tab, int size);
 
 #endif

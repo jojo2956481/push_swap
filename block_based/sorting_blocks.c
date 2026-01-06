@@ -12,6 +12,24 @@
 
 #include "../push_swap.h"
 
+int ft_sqrt(int n)
+{
+    int r;
+
+    if (n < 0)
+        return (0);
+    if (n == 0 || n == 1)
+        return (n);
+    r = 1;
+    while (r * r <= n)
+    {
+        if (r > 46340)
+            break;
+        r++;
+    }
+    return (r - 1);
+}
+
 static int	sort_three_cases(int *tab)
 {
 	int	count;

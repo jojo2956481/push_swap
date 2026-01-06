@@ -16,7 +16,8 @@ INC := -I. -Ilibft -Iprintf -Iblock_based
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
-		block_based/block_based_sort.c block_based/sorting_blocks.c
+		block_based/block_based_sort.c block_based/sorting_blocks.c\
+		block_based/sorting_copy.c block_based/sorting_copy_utils.c
 
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
@@ -29,7 +30,7 @@ LIBS := $(LIBFT) $(PRINTF)
 all : $(NAME)
 
 $(NAME): $(OBJS) $(LIBS)
-	$(CC) $(FLAG) $(OBJS) $(LIBS) -o $(NAME)
+	$(CC) $(FLAG) $(OBJS) $(LIBS) -o $(NAME) -g
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)

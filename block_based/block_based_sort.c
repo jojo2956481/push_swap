@@ -59,17 +59,6 @@ int	init_utils(int **idx_min, int *size_a)
 	return (nb_block);
 }
 
-int	go_to_idx(int *cpy_tab, int *idx_min, int *size_a, int nb_block)
-{
-	int	min;
-	int s;
-	s = *size_a;
-	min = find_min(cpy_tab, nb_block, idx_min, *size_a);
-	while (++min < nb_block)
-		idx_min[min] = idx_min[min] - 1;
-	return (cpy_tab[min]);
-}
-
 int find_pos(int *tab, int size, int value)
 {
 	int i = 0;
@@ -116,6 +105,7 @@ int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
 		pa(tab_a, tab_b, size_a, size_b);
 	free(idx_min);
 	free(cpy_tab);
+
 	return (tab_a);
 }
 

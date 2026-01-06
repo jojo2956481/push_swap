@@ -20,50 +20,24 @@
 check si l'input est un int et si c'est un digit.
 je check pas encore les doublons.*/
 
-
-int	check_same(int *tab, int size)
+static int  check_args(int argc, char **argv)
 {
-	int	i;
-	int	j;
-
-    i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (tab[j] == tab[i])
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-
-// check digit
-int	ft_checkdigit(char **str, int size)
-{
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 1;
-	while (i <= size)
+	while (i < argc)
 	{
-		j = 0;
-		while (str[i][j])
+		j = i + 1;
+		while (j <= argc)
 		{
-			if (ft_isdigit(str[i][j]) == 0)
-			{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
 				return (0);
-				ft_printf("%s\n", "Error");
-			}
 			j++;
 		}
 		i++;
 	}
-	return (size);
+	return (i);
 }
 
 int	fill_tab(int *tab, int size_tab, char **str)
@@ -98,10 +72,10 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (1);
-	size = ft_checkdigit(argv, (argc - 1));
+	size = check_args(argc - 1, argv);
 	if (size == 0)
 	{
-		ft_printf("%s\n", "Error");
+		ft_printf("%s\n", "Error"); // PASSER UN ARGUMENT POUR CHANGER DE SORTI
 		return (1);
 	}
 	tab = ft_calloc(size, sizeof(int));
@@ -115,19 +89,10 @@ int	main(int argc, char **argv)
 	}
 	size_b = 0;
 	fill_tab(tab, size, argv);
-	if (!check_same(tab, size))
-	{
-		free(tab);
-		ft_printf("%s\n", "Error");
-		return (1);
-	}
 	block_sort(tab, tab_b, &size, &size_b);
-	i = 0;
+	i = 0;/*
 	while (i < size)
-	{
-		ft_printf("%d\n", tab[i]);
-		i++;
-	}
+		ft_printf("%d\n", tab[i++]);*/
 	free(tab_b);
 	free(tab);
 	return (0);

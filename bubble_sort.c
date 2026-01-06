@@ -16,26 +16,27 @@ int	bubble_sort(int *tab, int size)
 {
 	int	i;
 	int	j;
-	int	k;
 	int	count;
 
-	j = -1;
 	count = 0;
-	while (++j < size -1)
+	j = 0;
+	while (j < size - 1)
 	{
 		i = 0;
 		while (i < size - 1 - j)
 		{
-			k = 0;
-			while (k++ < i)
-				count += ra(tab, size);
 			if (tab[0] > tab[1])
 				count += sa(tab, size);
-			k = 0;
-			while (k++ < size - i)
-				count += ra(tab, size);
+			count += ra(tab, size);
 			i++;
 		}
+		i = 0;
+		while (i < size - 1 - j)
+		{
+			count += rra(tab, size);
+			i++;
+		}
+		j++;
 	}
 	return (count);
 }

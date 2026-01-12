@@ -12,12 +12,14 @@
 
 CC := cc
 FLAG := -Wall -Wextra -Werror -g
-INC := -I. -Ilibft -Iprintf -Iblock_based
+INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		block_based/block_based_sort.c block_based/sorting_blocks.c\
-		block_based/sorting_copy.c block_based/sorting_copy_utils.c
+		block_based/sorting_copy.c block_based/sorting_copy_utils.c\
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
+		parsing.c
 
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))

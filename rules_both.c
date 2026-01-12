@@ -29,7 +29,7 @@ int	rr(int *b, int *a, int size_b, int size_a)
 		return (0);
 	rb(b, size_b);
 	ra(a, size_a);
-	return (0);
+	return (1);
 }
 
 // rra and rrb at the same time.

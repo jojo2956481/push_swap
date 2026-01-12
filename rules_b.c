@@ -15,7 +15,7 @@
 // Swap the first two elements at the top of stack b
 int	sb(int *b, int size_b)
 {
-	int	temp;
+	int			temp;
 
 	if (size_b <= 1)
 		return (0);
@@ -26,18 +26,26 @@ int	sb(int *b, int size_b)
 }
 
 // Take the first element at the top of a and put it at the top of b.
-int pb(int *a, int *b, int *size_a, int *size_b)
+int	pb(int *a, int *b, int *size_a, int *size_b)
 {
-	int i;
+	int			i;
 
 	__builtin_printf("pb\n");
 	if (*size_a <= 0)
-		return 0;
-	for (i = *size_b; i > 0; i--)
+		return (0);
+	i = *size_b;
+	while (i > 0)
+	{
 		b[i] = b[i - 1];
+		i--;
+	}
 	b[0] = a[0];
-	for (i = 0; i < *size_a - 1; i++)
+	i = 0;
+	while (i < *size_a - 1)
+	{
 		a[i] = a[i + 1];
+		i++;
+	}
 	(*size_a)--;
 	(*size_b)++;
 	return (1);
@@ -46,8 +54,8 @@ int pb(int *a, int *b, int *size_a, int *size_b)
 // Shift up all elements of stack b by one.
 int	rb(int *b, int size_b)
 {
-	int	temp;
-	int	i;
+	int			temp;
+	int			i;
 
 	if (size_b < 2)
 		return (0);
@@ -65,8 +73,8 @@ int	rb(int *b, int size_b)
 // Shift down all elements of stack b by one.
 int	rrb(int *b, int size_b)
 {
-	int	temp;
-	int	i;
+	int			temp;
+	int			i;
 
 	if (size_b < 2)
 		return (0);

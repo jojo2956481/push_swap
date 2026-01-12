@@ -15,7 +15,7 @@
 // Swap the first two elements at the top of stack a
 int	sa(int *a, int size_a)
 {
-	int	temp;
+	int			temp;
 
 	__builtin_printf("sa\n");
 	if (size_a <= 1)
@@ -29,16 +29,24 @@ int	sa(int *a, int size_a)
 // Take the first element at the top of b and put it at the top of a.
 int	pa(int *a, int *b, int *size_a, int *size_b)
 {
-	int	i;
+	int			i;
 
 	__builtin_printf("pa\n");
 	if (*size_b <= 0)
 		return (0);
-	for (i = *size_a; i > 0; i--)
+	i = *size_a;
+	while (i > 0)
+	{
 		a[i] = a[i - 1];
+		i--;
+	}
 	a[0] = b[0];
-	for (i = 0; i < *size_b - 1; i++)
+	i = 0;
+	while (i < *size_b - 1)
+	{
 		b[i] = b[i + 1];
+		i++;
+	}
 	(*size_b)--;
 	(*size_a)++;
 	return (1);
@@ -47,8 +55,8 @@ int	pa(int *a, int *b, int *size_a, int *size_b)
 // Shift up all elements of stack a by one
 int	ra(int *a, int size_a)
 {
-	int	temp;
-	int	i;
+	int			temp;
+	int			i;
 
 	__builtin_printf("ra\n");
 	if (size_a < 2)
@@ -67,8 +75,8 @@ int	ra(int *a, int size_a)
 // Shift down all elements of stack a by one.
 int	rra(int *a, int size_a)
 {
-	int	temp;
-	int	i;
+	int			temp;
+	int			i;
 
 	__builtin_printf("ra\n");
 	if (size_a < 2)

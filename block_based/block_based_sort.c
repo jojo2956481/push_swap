@@ -71,42 +71,63 @@ int find_pos(int *tab, int size, int value)
 	return (0);
 }
 
-int	*block_sort(int *tab_a, int	*tab_b, int *size_a, int *size_b)
+static void	move_to_top(int *tab_a, int size_a, int target, int *counter)
+{
+	int	pos;
+
+	pos = find_pos(tab_a, size_a, target);
+	if (pos <= size_a / 2)
+	{
+		while (tab_a[0] != target)
+		{
+			ra(tab_a, size_a);
+			(*counter)++;
+		}
+	}
+	else
+	{
+		while (tab_a[0] != target)
+		{
+			rra(tab_a, size_a);
+			(*counter)++;
+		}
+	}
+}
+
+static void	empty_b(int *tab_a, int *tab_b, int *s_a, int *s_b, int *counter)
+{
+	while (*s_b > 0)
+	{
+		pa(tab_a, tab_b, s_a, s_b);
+		(*counter)++;
+	}
+}
+
+int	block_sort(int *tab_a, int *tab_b, int *size_a, int *size_b)
 {
 	int	*idx_min;
 	int	*cpy_tab;
 	int	nb_block;
 	int	b_idx;
-	int	target_val;
-	int	pos;
+	int	c;
+	int	total;
 
+	c = 0;
+	total = *size_a;
 	cpy_tab = block_sort_without_rules(tab_a, *size_a);
 	nb_block = init_utils(&idx_min, size_a);
-	int total_elements = *size_a;
 	while (*size_a > 0)
 	{
-		b_idx = find_min(cpy_tab, nb_block, idx_min, total_elements);
-		target_val = cpy_tab[idx_min[b_idx]];
-		pos = find_pos(tab_a, *size_a, target_val);
-		if (pos <= *size_a / 2)
-		{
-			while (tab_a[0] != target_val)
-				ra(tab_a, *size_a);
-		}
-		else
-		{
-			while (tab_a[0] != target_val)
-				rra(tab_a, *size_a);
-		}
+		b_idx = find_min(cpy_tab, nb_block, idx_min, total);
+		move_to_top(tab_a, *size_a, cpy_tab[idx_min[b_idx]], &c);
 		pb(tab_a, tab_b, size_a, size_b);
+		c++;
 		idx_min[b_idx]++;
 	}
-	while (*size_b > 0)
-		pa(tab_a, tab_b, size_a, size_b);
+	empty_b(tab_a, tab_b, size_a, size_b, &c);
 	free(idx_min);
 	free(cpy_tab);
-
-	return (tab_a);
+	return (c);
 }
 
 /*

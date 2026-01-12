@@ -11,89 +11,97 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 #include "block_based.h"
+#include "get_next_line.h"
+#include "push_swap.h"
 #include <limits.h>
 #include <stdlib.h>
-/* debut du parsing : formate l'input
-(./pusg_swap 12 846 84 24 12 en tab = {12, 846, 84, 24, 12}).
-check si l'input est un int et si c'est un digit.
-je check pas encore les doublons.*/
 
-static int  check_args(int argc, char **argv)
+int free_all(int *a, int *b, int return_value, int error)
 {
 	int i;
-	int j;
 
-	i = 1;
-	while (i < argc)
-	{
-		j = i + 1;
-		while (j <= argc)
-		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (i);
+	i = 0;
+	if (a)
+		free(a);
+	if (b)
+		free(b);
+	if (error)
+		write(2, "Error\n", 6);
+	return (return_value);
 }
 
-int	fill_tab(int *tab, int size_tab, char **str)
+int	is_arg_number(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		if (!ft_isdigit(str[i++]))
+			return (0);
+	return (1);
+}
+
+int	fill_tab(int *tab, int size_tab, char **str, int start)
 {
 	int	i;
 	int	x;
 
 	x = 0;
-	i = 1;
+	i = start;
 	while (x < size_tab)
 	{
+		if (!is_arg_number(str[i]))
+			return (0);
 		tab[x] = ft_atoi(str[i]);
 		if (ft_atoi(str[i]) < INT_MIN || ft_atoi(str[i]) > INT_MAX)
-		{
-			free(tab);
-			ft_printf("%s\n", "Error");
 			return (0);
-		}
 		x++;
 		i++;
 	}
+	return (1);
+}
+
+int init_tab(int **a, int **b, int *size_a, int *size_b)
+{
+	if (*size_a == 0)
+		return (free_all(NULL, NULL, 1, 1));
+	*a = ft_calloc(*size_a, sizeof(int));
+	if (*a == NULL)
+		return (free_all(NULL, NULL, 1, 1));
+	*b = ft_calloc(*size_a, sizeof(int));
+	if (*b == NULL)
+		return (free_all(*a, NULL, 1, 1));
+	*size_b = 0;
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	int	size;
+	int	size_a;
 	int	*tab;
 	int	*tab_b;
 	int	size_b;
-	int	i;
+	int	res;
 
 	if (argc <= 1)
 		return (1);
-	size = check_args(argc - 1, argv);
-	if (size == 0)
-	{
-		ft_printf("%s\n", "Error");
+	if (argv[1][0] == '-')
+		size_a = check_args(argc - 1, argv, 2);
+	else
+		size_a = check_args(argc, argv, 1);
+	if (size_a == 0)
 		return (1);
-	}
-	tab = ft_calloc(size, sizeof(int));
-	if (tab == NULL)
+	if (init_tab(&tab, &tab_b, &size_a, &size_b) == 1)
 		return (1);
-	tab_b = ft_calloc(size, sizeof(int));
-	if (tab_b == NULL)
-	{
-		free(tab);
+	if (argv[1][0] == '-')
+		res = fill_tab(tab, size_a, argv, 2);
+	else
+		res = fill_tab(tab, size_a, argv, 1);
+	if (res == 0)
+		return (free_all(tab, tab_b, 0, 1));
+	res = choose_strategy(argv, tab, tab_b, size_a);
+	if (res == -1)
 		return (1);
-	}
-	size_b = 0;
-	fill_tab(tab, size, argv);
-	block_sort(tab, tab_b, &size, &size_b);
-	i = 0;
-	while (i < size)
-		ft_printf("%d\n", tab[i++]);
-	free(tab_b);
-	free(tab);
 	return (0);
 }

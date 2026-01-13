@@ -127,6 +127,12 @@ int	block_sort(t_stacks *stack, t_actions *actions)
 	empty_b(stack, &c, actions);
 	free(idx_min);
 	free(cpy_tab);
+	int i = 0;
+	while (i < stack->size_a)
+	{
+		__builtin_printf("%d\n", stack->tab_a[i]);
+		i++;
+	}
 	return (c);
 }
 

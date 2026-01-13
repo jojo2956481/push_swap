@@ -39,6 +39,12 @@ typedef struct s_stacks
 	int size_b;
 }	t_stacks;
 
+typedef struct s_options
+{
+	int	strategy;
+	int	display;
+}	t_options;
+
 int		sa(int *a, int size_a, t_actions *actions);
 int		pa(t_stacks *stack, t_actions *actions);
 int		ra(int *a, int size_a, t_actions *actions);
@@ -51,7 +57,7 @@ int		ss(t_stacks *stack, t_actions *actions);
 int		rr(t_stacks *stack, t_actions *actions);
 int		rrr(t_stacks *stack, t_actions *actions);
 int		check_args(int argc, char **argv, int start);
-int		choose_strategy(char **argv, t_stacks *stacks, t_actions *actions);
+int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
 int		is_arg_number(char *str);
 int		free_all(int *a, int *b, int return_value, int error);
 

@@ -11,7 +11,7 @@ void	display_bench(float disorder, char *strat, t_actions *acts)
 
 	disorder_first = disorder * 100;
 	disorder_last = disorder * 10000 - disorder_first * 100;
-	ft_printf("[bench] disorder:  %d.%d%%\n", disorder_first, disorder_lat);
+	ft_printf("[bench] disorder:  %d.%d%%\n", disorder_first, disorder_last);
 	ft_printf("[bench] strategy:  %s\n", strat);
 	ft_printf("[bench] total_ops: %d\n", acts->nb_op);
 	ft_printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
@@ -20,29 +20,28 @@ void	display_bench(float disorder, char *strat, t_actions *acts)
 		acts->ra, acts->rb, acts->rr, acts->rra, acts->rrb, acts->rrr);
 }
 
-int choose_strategy(char **argv, t_stacks *stack, t_actions *actions)
+int choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 {
 	int nb_op;
 	int	display;
+	float disorder = 0.54632;
 
 	display = 0;
 	nb_op = 0;
-	if (ft_strncmp(argv[1], "--simple", 9) == 0)
-		nb_op = block_sort(stack, actions);
-	else if (ft_strncmp(argv[1], "--medium", 9) == 0)
-		nb_op = block_sort(stack, actions);
-	else if (ft_strncmp(argv[1], "--complex", 10) == 0)
-		nb_op = block_sort(stack, actions);
-	else if (ft_strncmp(argv[1], "--adaptive", 11) == 0)
-		nb_op = block_sort(stack, actions);
-	else if (ft_strncmp(argv[1], "--bench", 8) == 0)
-		display = 1;
-	else if (is_arg_number(argv[1]))
-		nb_op = block_sort(stack, actions);
+	if (opt->strategy == 1)
+		actions->nb_op = block_sort(stack, actions);
+	else if (opt->strategy == 2)
+		actions->nb_op = block_sort(stack, actions);
+	else if (opt->strategy == 3)
+		actions->nb_op = block_sort(stack, actions);
+	else if (opt->strategy == 4)
+		actions->nb_op = block_sort(stack, actions);
+	else if (opt->strategy == 0)
+		actions->nb_op = block_sort(stack, actions);
 	else
 		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
-	if (display == 1)
-
+	if (opt->display == 1)
+		display_bench(disorder, "static", actions);
 	return (nb_op);
 }
 
@@ -52,6 +51,7 @@ int check_args(int argc, char **argv, int start)
 	int j;
 
 	i = start;
+	if (!argv[i]) return (0);
 	while (i < argc)
 	{
 		j = i + 1;
@@ -63,5 +63,5 @@ int check_args(int argc, char **argv, int start)
 		}
 		i++;
 	}
-	return (argc - start);
+	return (argc - 1);
 }

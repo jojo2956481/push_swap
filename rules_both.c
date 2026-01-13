@@ -13,31 +13,65 @@
 #include "push_swap.h"
 
 // sa and sb at the same time.
-int	ss(int *b, int *a, int size_a, int size_b)
+int ss(t_stacks *stack, t_actions *actions)
 {
-	if (size_a <= 1 || size_b <= 1)
+	int	tmp;
+
+	if (stack->size_a < 2 || stack->size_b < 2)
 		return (0);
-	sb(b, size_b);
-	sa(a, size_a);
+	tmp = stack->tab_a[0];
+	stack->tab_a[0] = stack->tab_a[1];
+	stack->tab_a[1] = tmp;
+	tmp = stack->tab_b[0];
+	stack->tab_b[0] = stack->tab_b[1];
+	stack->tab_b[1] = tmp;
+	__builtin_printf("ss\n");
+	actions->ss += 1;
 	return (1);
 }
 
 // ra and rb at the same time.
-int	rr(int *b, int *a, int size_b, int size_a)
+int rr(t_stacks *stack, t_actions *actions)
 {
-	if (size_b < 2 || size_a < 2)
+	int	tmp;
+	int	i;
+
+	if (stack->size_a < 2 || stack->size_b < 2)
 		return (0);
-	rb(b, size_b);
-	ra(a, size_a);
+	tmp = stack->tab_a[0];
+	i = -1;
+	while (++i < stack->size_a - 1)
+		stack->tab_a[i] = stack->tab_a[i + 1];
+	stack->tab_a[stack->size_a - 1] = tmp;
+	tmp = stack->tab_b[0];
+	i = -1;
+	while (++i < stack->size_b - 1)
+		stack->tab_b[i] = stack->tab_b[i + 1];
+	stack->tab_b[stack->size_b - 1] = tmp;
+	__builtin_printf("rr\n");
+	actions->rr += 1;
 	return (1);
 }
 
 // rra and rrb at the same time.
-int	rrr(int *b, int *a, int size_b, int size_a)
+int rrr(t_stacks *stack, t_actions *actions)
 {
-	if (size_b < 2 || size_a < 2)
+	int	tmp;
+	int	i;
+
+	if (stack->size_a < 2 || stack->size_b < 2)
 		return (0);
-	rrb(b, size_b);
-	rra(a, size_a);
+	tmp = stack->tab_a[stack->size_a - 1];
+	i = stack->size_a;
+	while (--i > 0)
+		stack->tab_a[i] = stack->tab_a[i - 1];
+	stack->tab_a[0] = tmp;
+	tmp = stack->tab_b[stack->size_b - 1];
+	i = stack->size_b;
+	while (--i > 0)
+		stack->tab_b[i] = stack->tab_b[i - 1];
+	stack->tab_b[0] = tmp;
+	__builtin_printf("rrr\n");
+	actions->rrr += 1;
 	return (1);
 }

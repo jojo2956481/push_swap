@@ -62,46 +62,65 @@ int	fill_tab(int *tab, int size_tab, char **str, int start)
 	return (1);
 }
 
-int init_tab(int **a, int **b, int *size_a, int *size_b)
+int init_tab(t_stacks *stacks, int max_size)
 {
-	if (*size_a == 0)
-		return (free_all(NULL, NULL, 1, 1));
-	*a = ft_calloc(*size_a, sizeof(int));
-	if (*a == NULL)
-		return (free_all(NULL, NULL, 1, 1));
-	*b = ft_calloc(*size_a, sizeof(int));
-	if (*b == NULL)
-		return (free_all(*a, NULL, 1, 1));
-	*size_b = 0;
+	stacks->size_a = max_size;
+	stacks->size_b = 0;
+	stacks->tab_a = ft_calloc(max_size, sizeof(int));
+	if (!stacks->tab_a)
+		return (1);
+	stacks->tab_b = ft_calloc(max_size, sizeof(int));
+	if (!stacks->tab_b)
+	{
+		free(stacks->tab_a);
+		return (1);
+	}
 	return (0);
 }
 
-int	main(int argc, char **argv)
+void init_struct_action(t_actions *actions)
 {
-	int	size_a;
-	int	*tab;
-	int	*tab_b;
-	int	size_b;
-	int	res;
+	actions->sa = 0;
+	actions->ra = 0;
+	actions->rra = 0;
+	actions->pb = 0;
+	actions->sb = 0;
+	actions->rb = 0;
+	actions->rrb = 0;
+	actions->ss = 0;
+	actions->rr = 0;
+	actions->rrr = 0;
+}
 
+int main(int argc, char **argv)
+{
+	t_stacks 	stacks;
+	int     	size;
+	int     	offset;
+	t_actions	actions;
+
+	actions.pa = 0;
 	if (argc <= 1)
 		return (1);
 	if (argv[1][0] == '-')
-		size_a = check_args(argc - 1, argv, 2);
+		offset = 2;
 	else
-		size_a = check_args(argc, argv, 1);
-	if (size_a == 0)
+		offset = 1;
+	size = check_args(argc - (offset - 1), argv, offset);
+	if (size <= 0)
+		return (write(2, "Error\n", 6), 1);
+	if (init_tab(&stacks, size) == 1)
 		return (1);
-	if (init_tab(&tab, &tab_b, &size_a, &size_b) == 1)
+	if (fill_tab(stacks.tab_a, size, argv, offset) == 0)
+		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
+	init_struct_action(&actions);
+	if (choose_strategy(argv, &stacks, &actions) == -1)
+	{
+		free(stacks.tab_a);
+		free(stacks.tab_b);
 		return (1);
-	if (argv[1][0] == '-')
-		res = fill_tab(tab, size_a, argv, 2);
-	else
-		res = fill_tab(tab, size_a, argv, 1);
-	if (res == 0)
-		return (free_all(tab, tab_b, 0, 1));
-	res = choose_strategy(argv, tab, tab_b, size_a);
-	if (res == -1)
-		return (1);
+	}
+	free(stacks.tab_a);
+	free(stacks.tab_b);
 	return (0);
 }

@@ -71,39 +71,39 @@ int find_pos(int *tab, int size, int value)
 	return (0);
 }
 
-static void	move_to_top(int *tab_a, int size_a, int target, int *counter)
+static void	move_to_top(t_stacks *stack, int target, int *counter, t_actions *actions)
 {
 	int	pos;
 
-	pos = find_pos(tab_a, size_a, target);
-	if (pos <= size_a / 2)
+	pos = find_pos(stack->tab_a, stack->size_a, target);
+	if (pos <= stack->size_a / 2)
 	{
-		while (tab_a[0] != target)
+		while (stack->tab_a[0] != target)
 		{
-			ra(tab_a, size_a);
+			ra(stack->tab_a, stack->size_a, actions);
 			(*counter)++;
 		}
 	}
 	else
 	{
-		while (tab_a[0] != target)
+		while (stack->tab_a[0] != target)
 		{
-			rra(tab_a, size_a);
+			rra(stack->tab_a, stack->size_a, actions);
 			(*counter)++;
 		}
 	}
 }
 
-static void	empty_b(int *tab_a, int *tab_b, int *s_a, int *s_b, int *counter)
+static void	empty_b(t_stacks *stack, int *counter, t_actions *actions)
 {
-	while (*s_b > 0)
+	while (stack->size_b > 0)
 	{
-		pa(tab_a, tab_b, s_a, s_b);
+		pa(stack, actions);
 		(*counter)++;
 	}
 }
 
-int	block_sort(int *tab_a, int *tab_b, int *size_a, int *size_b)
+int	block_sort(t_stacks *stack, t_actions *actions)
 {
 	int	*idx_min;
 	int	*cpy_tab;
@@ -113,18 +113,18 @@ int	block_sort(int *tab_a, int *tab_b, int *size_a, int *size_b)
 	int	total;
 
 	c = 0;
-	total = *size_a;
-	cpy_tab = block_sort_without_rules(tab_a, *size_a);
-	nb_block = init_utils(&idx_min, size_a);
-	while (*size_a > 0)
+	total = stack->size_a;
+	cpy_tab = block_sort_without_rules(stack->tab_a, stack->size_a);
+	nb_block = init_utils(&idx_min, &stack->size_a);
+	while (stack->size_a > 0)
 	{
 		b_idx = find_min(cpy_tab, nb_block, idx_min, total);
-		move_to_top(tab_a, *size_a, cpy_tab[idx_min[b_idx]], &c);
-		pb(tab_a, tab_b, size_a, size_b);
+		move_to_top(stack, cpy_tab[idx_min[b_idx]], &c, actions);
+		pb(stack, actions);
 		c++;
 		idx_min[b_idx]++;
 	}
-	empty_b(tab_a, tab_b, size_a, size_b, &c);
+	empty_b(stack, &c, actions);
 	free(idx_min);
 	free(cpy_tab);
 	return (c);

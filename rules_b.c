@@ -13,10 +13,11 @@
 #include "push_swap.h"
 
 // Swap the first two elements at the top of stack b
-int	sb(int *b, int size_b)
+int	sb(int *b, int size_b, t_actions *actions)
 {
 	int			temp;
 
+	actions->sb += 1;
 	if (size_b <= 1)
 		return (0);
 	temp = b[0];
@@ -26,37 +27,39 @@ int	sb(int *b, int size_b)
 }
 
 // Take the first element at the top of a and put it at the top of b.
-int	pb(int *a, int *b, int *size_a, int *size_b)
+int	pb(t_stacks *stack, t_actions *actions)
 {
-	int			i;
+	int	i;
 
-	__builtin_printf("pb\n");
-	if (*size_a <= 0)
+	if (stack->size_a <= 0)
 		return (0);
-	i = *size_b;
+	i = stack->size_b;
 	while (i > 0)
 	{
-		b[i] = b[i - 1];
+		stack->tab_b[i] = stack->tab_b[i - 1];
 		i--;
 	}
-	b[0] = a[0];
+	stack->tab_b[0] = stack->tab_a[0];
 	i = 0;
-	while (i < *size_a - 1)
+	while (i < stack->size_a - 1)
 	{
-		a[i] = a[i + 1];
+		stack->tab_a[i] = stack->tab_a[i + 1];
 		i++;
 	}
-	(*size_a)--;
-	(*size_b)++;
+	stack->size_a--;
+	stack->size_b++;
+	actions->pb += 1;
+	__builtin_printf("pb\n");
 	return (1);
 }
 
 // Shift up all elements of stack b by one.
-int	rb(int *b, int size_b)
+int	rb(int *b, int size_b, t_actions *actions)
 {
 	int			temp;
 	int			i;
 
+	actions->rb += 1;
 	if (size_b < 2)
 		return (0);
 	temp = b[0];
@@ -71,11 +74,12 @@ int	rb(int *b, int size_b)
 }
 
 // Shift down all elements of stack b by one.
-int	rrb(int *b, int size_b)
+int	rrb(int *b, int size_b, t_actions *actions)
 {
 	int			temp;
 	int			i;
 
+	actions->rrb += 1;
 	if (size_b < 2)
 		return (0);
 	temp = b[size_b - 1];

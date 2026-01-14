@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:36:09 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/14 08:36:13 by pgougne          ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 14:41:08 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,15 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	display = 0;
 	nb_op = 0;
 	if (opt->strategy == 1)
-		nb_op = block_sort(stack, actions);
+		nb_op = insertion_sort(stack, actions);
 	else if (opt->strategy == 2)
-		nb_op = block_sort(stack, actions);
+		nb_op = chunk_sort(stack, actions);
 	else if (opt->strategy == 3)
-		nb_op = block_sort(stack, actions);
+		nb_op = radix(stack, actions);
 	else if (opt->strategy == 4)
 		nb_op = block_sort(stack, actions);
 	else if (opt->strategy == 0)
-		nb_op = block_sort(stack, actions);
+		nb_op = chunk_sort(stack, actions);
 	else
 		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
 	if (opt->display == 1)

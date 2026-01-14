@@ -58,10 +58,10 @@ int	choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
 int	is_arg_number(char *str);
 int	free_all(int *a, int *b, int return_value, int error);
 int	get_nb_args(char **argv, t_options *opt);
-t_order	*ft_lstnew(int content);
-t_order	*ft_lstlast(t_order *lst);
-void	ft_lstadd_back(t_order **lst, t_order *new);
+t_order	*ft_lstcreate(int content);
+t_order	*ft_lst_get_last(t_order *lst);
+void	ft_lst_add_back(t_order **lst, t_order *new);
 int	get_nb_action_by_type(t_order *lst, int type);
-void	ft_lstclear(t_order **lst);
+void	ft_lstdelete(t_order **lst);
 
 #endif

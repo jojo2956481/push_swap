@@ -110,6 +110,6 @@ int	main(int argc, char **argv)
 		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
 	if (choose_strategy(&stacks, &actions, &opt) == -1)
 		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
-	ft_lstclear(&actions.lst);
+	ft_lstdelete(&actions.lst);
 	return (free_all(stacks.tab_a, stacks.tab_b, 0, 0));
 }

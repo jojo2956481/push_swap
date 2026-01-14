@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ft_lstclear(t_order **lst)
+void	ft_lstdelete(t_order **lst)
 {
 	t_order	*tmp;
 
@@ -15,7 +15,7 @@ void	ft_lstclear(t_order **lst)
 	*lst = NULL;
 }
 
-t_order *ft_lstnew(int content)
+t_order *ft_lstcreate(int content)
 {
 	t_order    *lstnew;
 
@@ -43,7 +43,7 @@ int	get_nb_action_by_type(t_order *lst, int type)
 	return (c);
 }
 
-t_order	*ft_lstlast(t_order *lst)
+t_order	*ft_lst_get_last(t_order *lst)
 {
 	if (lst == NULL)
 		return (0);
@@ -54,13 +54,13 @@ t_order	*ft_lstlast(t_order *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_order **lst, t_order *new)
+void	ft_lst_add_back(t_order **lst, t_order *new)
 {
 	t_order	*temp;
 
 	if (new == NULL)
 	{
-		ft_lstclear(lst);
+		ft_lstdelete(lst);
 		return ;
 	}
 	if (!lst || !*lst)
@@ -68,6 +68,6 @@ void	ft_lstadd_back(t_order **lst, t_order *new)
 		*lst = new;
 		return ;
 	}
-	temp = ft_lstlast(*lst);
+	temp = ft_lst_get_last(*lst);
 	temp->next = new;
 }

@@ -17,8 +17,9 @@ NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		block_based/block_based_sort.c block_based/sorting_copy.c\
-		get_next_line/get_next_line.c\
-		get_next_line/get_next_line_utils.c parsing.c action_list.c
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
+		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
+		chunk_based/chunk_sort_utils_find.c
 
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))

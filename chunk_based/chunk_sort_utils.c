@@ -12,36 +12,36 @@
 
 #include "push_swap.h"
 #include "chunk_sort.h"
+#include "libft.h"
 
-int	sort_tab(int *tab, int size)
+static int	sort_tab(int *tab, int size)
 {
-    int i;
-	int j;
+	int	i;
+	int	j;
 	int	temp;
 
 	i = 0;
-    while (i < size - 1)          
-    {
+	while (i < size - 1)
+	{
 		j = 0;
-        while (j < size - 1 - i)   
-        {
-            if (tab[j] > tab[j + 1])
-            {
+		while (j < size - 1 - i)
+		{
+			if (tab[j] > tab[j + 1])
+			{
 				temp = tab[j];
 				tab[j] = tab[j + 1];
 				tab[j + 1] = temp;
-            }
+			}
 			j++;
-        }
+		}
 		i++;
-    }
+	}
 	return (0);
 }
 
-
 int	copy_tab(int *tab_a, int *tab_sort, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -54,9 +54,9 @@ int	copy_tab(int *tab_a, int *tab_sort, int size)
 
 int	fill_tab(int **tab_chunk, int *tab_sort, int chunk_size, int chunk_len)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	k = 0;
 	j = 0;
@@ -76,11 +76,10 @@ int	fill_tab(int **tab_chunk, int *tab_sort, int chunk_size, int chunk_len)
 
 int	**take_index(int *tab_a, int size_a, int chunk_size)
 {
-	int *tab_sort;
-	int i;
-	int index;
-	int chunk_len;
-	int **tab_chunk;
+	int	*tab_sort;
+	int	i;
+	int	chunk_len;
+	int	**tab_chunk;
 
 	tab_sort = ft_calloc(size_a, sizeof(int));
 	if (!tab_sort)
@@ -91,6 +90,7 @@ int	**take_index(int *tab_a, int size_a, int chunk_size)
 	tab_chunk = malloc(sizeof(int *) * (chunk_len + 1));
 	if (!tab_chunk)
 		return (0);
+	i = 0;
 	while (i < chunk_len)
 	{
 		tab_chunk[i] = ft_calloc(chunk_size, sizeof(int));
@@ -101,10 +101,12 @@ int	**take_index(int *tab_a, int size_a, int chunk_size)
 	return (tab_chunk);
 }
 
-int isqrt(int n)
+int	isqrt(int n)
 {
-    int x = 0;
-    while ((x + 1) * (x + 1) <= n)
-        x++;
-    return (x);
+	int	x;
+
+	x = 0;
+	while ((x + 1) * (x + 1) <= n)
+		x++;
+	return (x);
 }

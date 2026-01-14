@@ -13,28 +13,7 @@
 #include "push_swap.h"
 #include "chunk_sort.h"
 
-int	find_max(int *tab_sort, int *tab_b, int size_b, int chunk_size)
-{
-	int i;
-	int j;
-
-	i = chunk_size - 1;
-	while (i > -1)
-	{
-		j = 0;
-		while (j < size_b)
-		{
-			if (tab_sort[i] == tab_b[j])
-				return (j);
-			j++;
-		}
-		i--;
-	}
-	// ft_printf("j = %d\n", j);
-	return (j);
-}
-
-int	find_index(int *shunk, int size, int value);
+int	find_index(int *shunk, int size, int value)
 {
 	int	i;
 

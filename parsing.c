@@ -16,24 +16,33 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void	display_bench(float disorder, char *strat, t_actions *acts)
+static void	display_bench(float disorder, int strat, t_actions *a)
 {
 	int	disorder_first;
 	int	disorder_last;
 
 	disorder_first = disorder * 100;
 	disorder_last = disorder * 10000 - disorder_first * 100;
-	ft_printf("[bench] disorder:  %d.%d%%\n", disorder_first, disorder_last);
-	ft_printf("[bench] strategy:  %s\n", strat);
-	ft_printf("[bench] total_ops: %d\n", acts->nb_op);
+	ft_printf("[bench] disorder: %d.%d%%\n", disorder_first, disorder_last);
+	if (strat == 0)
+		ft_printf("[bench] strategy: None\n");
+	else if (strat == 1)
+		ft_printf("[bench] strategy: Simple\n");
+	else if (strat == 2)
+		ft_printf("[bench] strategy: Medium\n");
+	else if (strat == 3)
+		ft_printf("[bench] strategy: Complex\n");
+	else if (strat == 4)
+		ft_printf("[bench] strategy: Adaptive\n");
+	ft_printf("[bench] total_ops: %d\n", a->nb_op);
 	ft_printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
-		get_nb_action_by_type(acts->lst, 0), get_nb_action_by_type(acts->lst, 1), get_nb_action_by_type(acts->lst, 2),
-		get_nb_action_by_type(acts->lst, 3), get_nb_action_by_type(acts->lst, 4));
+		get_action(a->lst, 0), get_action(a->lst, 1), get_action(a->lst, 2),
+		get_action(a->lst, 3), get_action(a->lst, 4));
 	ft_printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
-		get_nb_action_by_type(acts->lst, 5), get_nb_action_by_type(acts->lst, 6), get_nb_action_by_type(acts->lst, 7),
-		get_nb_action_by_type(acts->lst, 8), get_nb_action_by_type(acts->lst, 9), get_nb_action_by_type(acts->lst, 10));
+		get_action(a->lst, 5), get_action(a->lst, 6), get_action(a->lst, 7),
+		get_action(a->lst, 8), get_action(a->lst, 9), get_action(a->lst, 10));
 }
-// 0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
+//0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
 
 static int	set_strategy(t_options *opt, int value, int *c)
 {
@@ -79,7 +88,7 @@ int	get_nb_args(char **argv, t_options *opt)
 			c++;
 		}
 		else if (is_arg_number(argv[i]))
-			opt->strategy = 0;
+			continue ;
 		else
 			return (-1);
 	}
@@ -88,26 +97,26 @@ int	get_nb_args(char **argv, t_options *opt)
 
 int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 {
-	int nb_op;
+	int	nb_op;
 	int	display;
-	float disorder = 0.54632;
+	float	disorder = 0.54632;
 
 	display = 0;
 	nb_op = 0;
 	if (opt->strategy == 1)
-		nb_op = insertion_sort(stack, actions);
+		nb_op = chunk_sort(stack, actions);
 	else if (opt->strategy == 2)
 		nb_op = chunk_sort(stack, actions);
 	else if (opt->strategy == 3)
-		nb_op = radix(stack, actions);
-	else if (opt->strategy == 4)
-		nb_op = block_sort(stack, actions);
-	else if (opt->strategy == 0)
 		nb_op = chunk_sort(stack, actions);
+	else if (opt->strategy == 4)
+		nb_op = chunk_sort(stack, actions);
+	else if (opt->strategy == 0)
+		nb_op = block_sort(stack, actions);
 	else
 		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
 	if (opt->display == 1)
-		display_bench(disorder, "static", actions);
+		display_bench(disorder, opt->strategy, actions);
 	return (nb_op);
 }
 

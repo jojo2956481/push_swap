@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/14 16:38:19 by pgougne           #+#    #+#             */
+/*   Updated: 2026/01/14 16:38:22 by pgougne          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_lstdelete(t_order **lst)
@@ -15,9 +27,9 @@ void	ft_lstdelete(t_order **lst)
 	*lst = NULL;
 }
 
-t_order *ft_lstcreate(int content)
+t_order	*ft_lstcreate(int content)
 {
-	t_order    *lstnew;
+	t_order	*lstnew;
 
 	lstnew = malloc(sizeof(t_order));
 	if (!lstnew)
@@ -27,9 +39,9 @@ t_order *ft_lstcreate(int content)
 	return (lstnew);
 }
 
-int	get_nb_action_by_type(t_order *lst, int type)
+int	get_action(t_order *lst, int type)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	if (lst == NULL)

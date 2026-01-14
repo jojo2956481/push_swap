@@ -15,8 +15,8 @@
 
 static int	calcul_index(int *tab_sort, t_stacks *stack, int chunk_size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (j < stack->size_a)
@@ -30,43 +30,40 @@ static int	calcul_index(int *tab_sort, t_stacks *stack, int chunk_size)
 		}
 		j++;
 	}
-	//ft_printf("j = %d\n", j);
 	return (j);
 }
 
-
-static int	push_max_from_b(t_stacks *stack,  t_actions *actions)
+static int	push_max_from_b(t_stacks *stack, t_actions *actions)
 {
-	int max;
-	int index;
+	int	max;
+	int	index;
 
-	max = find_max_value(stack->tab_b, *stack->size_b);
-	index = find_index(stack->tab_b, *stack->size_b, max);
-
-	if (index <= *stack->size_b / 2)
+	max = find_max_value(stack->tab_b, stack->size_b);
+	index = find_index(stack->tab_b, stack->size_b, max);
+	if (index <= stack->size_b / 2)
 	{
 		while (index-- > 0)
-			rb(stack, actions);
+			rb(stack->tab_b, stack->size_b, actions);
 	}
 	else
 	{
-		index = *stack->size_b - index;
+		index = stack->size_b - index;
 		while (index-- > 0)
-			rrb(stack, actions);
+			rrb(stack->tab_b, stack->size_b, actions);
 	}
 	pa(stack, actions);
-	return (count);
+	return (0);
 }
 
-int chunk_sort_opt(t_stacks *stack, t_actions *actions)
+int	chunk_sort(t_stacks *stack, t_actions *actions)
 {
-	int i;
-	int chunk_size;
-	int chunk_len;
-	int **tab_sort;
-	int k;
-	int j;
-	int y;
+	int	i;
+	int	chunk_size;
+	int	chunk_len;
+	int	**tab_sort;
+	int	k;
+	int	j;
+	int	y;
 
 	chunk_size = isqrt(stack->size_a);
 	chunk_len = stack->size_a / chunk_size;
@@ -84,7 +81,7 @@ int chunk_sort_opt(t_stacks *stack, t_actions *actions)
 				k = stack->size_a - k;
 				while (y < k)
 				{
-					rra(stack, actions);
+					rra(stack->tab_a, stack->size_a, actions);
 					y++;
 				}
 			}
@@ -92,7 +89,7 @@ int chunk_sort_opt(t_stacks *stack, t_actions *actions)
 			{
 				while (y < k)
 				{
-					ra(stack, actions);
+					ra(stack->tab_a, stack->size_a, actions);
 					y++;
 				}
 			}
@@ -105,4 +102,3 @@ int chunk_sort_opt(t_stacks *stack, t_actions *actions)
 		push_max_from_b(stack, actions);
 	return (0);
 }
-

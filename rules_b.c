@@ -19,7 +19,7 @@ int	sb(int *b, int size_b, t_actions *actions)
 	int			temp;
 
 	ft_printf("sb\n");
-	ft_lstadd_back(&actions->lst, ft_lstnew(1));
+	ft_lst_add_back(&actions->lst, ft_lstcreate(1));
 	actions->nb_op += 1;
 	if (size_b <= 1)
 		return (0);
@@ -51,7 +51,7 @@ int	pb(t_stacks *stack, t_actions *actions)
 	}
 	stack->size_a--;
 	stack->size_b++;
-	ft_lstadd_back(&actions->lst, ft_lstnew(4));
+	ft_lst_add_back(&actions->lst, ft_lstcreate(4));
 	actions->nb_op += 1;
 	ft_printf("pb\n");
 	return (1);
@@ -64,7 +64,7 @@ int	rb(int *b, int size_b, t_actions *actions)
 	int			i;
 
 	ft_printf("rb\n");
-	ft_lstadd_back(&actions->lst, ft_lstnew(6));
+	ft_lst_add_back(&actions->lst, ft_lstcreate(6));
 	actions->nb_op += 1;
 	if (size_b < 2)
 		return (0);
@@ -87,7 +87,7 @@ int	rrb(int *b, int size_b, t_actions *actions)
 
 	ft_printf("rrb\n");
 	actions->nb_op += 1;
-	ft_lstadd_back(&actions->lst, ft_lstnew(9));
+	ft_lst_add_back(&actions->lst, ft_lstcreate(9));
 	if (size_b < 2)
 		return (0);
 	temp = b[size_b - 1];

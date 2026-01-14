@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:59:41 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/14 16:05:12 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 16:06:07 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,23 @@ int chunk_sort_opt(t_stacks *stack, t_actions *actions)
 		while (i < chunk_size)
 		{
 			k = calcul_index(tab_sort[j], stack, chunk_size);
-			y = -1;
+			y = 0;
 			if (k > (stack->size_a / 2))
 			{
 				k = stack->size_a - k;
-				while (++y < k)
+				while (y < k)
+				{
 					rra(stack, actions);
+					y++;
+				}
 			}
 			else
 			{
-				while (++y < k)
+				while (y < k)
+				{
 					ra(stack, actions);
+					y++;
+				}
 			}
 			pb(stack, actions);
 			i++;

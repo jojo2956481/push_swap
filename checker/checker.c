@@ -1,3 +1,4 @@
+// FAUT FAIRE UNE LIST CHAINÉE DANS t_actions pour garder la suite
 int checker(int *tab_a, int size_a)
 {
 	int i;
@@ -35,8 +36,7 @@ int checker(int *tab_a, int size_a)
 		return (-1);
 	while (i < 31)
 	{
-		ft_printf("ECHO");
-		action = get_next_line(1);
+ 		action = get_next_line(1);
 		if (ft_strncmp(action, "pa", 2))
 			pa(tab_a, tab_b, &size_a, &size_b);
 		else if (ft_strncmp(action, "ra", 2))

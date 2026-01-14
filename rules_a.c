@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 // Swap the first two elements at the top of stack a
 int	sa(int *a, int size_a, t_actions *actions)
 {
 	int			temp;
 
-	actions->sa += 1;
-	__builtin_printf("sa\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(0));
+	actions->nb_op += 1;
+	ft_printf("sa\n");
 	if (size_a <= 1)
 		return (0);
 	temp = a[0];
@@ -49,8 +51,9 @@ int	pa(t_stacks *stack, t_actions *actions)
 	}
 	stack->size_b--;
 	stack->size_a++;
-	actions->pa += 1;
-	__builtin_printf("pa\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(3));
+	actions->nb_op += 1;
+	ft_printf("pa\n");
 	return (1);
 }
 
@@ -60,8 +63,9 @@ int	ra(int *a, int size_a, t_actions *actions)
 	int			temp;
 	int			i;
 
-	actions->ra += 1;
-	__builtin_printf("ra\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(5));
+	actions->nb_op += 1;
+	ft_printf("ra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[0];
@@ -81,8 +85,9 @@ int	rra(int *a, int size_a, t_actions *actions)
 	int			temp;
 	int			i;
 
-	actions->rra += 1;
-	__builtin_printf("ra\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(8));
+	actions->nb_op += 1;
+	ft_printf("rra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[size_a - 1];
@@ -95,21 +100,3 @@ int	rra(int *a, int size_a, t_actions *actions)
 	a[0] = temp;
 	return (1);
 }
-/*
-int main(void)
-{
-	int tab_a[10] = {4,1,6,9,2};
-	int tab_b[10] = {};
- 	//pa(tab_a, tab_b, 10, 10);
-	int i = 0;
-	__builtin_printf("|----------------|\n");
-	__builtin_printf("| tab_a    tab_b |\n");
-	__builtin_printf("|----------------|\n");
-	while (i < 10)
-	{
-		__builtin_printf("|% 4d   | % 4d   |\n", tab_a[i], tab_b[i]);
-		i++;
-	}
-	return (0);
-}
-*/

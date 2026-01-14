@@ -11,13 +11,16 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 // Swap the first two elements at the top of stack b
 int	sb(int *b, int size_b, t_actions *actions)
 {
 	int			temp;
 
-	actions->sb += 1;
+	ft_printf("sb\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(1));
+	actions->nb_op += 1;
 	if (size_b <= 1)
 		return (0);
 	temp = b[0];
@@ -48,8 +51,9 @@ int	pb(t_stacks *stack, t_actions *actions)
 	}
 	stack->size_a--;
 	stack->size_b++;
-	actions->pb += 1;
-	__builtin_printf("pb\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(4));
+	actions->nb_op += 1;
+	ft_printf("pb\n");
 	return (1);
 }
 
@@ -59,7 +63,9 @@ int	rb(int *b, int size_b, t_actions *actions)
 	int			temp;
 	int			i;
 
-	actions->rb += 1;
+	ft_printf("rb\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(6));
+	actions->nb_op += 1;
 	if (size_b < 2)
 		return (0);
 	temp = b[0];
@@ -79,7 +85,9 @@ int	rrb(int *b, int size_b, t_actions *actions)
 	int			temp;
 	int			i;
 
-	actions->rrb += 1;
+	ft_printf("rrb\n");
+	actions->nb_op += 1;
+	ft_lstadd_back(&actions->lst, ft_lstnew(9));
 	if (size_b < 2)
 		return (0);
 	temp = b[size_b - 1];

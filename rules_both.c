@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 // sa and sb at the same time.
-int ss(t_stacks *stack, t_actions *actions)
+int	ss(t_stacks *stack, t_actions *actions)
 {
 	int	tmp;
 
@@ -25,13 +26,14 @@ int ss(t_stacks *stack, t_actions *actions)
 	tmp = stack->tab_b[0];
 	stack->tab_b[0] = stack->tab_b[1];
 	stack->tab_b[1] = tmp;
-	__builtin_printf("ss\n");
-	actions->ss += 1;
+	ft_printf("ss\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(2));
+	actions->nb_op += 1;
 	return (1);
 }
 
 // ra and rb at the same time.
-int rr(t_stacks *stack, t_actions *actions)
+int	rr(t_stacks *stack, t_actions *actions)
 {
 	int	tmp;
 	int	i;
@@ -48,13 +50,14 @@ int rr(t_stacks *stack, t_actions *actions)
 	while (++i < stack->size_b - 1)
 		stack->tab_b[i] = stack->tab_b[i + 1];
 	stack->tab_b[stack->size_b - 1] = tmp;
-	__builtin_printf("rr\n");
-	actions->rr += 1;
+	ft_printf("rr\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(7));
+	actions->nb_op += 1;
 	return (1);
 }
 
 // rra and rrb at the same time.
-int rrr(t_stacks *stack, t_actions *actions)
+int	rrr(t_stacks *stack, t_actions *actions)
 {
 	int	tmp;
 	int	i;
@@ -71,7 +74,8 @@ int rrr(t_stacks *stack, t_actions *actions)
 	while (--i > 0)
 		stack->tab_b[i] = stack->tab_b[i - 1];
 	stack->tab_b[0] = tmp;
-	__builtin_printf("rrr\n");
-	actions->rrr += 1;
+	ft_printf("rrr\n");
+	ft_lstadd_back(&actions->lst, ft_lstnew(10));
+	actions->nb_op += 1;
 	return (1);
 }

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/14 08:36:09 by pgougne           #+#    #+#             */
+/*   Updated: 2026/01/14 08:36:13 by pgougne          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "block_based.h"
 #include "push_swap.h"
 #include "ft_printf.h"
 #include <unistd.h>
 
-void	display_bench(float disorder, char *strat, t_actions *acts)
+static void	display_bench(float disorder, char *strat, t_actions *acts)
 {
 	int	disorder_first;
 	int	disorder_last;
@@ -15,12 +27,66 @@ void	display_bench(float disorder, char *strat, t_actions *acts)
 	ft_printf("[bench] strategy:  %s\n", strat);
 	ft_printf("[bench] total_ops: %d\n", acts->nb_op);
 	ft_printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
-		acts->sa, acts->sb, acts->ss, acts->pa, acts->pb);
+		get_nb_action_by_type(acts->lst, 0), get_nb_action_by_type(acts->lst, 1), get_nb_action_by_type(acts->lst, 2),
+		get_nb_action_by_type(acts->lst, 3), get_nb_action_by_type(acts->lst, 4));
 	ft_printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
-		acts->ra, acts->rb, acts->rr, acts->rra, acts->rrb, acts->rrr);
+		get_nb_action_by_type(acts->lst, 5), get_nb_action_by_type(acts->lst, 6), get_nb_action_by_type(acts->lst, 7),
+		get_nb_action_by_type(acts->lst, 8), get_nb_action_by_type(acts->lst, 9), get_nb_action_by_type(acts->lst, 10));
+}
+// 0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
+
+static int	set_strategy(t_options *opt, int value, int *c)
+{
+	*c += 1;
+	if (opt->strategy != 0)
+		return (-1);
+	opt->strategy = value;
+	return (0);
 }
 
-int choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
+int	get_nb_args(char **argv, t_options *opt)
+{
+	int	i;
+	int	c;
+
+	c = 1;
+	i = 0;
+	while (argv[++i])
+	{
+		if (!ft_strncmp(argv[i], "--simple", 9))
+		{
+			if (set_strategy(opt, 4, &c) == -1)
+				return (-1);
+		}
+		else if (!ft_strncmp(argv[i], "--medium", 9))
+		{
+			if (set_strategy(opt, 4, &c) == -1)
+				return (-1);
+		}
+		else if (!ft_strncmp(argv[i], "--complex", 10))
+		{
+			if (set_strategy(opt, 4, &c) == -1)
+				return (-1);
+		}
+		else if (!ft_strncmp(argv[i], "--adaptive", 11))
+		{
+			if (set_strategy(opt, 4, &c) == -1)
+				return (-1);
+		}
+		else if (!ft_strncmp(argv[i], "--bench", 8))
+		{
+			opt->display = 1;
+			c++;
+		}
+		else if (is_arg_number(argv[i]))
+			opt->strategy = 0;
+		else
+			return (-1);
+	}
+	return (c);
+}
+
+int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 {
 	int nb_op;
 	int	display;
@@ -29,15 +95,15 @@ int choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	display = 0;
 	nb_op = 0;
 	if (opt->strategy == 1)
-		actions->nb_op = block_sort(stack, actions);
+		nb_op = block_sort(stack, actions);
 	else if (opt->strategy == 2)
-		actions->nb_op = block_sort(stack, actions);
+		nb_op = block_sort(stack, actions);
 	else if (opt->strategy == 3)
-		actions->nb_op = block_sort(stack, actions);
+		nb_op = block_sort(stack, actions);
 	else if (opt->strategy == 4)
-		actions->nb_op = block_sort(stack, actions);
+		nb_op = block_sort(stack, actions);
 	else if (opt->strategy == 0)
-		actions->nb_op = block_sort(stack, actions);
+		nb_op = block_sort(stack, actions);
 	else
 		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
 	if (opt->display == 1)
@@ -45,13 +111,14 @@ int choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	return (nb_op);
 }
 
-int check_args(int argc, char **argv, int start)
+int	check_args(int argc, char **argv, int start)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = start;
-	if (!argv[i]) return (0);
+	if (!argv[i])
+		return (0);
 	while (i < argc)
 	{
 		j = i + 1;

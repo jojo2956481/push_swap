@@ -15,28 +15,25 @@
 
 # include <stdlib.h>
 
+// 0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
+typedef struct s_order
+{
+	int	action;
+	struct s_order	*next;
+}	t_order;
+
 typedef struct s_actions
 {
-	int nb_op;
-	int pa;
-	int sa;
-	int ra;
-	int rra;
-	int pb;
-	int sb;
-	int rb;
-	int rrb;
-	int	ss;
-	int	rr;
-	int rrr;
+	int	nb_op;
+	t_order	*lst;
 }	t_actions;
 
 typedef struct s_stacks
 {
 	int	*tab_a;
 	int	*tab_b;
-	int size_a;
-	int size_b;
+	int	size_a;
+	int	size_b;
 }	t_stacks;
 
 typedef struct s_options
@@ -45,20 +42,26 @@ typedef struct s_options
 	int	display;
 }	t_options;
 
-int		sa(int *a, int size_a, t_actions *actions);
-int		pa(t_stacks *stack, t_actions *actions);
-int		ra(int *a, int size_a, t_actions *actions);
-int		rra(int *a, int size_a, t_actions *actions);
-int		sb(int *b, int size_b, t_actions *actions);
-int		pb(t_stacks *stack, t_actions *actions);
-int		rb(int *b, int size_b, t_actions *actions);
-int		rrb(int *b, int size_b, t_actions *actions);
-int		ss(t_stacks *stack, t_actions *actions);
-int		rr(t_stacks *stack, t_actions *actions);
-int		rrr(t_stacks *stack, t_actions *actions);
-int		check_args(int argc, char **argv, int start);
-int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
-int		is_arg_number(char *str);
-int		free_all(int *a, int *b, int return_value, int error);
+int	sa(int *a, int size_a, t_actions *actions);
+int	pa(t_stacks *stack, t_actions *actions);
+int	ra(int *a, int size_a, t_actions *actions);
+int	rra(int *a, int size_a, t_actions *actions);
+int	sb(int *b, int size_b, t_actions *actions);
+int	pb(t_stacks *stack, t_actions *actions);
+int	rb(int *b, int size_b, t_actions *actions);
+int	rrb(int *b, int size_b, t_actions *actions);
+int	ss(t_stacks *stack, t_actions *actions);
+int	rr(t_stacks *stack, t_actions *actions);
+int	rrr(t_stacks *stack, t_actions *actions);
+int	check_args(int argc, char **argv, int start);
+int	choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
+int	is_arg_number(char *str);
+int	free_all(int *a, int *b, int return_value, int error);
+int	get_nb_args(char **argv, t_options *opt);
+t_order	*ft_lstnew(int content);
+t_order	*ft_lstlast(t_order *lst);
+void	ft_lstadd_back(t_order **lst, t_order *new);
+int	get_nb_action_by_type(t_order *lst, int type);
+void	ft_lstclear(t_order **lst);
 
 #endif

@@ -17,8 +17,6 @@ int	insertion_sort(t_stacks *stack, t_actions *actions)
 	int	i;
 	int	index;
 
-
-	
 	index = 1;
 	while (index < stack->size_a)
 	{

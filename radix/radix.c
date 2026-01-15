@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:13:11 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/14 17:01:23 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/15 12:03:01 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,11 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void	ft_swap(int *a, int *b)
-{
-	int	temp;
-
-	temp = 0;
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-int	sort_tab(int *tab, int size)
+static void	sort_tab(int *tab, int size)
 {
 	int	i;
 	int	j;
+	int	temp;
 
 	i = 0;
 	while (i < size - 1)
@@ -38,16 +29,17 @@ int	sort_tab(int *tab, int size)
 		{
 			if (tab[j] > tab[j + 1])
 			{
-				ft_swap(&tab[j], &tab[j + 1]);
+				temp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
 }
 
-int	copy_tab(int *tab_a, int *tab_sort, int size)
+static void	copy_tab(int *tab_a, int *tab_sort, int size)
 {
 	int	i;
 
@@ -57,10 +49,9 @@ int	copy_tab(int *tab_a, int *tab_sort, int size)
 		tab_sort[i] = tab_a[i];
 		i++;
 	}
-	return (0);
 }
 
-int	indexation(int *tab_sort, int *tab, int *tab_index, int size)
+void	indexation(int *tab_sort, int *tab, int *tab_index, int size)
 {
 	int	i;
 	int	y;
@@ -74,7 +65,6 @@ int	indexation(int *tab_sort, int *tab, int *tab_index, int size)
 		tab_index[y] = i;
 		y++;
 	}
-	return (0);
 }
 
 int	is_sorted(int *tab_a, int size)
@@ -91,26 +81,17 @@ int	is_sorted(int *tab_a, int size)
 	return (1);
 }
 
-int	radix(int *tab, int size)
+int	radix(t_stacks *stack, t_actions *actions)
 {
 	int	i;
-	int	count; //useless
-	int	*tab_a; //useless
-	int	*tab_b; //useless
-	int	size_a; //useless
-	int	size_b; //useless
 	int	*tab_sort;
 	int	*tab_index;
 	int	bit;
-	int	k;
+	int size;
 	int	max_bit;
 	int	max_index;
 
-	tab_a = tab; //useless
-	tab_b = ft_calloc(size, sizeof(int));//useless
-	size_a = size; // faire l'inverse
-	size_b = 0; //useless
-	count = 0;//useless
+	size = stack->size_a;
 	bit = 1;
 	tab_sort = ft_calloc(size, sizeof(int));
 	if (tab_sort == NULL)
@@ -118,9 +99,9 @@ int	radix(int *tab, int size)
 	tab_index = ft_calloc(size, sizeof(int));
 	if (tab_index == NULL)
 		return (free_all(tab_sort, NULL, 1, 1));
-	copy_tab(tab, tab_sort, size);
+	copy_tab(stack->tab_a, tab_sort, size);
 	sort_tab(tab_sort, size);
-	indexation(tab_sort, tab, tab_index, size);
+	indexation(tab_sort, stack->tab_a, tab_index, size);
 	max_bit = 0;
 	max_index = tab_sort[size - 1];
 	while ((max_index >> max_bit) != 0)
@@ -133,17 +114,17 @@ int	radix(int *tab, int size)
 		while (i < size)
 		{
 			if (((tab_index[i] >> bit) & 1) == 0)
-				count += pb(tab_a, tab_b, &size_a, &size_b);
+				pb(stack, actions);
 			else
-				count += ra(tab_a, size_a);
+				ra(stack->tab_a, stack->size_a, actions);
 			i++;
 		}
-		while (size_b > 0)
-			count += pa(tab_a, tab_b, &size_a, &size_b);
-		if (is_sorted(tab_a, size_a) == 1)
+		while (stack->size_b > 0)
+			pa(stack, actions);
+		if (is_sorted(stack->tab_a, stack->size_a) == 1)
 			break ;
 		bit++;
-		indexation(tab_sort, tab, tab_index, size);
+		indexation(tab_sort, stack->tab_a, tab_index, size);
 	}
-	return (count); // on doit return 0 si OK, et -1 si pb
+	return (0); // on doit return 0 si OK, et 1 si pb
 }

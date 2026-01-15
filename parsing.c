@@ -6,13 +6,14 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:36:09 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/14 14:41:08 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/15 11:59:51 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "block_based.h"
 #include "push_swap.h"
+
 #include "ft_printf.h"
 #include <unistd.h>
 
@@ -64,17 +65,17 @@ int	get_nb_args(char **argv, t_options *opt)
 	{
 		if (!ft_strncmp(argv[i], "--simple", 9))
 		{
-			if (set_strategy(opt, 4, &c) == -1)
+			if (set_strategy(opt, 1, &c) == -1)
 				return (-1);
 		}
 		else if (!ft_strncmp(argv[i], "--medium", 9))
 		{
-			if (set_strategy(opt, 4, &c) == -1)
+			if (set_strategy(opt, 2, &c) == -1)
 				return (-1);
 		}
 		else if (!ft_strncmp(argv[i], "--complex", 10))
 		{
-			if (set_strategy(opt, 4, &c) == -1)
+			if (set_strategy(opt, 3, &c) == -1)
 				return (-1);
 		}
 		else if (!ft_strncmp(argv[i], "--adaptive", 11))
@@ -108,7 +109,7 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	else if (opt->strategy == 2)
 		nb_op = chunk_sort(stack, actions);
 	else if (opt->strategy == 3)
-		nb_op = chunk_sort(stack, actions);
+		nb_op = radix(stack, actions);
 	else if (opt->strategy == 4)
 		nb_op = chunk_sort(stack, actions);
 	else if (opt->strategy == 0)

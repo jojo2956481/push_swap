@@ -6,7 +6,7 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 09:23:07 by lebeyssa          #+#    #+#              #
-#    Updated: 2025/12/18 11:27:53 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2026/01/15 11:26:34 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		block_based/block_based_sort.c block_based/sorting_copy.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
-		chunk_based/chunk_sort_utils_find.c
+		chunk_based/chunk_sort_utils_find.c radix/radix.c
 
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))

@@ -34,6 +34,8 @@ int	is_arg_number(char *str)
 	int	i;
 
 	i = 0;
+	if (str[0] == '-')
+		i++;
 	while (str[i] != '\0')
 		if (!ft_isdigit(str[i++]))
 			return (0);
@@ -52,7 +54,7 @@ static int	fill_tab(int *tab, char **str, int start)
 		if (!is_arg_number(str[i]))
 			return (0);
 		tab[x] = ft_atoi(str[i]);
-		if (ft_atoi(str[i]) < INT_MIN || ft_atoi(str[i]) > INT_MAX) // atoi overflow !!! caster en long
+		if (ft_atoi(str[i]) < INT_MIN || ft_atoi(str[i]) > INT_MAX)
 			return (0);
 		x++;
 		i++;

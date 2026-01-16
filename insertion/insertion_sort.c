@@ -20,12 +20,9 @@ int	insertion_sort(t_stacks *stack, t_actions *actions)
 	index = 1;
 	while (index < stack->size_a)
 	{
-		i = 0;
-		while (i < index)
-		{
+		i = -1;
+		while (++i < index)
 			ra (stack->tab_a, stack->size_a, actions);
-			i++;
-		}
 		while (i > 0 && stack->tab_a[0] > stack->tab_a[1])
 		{
 			sa(stack->tab_a, stack->size_a, actions);
@@ -42,6 +39,3 @@ int	insertion_sort(t_stacks *stack, t_actions *actions)
 	ra(stack->tab_a, stack->size_a, actions);
 	return (0);
 }
-
-
-

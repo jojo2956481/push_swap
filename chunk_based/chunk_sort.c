@@ -90,7 +90,7 @@ int	chunk_sort(t_stacks *stack, t_actions *actions)
 	{
 		i = -1;
 		while (++i < chunk_size)
-			push_chunk_from_a(stack, actions, 
+			push_chunk_from_a(stack, actions,
 				calcul_index(tab_sort[j], stack, chunk_size));
 		j++;
 	}

@@ -98,11 +98,12 @@ int	get_nb_args(char **argv, t_options *opt)
 
 int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 {
-	int	nb_op;
-	int	display;
-	float	disorder = 0.54632;
+	int		nb_op;
+	int		display;
+	float	dis;
 
 	display = 0;
+	dis = disorder(stack->tab_a, stack->size_a);
 	nb_op = 0;
 	if (opt->strategy == 1)
 		nb_op = chunk_sort(stack, actions);
@@ -117,7 +118,7 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	else
 		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
 	if (opt->display == 1)
-		display_bench(disorder, opt->strategy, actions);
+		display_bench(dis, opt->strategy, actions);
 	return (nb_op);
 }
 

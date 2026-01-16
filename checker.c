@@ -1,4 +1,15 @@
-// FAUT FAIRE UNE LIST CHAINÉE DANS t_actions pour garder la suite
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
+/*   Updated: 2026/01/16 13:24:33 by pgougne          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 int	is_sorted(int *tab_a, int size)
 {
 	int	i;

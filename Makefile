@@ -12,7 +12,7 @@
 
 CC := cc
 FLAG := -Wall -Wextra -Werror -g
-INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line
+INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line -Ichunk_based -Iradix
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
@@ -20,7 +20,7 @@ SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c checker.c radix/radix_utils.c\
-		disorder.c
+		disorder.c insertion/insertion_sort.c
 
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))

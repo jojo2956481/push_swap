@@ -11,6 +11,23 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
+
+//0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
+void	ft_lstprint(t_order *lst)
+{
+	static char	*ops[] = {
+		"sa", "sb", "ss", "pa", "pb", "ra",
+		"rb", "rr", "rra", "rrb", "rrr"
+	};
+
+	while (lst)
+	{
+		if (lst->action >= 0 && lst->action <= 10)
+			ft_printf("%s\n", ops[lst->action]);
+		lst = lst->next;
+	}
+}
 
 void	ft_lstdelete(t_order **lst)
 {

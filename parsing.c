@@ -12,12 +12,13 @@
 
 #include "libft.h"
 #include "block_based.h"
+#include "chunk_sort.h"
 #include "push_swap.h"
-
+#include "radix.h"
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void	display_bench(float disorder, int strat, t_actions *a)
+static void	display_bench(float disorder, int strat, t_actions *a, int algo)
 {
 	int	disorder_first;
 	int	disorder_last;
@@ -25,16 +26,22 @@ static void	display_bench(float disorder, int strat, t_actions *a)
 	disorder_first = disorder * 100;
 	disorder_last = disorder * 10000 - disorder_first * 100;
 	ft_printf("[bench] disorder: %d.%d%%\n", disorder_first, disorder_last);
-	if (strat == 0)
-		ft_printf("[bench] strategy: None\n");
-	else if (strat == 1)
-		ft_printf("[bench] strategy: Simple\n");
+	if (strat == 1)
+		ft_printf("[bench] strategy: Simple O(n²)\n");
 	else if (strat == 2)
-		ft_printf("[bench] strategy: Medium\n");
+		ft_printf("[bench] strategy: Medium O(n√n)\n");
 	else if (strat == 3)
-		ft_printf("[bench] strategy: Complex\n");
-	else if (strat == 4)
-		ft_printf("[bench] strategy: Adaptive\n");
+		ft_printf("[bench] strategy: Complex O(n log n)\n");
+	else if (strat == 0)
+	{
+		ft_printf("[bench] strategy: Adaptive ");
+		if (algo == 1)
+			ft_printf("O(n²)\n");
+		if (algo == 2)
+			ft_printf("O(n√n)\n");
+		if (algo == 3)
+			ft_printf("(n log n)\n");
+	}
 	ft_printf("[bench] total_ops: %d\n", a->nb_op);
 	ft_printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		get_action(a->lst, 0), get_action(a->lst, 1), get_action(a->lst, 2),
@@ -80,7 +87,7 @@ int	get_nb_args(char **argv, t_options *opt)
 		}
 		else if (!ft_strncmp(argv[i], "--adaptive", 11))
 		{
-			if (set_strategy(opt, 4, &c) == -1)
+			if (set_strategy(opt, 0, &c) == -1)
 				return (-1);
 		}
 		else if (!ft_strncmp(argv[i], "--bench", 8))
@@ -96,30 +103,81 @@ int	get_nb_args(char **argv, t_options *opt)
 	return (c);
 }
 
+int	get_actions(int (*f)(t_stacks*, t_actions*), t_stacks stack, t_actions a)
+{
+	int	*temp_tab;
+	int	err;
+
+	temp_tab = malloc(sizeof(int) * stack.size_a);
+	if (!temp_tab)
+		return (-1);
+	ft_memcpy(temp_tab, stack.tab_a, stack.size_a);
+	stack.tab_a = temp_tab;
+	err = f(&stack, &a);
+	free(temp_tab);
+	ft_lstdelete(&a.lst);
+	if (err == -1)
+		return (-1);
+	return (a.nb_op);
+}
+
+int	adaptive(t_stacks stack)
+{
+	int			chunk;
+	int			radix_val;
+	int			insertion;
+	t_actions	a;
+
+	a.nb_op = 0;
+	a.lst = NULL;
+	chunk = get_actions(chunk_sort, stack, a);
+	radix_val = get_actions(radix, stack, a);
+	insertion = get_actions(insertion_sort, stack, a);
+	if (insertion == 1 || radix_val == 1 || chunk == 1)
+		return (-1);
+	if (chunk < radix_val && chunk < insertion)
+		return (2);
+	else if (radix_val < insertion)
+		return (3);
+	return (1);
+}
+
 int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 {
-	int		nb_op;
+	int		error;
 	int		display;
 	float	dis;
+	int		algo;
 
 	display = 0;
 	dis = disorder(stack->tab_a, stack->size_a);
-	nb_op = 0;
+	error = 0;
+	algo = 0;
 	if (opt->strategy == 1)
-		nb_op = chunk_sort(stack, actions);
+		error = insertion_sort(stack, actions);
 	else if (opt->strategy == 2)
-		nb_op = chunk_sort(stack, actions);
+		error = chunk_sort(stack, actions);
 	else if (opt->strategy == 3)
-		nb_op = radix(stack, actions);
-	else if (opt->strategy == 4)
-		nb_op = chunk_sort(stack, actions);
+		error = radix(stack, actions);
 	else if (opt->strategy == 0)
-		nb_op = block_sort(stack, actions);
+	{
+		algo = adaptive(*stack);
+		if (algo == -1)
+			return (-1);
+		if (algo == 1)
+			error = insertion_sort(stack, actions);
+		else if (algo == 2)
+			error = chunk_sort(stack, actions);
+		else if (algo == 3)
+			error = radix(stack, actions);
+	}
 	else
-		return (free_all(stack->tab_a, stack->tab_b, -1, 1));
+		return (-1);
+	ft_lstprint(actions->lst);
 	if (opt->display == 1)
-		display_bench(dis, opt->strategy, actions);
-	return (nb_op);
+		display_bench(dis, opt->strategy, actions, algo);
+	ft_lstdelete(&actions->lst);
+	return (error);
 }
 
 int	check_args(int argc, char **argv, int start)

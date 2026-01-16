@@ -20,7 +20,6 @@ int	sa(int *a, int size_a, t_actions *actions)
 
 	ft_lst_add_back(&actions->lst, ft_lstcreate(0));
 	actions->nb_op += 1;
-	ft_printf("sa\n");
 	if (size_a <= 1)
 		return (0);
 	temp = a[0];
@@ -53,7 +52,6 @@ int	pa(t_stacks *stack, t_actions *actions)
 	stack->size_a++;
 	ft_lst_add_back(&actions->lst, ft_lstcreate(3));
 	actions->nb_op += 1;
-	ft_printf("pa\n");
 	return (1);
 }
 
@@ -65,7 +63,6 @@ int	ra(int *a, int size_a, t_actions *actions)
 
 	ft_lst_add_back(&actions->lst, ft_lstcreate(5));
 	actions->nb_op += 1;
-	ft_printf("ra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[0];
@@ -87,7 +84,6 @@ int	rra(int *a, int size_a, t_actions *actions)
 
 	ft_lst_add_back(&actions->lst, ft_lstcreate(8));
 	actions->nb_op += 1;
-	ft_printf("rra\n");
 	if (size_a < 2)
 		return (0);
 	temp = a[size_a - 1];

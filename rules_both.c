@@ -26,7 +26,6 @@ int	ss(t_stacks *stack, t_actions *actions)
 	tmp = stack->tab_b[0];
 	stack->tab_b[0] = stack->tab_b[1];
 	stack->tab_b[1] = tmp;
-	ft_printf("ss\n");
 	ft_lst_add_back(&actions->lst, ft_lstcreate(2));
 	actions->nb_op += 1;
 	return (1);
@@ -50,7 +49,6 @@ int	rr(t_stacks *stack, t_actions *actions)
 	while (++i < stack->size_b - 1)
 		stack->tab_b[i] = stack->tab_b[i + 1];
 	stack->tab_b[stack->size_b - 1] = tmp;
-	ft_printf("rr\n");
 	ft_lst_add_back(&actions->lst, ft_lstcreate(7));
 	actions->nb_op += 1;
 	return (1);
@@ -74,7 +72,6 @@ int	rrr(t_stacks *stack, t_actions *actions)
 	while (--i > 0)
 		stack->tab_b[i] = stack->tab_b[i - 1];
 	stack->tab_b[0] = tmp;
-	ft_printf("rrr\n");
 	ft_lst_add_back(&actions->lst, ft_lstcreate(10));
 	actions->nb_op += 1;
 	return (1);

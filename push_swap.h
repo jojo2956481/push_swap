@@ -36,7 +36,7 @@ typedef struct s_stacks
 	int	size_b;
 }	t_stacks;
 
-// 0 none, 1 simple, 2 medium, 3 complex, 4 adaptive
+// 0 adaptive, 1 simple, 2 medium, 3 complex
 typedef struct s_options
 {
 	int	strategy;
@@ -64,6 +64,7 @@ t_order	*ft_lst_get_last(t_order *lst);
 void	ft_lst_add_back(t_order **lst, t_order *new);
 int		get_action(t_order *lst, int type);
 void	ft_lstdelete(t_order **lst);
+void	ft_lstprint(t_order *lst);
 int		insertion_sort(t_stacks *stack, t_actions *actions);
 int		chunk_sort(t_stacks *stack, t_actions *actions);
 int		radix(t_stacks *stack, t_actions *actions);

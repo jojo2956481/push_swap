@@ -80,21 +80,21 @@ int	**take_index(int *tab_a, int size_a, int chunk_size, int chunk_len)
 	int	i;
 	int	**tab_chunk;
 
+	i = -1;
 	tab_sort = ft_calloc(size_a, sizeof(int));
 	if (!tab_sort)
 		return (NULL);
-	copy_tab(tab_a, tab_sort, size_a);
-	sort_tab(tab_sort, size_a);
-	tab_chunk = ft_calloc(chunk_len + 1, sizeof(int));
+	tab_chunk = ft_calloc(chunk_len + 1, sizeof(int *));
 	if (!tab_chunk)
 		return (free_take_index(tab_sort, NULL, NULL));
-	i = -1;
 	while (++i < chunk_len)
 	{
 		tab_chunk[i] = ft_calloc(chunk_size, sizeof(int));
 		if (!tab_chunk[i])
 			return (free_take_index(tab_sort, NULL, tab_chunk));
 	}
+	copy_tab(tab_a, tab_sort, size_a);
+	sort_tab(tab_sort, size_a);
 	fill_tab(tab_chunk, tab_sort, chunk_size, chunk_len);
 	free(tab_sort);
 	return (tab_chunk);

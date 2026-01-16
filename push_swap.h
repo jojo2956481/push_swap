@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:24:34 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/15 11:26:03 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/16 09:45:30 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	ft_lstdelete(t_order **lst);
 int		insertion_sort(t_stacks *stack, t_actions *actions);
 int		chunk_sort(t_stacks *stack, t_actions *actions);
 int		radix(t_stacks *stack, t_actions *actions);
+int		is_sorted(int *tab_a, int size);
 
 #endif

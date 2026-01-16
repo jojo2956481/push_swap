@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:23:30 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/10 09:49:30 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/16 09:26:19 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 
 int	free_all(int *a, int *b, int return_value, int error)
 {
-	int	i;
-
-	i = 0;
 	if (a)
 		free(a);
 	if (b)

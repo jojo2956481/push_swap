@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:59:41 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/15 14:27:53 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/16 10:09:36 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,22 @@ static int	push_max_from_b(t_stacks *stack, t_actions *actions)
 	return (0);
 }
 
-void push_chunk_from_a(t_stacks *stack, t_actions *actions, int *tab_sort, int chunk_size)
+void	push_chunk_from_a(t_stacks *stack, t_actions *actions, int k)
 {
-	int	i;
-	int j;
-	int chunk_len;
+	int	y;
 
-	chunk_len = chunk_len = stack->size_a / chunk_size;
-	j = -1;
-	while (++j < chunk_len)
+	y = -1;
+	if (k > (stack->size_a / 2))
 	{
-		i = -1;
-		while (++i < chunk_size)
-		{
-			k = calcul_index(tab_sort[j], stack, chunk_size);
-			y = -1;
-			if (k > (stack->size_a / 2))
-			{
-				k = stack->size_a - k;
-				while (++y < k)
-					rra(stack->tab_a, stack->size_a, actions);
-			}
-			else
-				while (++y < k)
-					ra(stack->tab_a, stack->size_a, actions);
-			pb(stack, actions);
-		}
+		k = stack->size_a - k;
+		while (++y < k)
+			rra(stack->tab_a, stack->size_a, actions);
 	}
+	else
+		while (++y < k)
+			ra(stack->tab_a, stack->size_a, actions);
+	pb(stack, actions);
 }
-
 
 int	chunk_sort(t_stacks *stack, t_actions *actions)
 {
@@ -91,44 +78,24 @@ int	chunk_sort(t_stacks *stack, t_actions *actions)
 	int	chunk_size;
 	int	chunk_len;
 	int	**tab_sort;
-	int	k;
 	int	j;
-	int	y;
 
 	chunk_size = isqrt(stack->size_a);
 	chunk_len = stack->size_a / chunk_size;
-	tab_sort = take_index(stack->tab_a, stack->size_a, chunk_size);
+	tab_sort = take_index(stack->tab_a, stack->size_a, chunk_size, chunk_len);
+	if (!tab_sort)
+		return (1);
 	j = 0;
 	while (j < chunk_len)
 	{
-		i = 0;
-		while (i < chunk_size)
-		{
-			k = calcul_index(tab_sort[j], stack, chunk_size);
-			y = 0;
-			if (k > (stack->size_a / 2))
-			{
-				k = stack->size_a - k;
-				while (y < k)
-				{
-					rra(stack->tab_a, stack->size_a, actions);
-					y++;
-				}
-			}
-			else
-			{
-				while (y < k)
-				{
-					ra(stack->tab_a, stack->size_a, actions);
-					y++;
-				}
-			}
-			pb(stack, actions);
-			i++;
-		}
+		i = -1;
+		while (++i < chunk_size)
+			push_chunk_from_a(stack, actions,
+				calcul_index(tab_sort[j], stack, chunk_size));
 		j++;
 	}
 	while (stack->size_b > 0)
 		push_max_from_b(stack, actions);
+	free_take_index(NULL, NULL, tab_sort);
 	return (0);
 }

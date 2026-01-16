@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:47:36 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/14 15:53:51 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/16 09:31:04 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,19 @@ int	find_max_value(int *tab_b, int size_b)
 		i++;
 	}
 	return (max);
+}
+
+int	**free_take_index(int *a, int *b, int **tab)
+{
+	int	i;
+
+	if (a)
+		free(a);
+	if (b)
+		free(b);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+	return (NULL);
 }

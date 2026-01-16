@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:41:05 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/14 15:54:06 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/16 09:27:40 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,26 @@ int	fill_tab(int **tab_chunk, int *tab_sort, int chunk_size, int chunk_len)
 	return (0);
 }
 
-int	**take_index(int *tab_a, int size_a, int chunk_size)
+int	**take_index(int *tab_a, int size_a, int chunk_size, int chunk_len)
 {
 	int	*tab_sort;
 	int	i;
-	int	chunk_len;
 	int	**tab_chunk;
 
 	tab_sort = ft_calloc(size_a, sizeof(int));
 	if (!tab_sort)
-		return (0);
+		return (NULL);
 	copy_tab(tab_a, tab_sort, size_a);
 	sort_tab(tab_sort, size_a);
-	chunk_len = size_a / chunk_size;
-	tab_chunk = malloc(sizeof(int *) * (chunk_len + 1));
+	tab_chunk = ft_calloc(chunk_len + 1, sizeof(int));
 	if (!tab_chunk)
-		return (0);
-	i = 0;
-	while (i < chunk_len)
+		return (free_take_index(tab_sort, NULL, NULL));
+	i = -1;
+	while (++i < chunk_len)
 	{
 		tab_chunk[i] = ft_calloc(chunk_size, sizeof(int));
-		i++;
+		if (!tab_chunk[i])
+			return (free_take_index(tab_sort, NULL, tab_chunk));
 	}
 	fill_tab(tab_chunk, tab_sort, chunk_size, chunk_len);
 	free(tab_sort);

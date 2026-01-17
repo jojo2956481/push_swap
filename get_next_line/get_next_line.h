@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:19:42 by pgougne           #+#    #+#             */
-/*   Updated: 2025/11/25 08:19:45 by pgougne          ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 12:59:01 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_line
 	void	*next;
 }	t_line;
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int *ifmaloc);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);

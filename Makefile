@@ -16,17 +16,15 @@ INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line -Ichunk_based -Iradix
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
-		block_based/block_based_sort.c block_based/sorting_copy.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
+		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c
 
 BONUS := checker 
 SRC_BONUS := checker.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
-		block_based/block_based_sort.c block_based/sorting_copy.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
+		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c
 

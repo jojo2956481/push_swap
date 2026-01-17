@@ -33,7 +33,7 @@ static int	calcul_index(int *tab_sort, t_stacks *stack, int chunk_size)
 	return (j);
 }
 
-static int	push_max_from_b(t_stacks *stack, t_actions *actions)
+static int	push_max_from_b(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	max;
 	int	index;
@@ -43,19 +43,19 @@ static int	push_max_from_b(t_stacks *stack, t_actions *actions)
 	if (index <= stack->size_b / 2)
 	{
 		while (index-- > 0)
-			rb(stack->tab_b, stack->size_b, actions);
+			rb(stack->tab_b, stack->size_b, actions, silent);
 	}
 	else
 	{
 		index = stack->size_b - index;
 		while (index-- > 0)
-			rrb(stack->tab_b, stack->size_b, actions);
+			rrb(stack->tab_b, stack->size_b, actions, silent);
 	}
-	pa(stack, actions);
+	pa(stack, actions, silent);
 	return (0);
 }
 
-void	push_chunk_from_a(t_stacks *stack, t_actions *actions, int k)
+void	push_chunk_from_a(t_stacks *stack, t_actions *actions, int k, int silent)
 {
 	int	y;
 
@@ -64,15 +64,15 @@ void	push_chunk_from_a(t_stacks *stack, t_actions *actions, int k)
 	{
 		k = stack->size_a - k;
 		while (++y < k)
-			rra(stack->tab_a, stack->size_a, actions);
+			rra(stack->tab_a, stack->size_a, actions, silent);
 	}
 	else
 		while (++y < k)
-			ra(stack->tab_a, stack->size_a, actions);
-	pb(stack, actions);
+			ra(stack->tab_a, stack->size_a, actions, silent);
+	pb(stack, actions, silent);
 }
 
-int	chunk_sort(t_stacks *stack, t_actions *actions)
+int	chunk_sort(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	i;
 	int	chunk_size;
@@ -91,11 +91,11 @@ int	chunk_sort(t_stacks *stack, t_actions *actions)
 		i = -1;
 		while (++i < chunk_size)
 			push_chunk_from_a(stack, actions,
-				calcul_index(tab_sort[j], stack, chunk_size));
+				calcul_index(tab_sort[j], stack, chunk_size), silent);
 		j++;
 	}
 	while (stack->size_b > 0)
-		push_max_from_b(stack, actions);
+		push_max_from_b(stack, actions, silent);
 	free_take_index(NULL, NULL, tab_sort);
 	return (0);
 }

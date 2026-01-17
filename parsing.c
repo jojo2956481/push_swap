@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "block_based.h"
 #include "chunk_sort.h"
 #include "push_swap.h"
 #include "radix.h"
@@ -79,7 +78,7 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	algo = opt->strategy;
 	if (opt->strategy == 0)
 	{
-		algo = adaptive(*stack);
+		algo = adaptive(dis);
 		if (algo == -1)
 			return (-1);
 	}

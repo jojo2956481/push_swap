@@ -14,12 +14,13 @@
 #include "ft_printf.h"
 
 // Swap the first two elements at the top of stack a
-int	sa(int *a, int size_a, t_actions *actions)
+int	sa(int *a, int size_a, t_actions *actions, int silent)
 {
 	int			temp;
 
 	actions->sa += 1;
-	ft_printf("sa\n");
+	if (silent == 0)
+		ft_printf("sa\n");
 	actions->nb_op += 1;
 	if (size_a <= 1)
 		return (0);
@@ -30,7 +31,7 @@ int	sa(int *a, int size_a, t_actions *actions)
 }
 
 // Take the first element at the top of b and put it at the top of a.
-int	pa(t_stacks *stack, t_actions *actions)
+int	pa(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	i;
 
@@ -52,19 +53,21 @@ int	pa(t_stacks *stack, t_actions *actions)
 	stack->size_b--;
 	stack->size_a++;
 	actions->pa += 1;
-	ft_printf("pa\n");
+	if (silent == 0)
+		ft_printf("pa\n");
 	actions->nb_op += 1;
 	return (1);
 }
 
 // Shift up all elements of stack a by one
-int	ra(int *a, int size_a, t_actions *actions)
+int	ra(int *a, int size_a, t_actions *actions, int silent)
 {
 	int			temp;
 	int			i;
 
 	actions->ra += 1;
-	ft_printf("ra\n");
+	if (silent == 0)
+		ft_printf("ra\n");
 	actions->nb_op += 1;
 	if (size_a < 2)
 		return (0);
@@ -80,13 +83,14 @@ int	ra(int *a, int size_a, t_actions *actions)
 }
 
 // Shift down all elements of stack a by one.
-int	rra(int *a, int size_a, t_actions *actions)
+int	rra(int *a, int size_a, t_actions *actions, int silent)
 {
 	int			temp;
 	int			i;
 
 	actions->rra += 1;
-	ft_printf("rra\n");
+	if (silent == 0)
+		ft_printf("rra\n");
 	actions->nb_op += 1;
 	if (size_a < 2)
 		return (0);

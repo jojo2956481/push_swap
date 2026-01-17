@@ -31,19 +31,48 @@ void	radix_sort(t_stacks *stack, t_actions *actions,
 		while (++i < size)
 		{
 			if (((tab_index[i] >> bit) & 1) == 0)
-				pb(stack, actions);
+				pb(stack, actions, 0);
 			else
-				ra(stack->tab_a, stack->size_a, actions);
+				ra(stack->tab_a, stack->size_a, actions, 0);
 		}
 		while (stack->size_b > 0)
-			pa(stack, actions);
+			pa(stack, actions, 0);
 		if (is_sorted(stack->tab_a, stack->size_a) == 1)
 			break ;
 		indexation(tab_sort, stack->tab_a, tab_index, size);
 	}
 }
 
-int	radix(t_stacks *stack, t_actions *actions)
+void	radix_sort_silent(t_stacks *stack, t_actions *actions,
+		int *tab_sort, int *tab_index)
+{
+	int	size;
+	int	bit;
+	int	max_bit;
+	int	i;
+
+	size = stack->size_a;
+	max_bit = init_bit_max(tab_sort, size);
+	bit = -1;
+	while (++bit < max_bit)
+	{
+		i = -1;
+		while (++i < size)
+		{
+			if (((tab_index[i] >> bit) & 1) == 0)
+				pb(stack, actions, 1);
+			else
+				ra(stack->tab_a, stack->size_a, actions, 1);
+		}
+		while (stack->size_b > 0)
+			pa(stack, actions, 1);
+		if (is_sorted(stack->tab_a, stack->size_a) == 1)
+			break ;
+		indexation(tab_sort, stack->tab_a, tab_index, size);
+	}
+}
+
+int	radix(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	*tab_sort;
 	int	*tab_index;
@@ -59,6 +88,9 @@ int	radix(t_stacks *stack, t_actions *actions)
 	copy_tab_radix(stack->tab_a, tab_sort, size);
 	sort_tab(tab_sort, size);
 	indexation(tab_sort, stack->tab_a, tab_index, size);
-	radix_sort(stack, actions, tab_sort, tab_index);
+	if (silent)
+		radix_sort_silent(stack, actions, tab_sort, tab_index);
+	else
+		radix_sort(stack, actions, tab_sort, tab_index);
 	return (free_all(tab_sort, tab_index, 0, 0));
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	bubble_sort(t_stacks *stack, t_actions *actions)
+int	bubble_sort(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	i;
 	int	j;
@@ -24,14 +24,14 @@ int	bubble_sort(t_stacks *stack, t_actions *actions)
 		while (i < stack->size_a - 1 - j)
 		{
 			if (stack->tab_a[0] > stack->tab_a[1])
-				sa(stack->tab_a, stack->size_a, actions);
-			ra(stack->tab_a, stack->size_a, actions);
+				sa(stack->tab_a, stack->size_a, actions, silent);
+			ra(stack->tab_a, stack->size_a, actions, silent);
 			i++;
 		}
 		i = 0;
 		while (i < stack->size_a - 1 - j)
 		{
-			rra(stack->tab_a, stack->size_a, actions);
+			rra(stack->tab_a, stack->size_a, actions, silent);
 			i++;
 		}
 		j++;

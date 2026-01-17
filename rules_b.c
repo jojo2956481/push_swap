@@ -14,12 +14,13 @@
 #include "ft_printf.h"
 
 // Swap the first two elements at the top of stack b
-int	sb(int *b, int size_b, t_actions *actions)
+int	sb(int *b, int size_b, t_actions *actions, int silent)
 {
 	int			temp;
 
 	actions->sb += 1;
-	ft_printf("sb\n");
+	if (silent == 0)
+		ft_printf("sb\n");
 	actions->nb_op += 1;
 	if (size_b <= 1)
 		return (0);
@@ -30,7 +31,7 @@ int	sb(int *b, int size_b, t_actions *actions)
 }
 
 // Take the first element at the top of a and put it at the top of b.
-int	pb(t_stacks *stack, t_actions *actions)
+int	pb(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	i;
 
@@ -52,19 +53,21 @@ int	pb(t_stacks *stack, t_actions *actions)
 	stack->size_a--;
 	stack->size_b++;
 	actions->pb += 1;
-	ft_printf("pb\n");
+	if (silent == 0)
+		ft_printf("pb\n");
 	actions->nb_op += 1;
 	return (1);
 }
 
 // Shift up all elements of stack b by one.
-int	rb(int *b, int size_b, t_actions *actions)
+int	rb(int *b, int size_b, t_actions *actions, int silent)
 {
 	int			temp;
 	int			i;
 
 	actions->rb += 1;
-	ft_printf("rb\n");
+	if (silent == 0)
+		ft_printf("rb\n");
 	actions->nb_op += 1;
 	if (size_b < 2)
 		return (0);
@@ -80,13 +83,14 @@ int	rb(int *b, int size_b, t_actions *actions)
 }
 
 // Shift down all elements of stack b by one.
-int	rrb(int *b, int size_b, t_actions *actions)
+int	rrb(int *b, int size_b, t_actions *actions, int silent)
 {
 	int			temp;
 	int			i;
 
 	actions->nb_op += 1;
-	ft_printf("rrb\n");
+	if (silent == 0)
+		ft_printf("rrb\n");
 	actions->rrb += 1;
 	if (size_b < 2)
 		return (0);

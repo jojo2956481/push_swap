@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	insertion_sort(t_stacks *stack, t_actions *actions)
+int	insertion_sort(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	i;
 	int	index;
@@ -22,20 +22,20 @@ int	insertion_sort(t_stacks *stack, t_actions *actions)
 	{
 		i = -1;
 		while (++i < index)
-			ra (stack->tab_a, stack->size_a, actions);
+			ra (stack->tab_a, stack->size_a, actions, silent);
 		while (i > 0 && stack->tab_a[0] > stack->tab_a[1])
 		{
-			sa(stack->tab_a, stack->size_a, actions);
-			rra(stack->tab_a, stack->size_a, actions);
+			sa(stack->tab_a, stack->size_a, actions, silent);
+			rra(stack->tab_a, stack->size_a, actions, silent);
 			i--;
 		}
 		while (i > 0)
 		{
-			rra(stack->tab_a, stack->size_a, actions);
+			rra(stack->tab_a, stack->size_a, actions, silent);
 			i--;
 		}
 		index++;
 	}
-	ra(stack->tab_a, stack->size_a, actions);
+	ra(stack->tab_a, stack->size_a, actions, silent);
 	return (0);
 }

@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 
 // sa and sb at the same time.
-int	ss(t_stacks *stack, t_actions *actions)
+int	ss(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	tmp;
 
@@ -27,13 +27,14 @@ int	ss(t_stacks *stack, t_actions *actions)
 	stack->tab_b[0] = stack->tab_b[1];
 	stack->tab_b[1] = tmp;
 	actions->ss += 1;
-	ft_printf("ss\n");
+	if (silent == 0)
+		ft_printf("ss\n");
 	actions->nb_op += 1;
 	return (1);
 }
 
 // ra and rb at the same time.
-int	rr(t_stacks *stack, t_actions *actions)
+int	rr(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	tmp;
 	int	i;
@@ -51,13 +52,14 @@ int	rr(t_stacks *stack, t_actions *actions)
 		stack->tab_b[i] = stack->tab_b[i + 1];
 	stack->tab_b[stack->size_b - 1] = tmp;
 	actions->rr += 1;
-	ft_printf("rr\n");
+	if (silent == 0)
+		ft_printf("rr\n");
 	actions->nb_op += 1;
 	return (1);
 }
 
 // rra and rrb at the same time.
-int	rrr(t_stacks *stack, t_actions *actions)
+int	rrr(t_stacks *stack, t_actions *actions, int silent)
 {
 	int	tmp;
 	int	i;
@@ -75,7 +77,8 @@ int	rrr(t_stacks *stack, t_actions *actions)
 		stack->tab_b[i] = stack->tab_b[i - 1];
 	stack->tab_b[0] = tmp;
 	actions->rrr += 1;
-	ft_printf("rrr\n");
+	if (silent == 0)
+		ft_printf("rrr\n");
 	actions->nb_op += 1;
 	return (1);
 }

@@ -19,6 +19,7 @@ void	sort_tab(int *tab, int size);
 void	copy_tab_radix(int *tab_a, int *tab_sort, int size);
 void	indexation(int *tab_sort, int *tab, int *tab_index, int size);
 int		init_bit_max(int *tab_sort, int size);
-int		radix(t_stacks *stack, t_actions *actions);
+int		radix(t_stacks *stack, t_actions *actions, int silent);
 int		is_sorted(int *tab_a, int size);
+
 #endif

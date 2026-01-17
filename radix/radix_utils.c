@@ -76,9 +76,10 @@ int	init_bit_max(int *tab_sort, int size)
 	return (max_bit);
 }
 
-int is_sorted(int *tab_a, int size)
+int	is_sorted(int *tab_a, int size)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (i < size - 1)
 	{

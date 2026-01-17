@@ -15,7 +15,6 @@
 #include "get_next_line.h"
 #include "push_swap.h"
 #include "ft_printf.h"
-#include <limits.h>
 #include <stdlib.h>
 
 int	free_all(int *a, int *b, int return_value, int error)
@@ -40,50 +39,6 @@ int	is_arg_number(char *str)
 		if (!ft_isdigit(str[i++]))
 			return (0);
 	return (1);
-}
-
-static int	fill_tab(int *tab, char **str, int start)
-{
-	int	i;
-	int	x;
-
-	x = 0;
-	i = start;
-	while (str[i] != NULL)
-	{
-		if (!is_arg_number(str[i]))
-			return (0);
-		tab[x] = ft_atoi(str[i]);
-		if (ft_atoi(str[i]) < INT_MIN || ft_atoi(str[i]) > INT_MAX)
-			return (0);
-		x++;
-		i++;
-	}
-	return (1);
-}
-
-static int	init_tab(t_stacks *stacks, int max_size)
-{
-	stacks->size_a = max_size;
-	stacks->size_b = 0;
-	stacks->tab_a = ft_calloc(max_size, sizeof(int));
-	if (!stacks->tab_a)
-		return (1);
-	stacks->tab_b = ft_calloc(max_size, sizeof(int));
-	if (!stacks->tab_b)
-	{
-		free(stacks->tab_a);
-		return (1);
-	}
-	return (0);
-}
-
-static void	init_struct_action(t_actions *actions, t_options *opt)
-{
-	actions->nb_op = 0;
-	actions->lst = NULL;
-	opt->strategy = 0;
-	opt->display = 0;
 }
 
 int	main(int argc, char **argv)

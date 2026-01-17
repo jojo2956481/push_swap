@@ -56,22 +56,6 @@ t_order	*ft_lstcreate(int content)
 	return (lstnew);
 }
 
-int	get_action(t_order *lst, int type)
-{
-	int	c;
-
-	c = 0;
-	if (lst == NULL)
-		return (0);
-	while (lst)
-	{
-		if (lst->action == type)
-			c++;
-		lst = lst->next;
-	}
-	return (c);
-}
-
 t_order	*ft_lst_get_last(t_order *lst)
 {
 	if (lst == NULL)

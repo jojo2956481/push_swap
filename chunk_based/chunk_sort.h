@@ -15,9 +15,9 @@
 
 int	find_index(int *shunk, int size, int value);
 int	find_max_value(int *tab_b, int size_b);
-int	fill_tab(int **tab_chunk, int *tab_sort, int chunk_size, int chunk_len);
 int	**take_index(int *tab_a, int size_a, int chunk_size, int chunk_len);
 int	isqrt(int n);
 int	**free_take_index(int *a, int *b, int **tab);
+int	chunk_sort(t_stacks *stack, t_actions *actions);
 
 #endif

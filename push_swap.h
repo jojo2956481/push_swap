@@ -62,13 +62,18 @@ int		get_nb_args(char **argv, t_options *opt);
 t_order	*ft_lstcreate(int content);
 t_order	*ft_lst_get_last(t_order *lst);
 void	ft_lst_add_back(t_order **lst, t_order *new);
-int		get_action(t_order *lst, int type);
 void	ft_lstdelete(t_order **lst);
 void	ft_lstprint(t_order *lst);
 int		insertion_sort(t_stacks *stack, t_actions *actions);
-int		chunk_sort(t_stacks *stack, t_actions *actions);
-int		radix(t_stacks *stack, t_actions *actions);
+int		get_actions(int (*f)(t_stacks*, t_actions*),
+			t_stacks stack, t_actions a);
+int		adaptive(t_stacks stack);
+int		execute_algo(int algo, t_stacks *stack, t_actions *actions);
 int		is_sorted(int *tab_a, int size);
 float	disorder(int *tab_a, int size);
+void	display_bench(float disorder, int strat, t_actions *a, int algo);
+void	init_struct_action(t_actions *actions, t_options *opt);
+int		init_tab(t_stacks *stacks, int max_size);
+int		fill_tab(int *tab, char **str, int start);
 
 #endif

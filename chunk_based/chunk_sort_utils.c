@@ -52,7 +52,8 @@ int	copy_tab(int *tab_a, int *tab_sort, int size)
 	return (0);
 }
 
-int	fill_tab(int **tab_chunk, int *tab_sort, int chunk_size, int chunk_len)
+static int	fill_tab_chunk(int **tab_chunk, int *tab_sort,
+		int chunk_size, int chunk_len)
 {
 	int	i;
 	int	j;
@@ -95,7 +96,7 @@ int	**take_index(int *tab_a, int size_a, int chunk_size, int chunk_len)
 	}
 	copy_tab(tab_a, tab_sort, size_a);
 	sort_tab(tab_sort, size_a);
-	fill_tab(tab_chunk, tab_sort, chunk_size, chunk_len);
+	fill_tab_chunk(tab_chunk, tab_sort, chunk_size, chunk_len);
 	free(tab_sort);
 	return (tab_chunk);
 }

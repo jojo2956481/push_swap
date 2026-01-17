@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/17 14:49:10 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 14:55:26 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 
 	check = "echo";
 	ifmalloc = 0;
-	size = 0;
 	while (1)
 	{
-		nb = 0;
 		check = get_next_line(0, &ifmalloc);
 		if (ifmalloc == -1)
 		{

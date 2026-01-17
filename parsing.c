@@ -94,24 +94,29 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	return (error);
 }
 
-int	check_args(int argc, char **argv, int start)
+int	check_args(char **args)
 {
 	int	i;
 	int	j;
+	int	count;
 
-	i = start;
-	if (!argv[i])
+	i = 0;
+	count = 0;
+	if (!args || !args[i])
 		return (0);
-	while (i < argc)
+	while (args[i])
 	{
+		if (!is_arg_number(args[i]))
+			return (-1);
 		j = i + 1;
-		while (j < argc)
+		while (args[j])
 		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-				return (0);
+			if (ft_atoi(args[i]) == ft_atoi(args[j]))
+				return (-1);
 			j++;
 		}
 		i++;
+		count++;
 	}
-	return (argc - 1);
+	return (count);
 }

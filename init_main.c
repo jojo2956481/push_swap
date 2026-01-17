@@ -14,13 +14,53 @@
 #include "libft.h"
 #include <limits.h>
 
-int	fill_tab(int *tab, char **str, int start)
+char	*join_args(int argc, char **argv, int start)
+{
+	char	*tmp;
+	char	*joined;
+	int		i;
+
+	i = start;
+	joined = ft_strdup("");
+	if (!joined)
+		return (NULL);
+	while (i < argc)
+	{
+		tmp = ft_strjoin(joined, argv[i]);
+		free(joined);
+		if (!tmp)
+			return (NULL);
+		joined = ft_strjoin(tmp, " ");
+		free(tmp);
+		if (!joined)
+			return (NULL);
+		i++;
+	}
+	return (joined);
+}
+
+char	**parse_args(int argc, char **argv, int start)
+{
+	char	*big_string;
+	char	**clean_args;
+
+	if (start == -1)
+		return (NULL);
+	big_string = join_args(argc, argv, start);
+	if (!big_string)
+		return (NULL);
+	clean_args = ft_split(big_string, ' ');
+	free(big_string);
+	return (clean_args);
+}
+
+int	fill_tab(int *tab, char **str)
 {
 	int	i;
 	int	x;
 
 	x = 0;
-	i = start;
+	i = 0;
 	while (str[i] != NULL)
 	{
 		if (!is_arg_number(str[i]))

@@ -25,7 +25,7 @@ int	is_sorted(int *tab_a, int size)
 	}
 	return (1);
 }
-
+/*
 void	applied_rules(int nb, t_stacks *stack, t_actions *actions)
 {
 	if (nb == 2)
@@ -129,4 +129,4 @@ int	main(int argc, char **argc)
 	else
 	write(1, "KO\n", 3);
 	return (free_all(stacks.tab_a, stacks.tab_b, 0, 0));
-}
+}*/

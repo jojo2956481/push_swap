@@ -28,6 +28,16 @@ int	free_all(int *a, int *b, int return_value, int error)
 	return (return_value);
 }
 
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
 int	is_arg_number(char *str)
 {
 	int	i;
@@ -45,24 +55,25 @@ int	main(int argc, char **argv)
 {
 	t_stacks	stacks;
 	int			size;
-	int			offset;
 	t_actions	actions;
 	t_options	opt;
+	char		**args;
 
 	if (argc <= 1)
 		return (free_all(NULL, NULL, 1, 1));
 	init_struct_action(&actions, &opt);
-	offset = get_nb_args(argv, &opt);
-	if (offset == -1)
+	args = parse_args(argc, argv, get_nb_args(argv, &opt));
+	if (!args || !args[0])
 		return (free_all(NULL, NULL, 1, 1));
-	size = check_args(argc - (offset - 1), argv, offset);
+	size = check_args(args);
 	if (size <= 0)
 		return (free_all(NULL, NULL, 1, 1));
 	if (init_tab(&stacks, size) == 1)
 		return (1);
-	if (fill_tab(stacks.tab_a, argv, offset) == 0)
+	if (fill_tab(stacks.tab_a, args) == 0)
 		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
 	if (choose_strategy(&stacks, &actions, &opt) == -1)
 		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
+	free_split(args);
 	return (free_all(stacks.tab_a, stacks.tab_b, 0, 0));
 }

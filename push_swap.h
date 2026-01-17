@@ -54,7 +54,7 @@ int		rrb(int *b, int size_b, t_actions *actions);
 int		ss(t_stacks *stack, t_actions *actions);
 int		rr(t_stacks *stack, t_actions *actions);
 int		rrr(t_stacks *stack, t_actions *actions);
-int		check_args(int argc, char **argv, int start);
+int		check_args(char **argv);
 int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
 int		is_arg_number(char *str);
 int		free_all(int *a, int *b, int return_value, int error);
@@ -74,6 +74,8 @@ float	disorder(int *tab_a, int size);
 void	display_bench(float disorder, int strat, t_actions *a, int algo);
 void	init_struct_action(t_actions *actions, t_options *opt);
 int		init_tab(t_stacks *stacks, int max_size);
-int		fill_tab(int *tab, char **str, int start);
+int		fill_tab(int *tab, char **str);
+char	**parse_args(int argc, char **argv, int start);
+void	free_split(char **split);
 
 #endif

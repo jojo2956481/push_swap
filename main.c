@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:23:30 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 09:26:19 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 11:58:28 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,6 @@
 #include "push_swap.h"
 #include "ft_printf.h"
 #include <stdlib.h>
-
-int	free_all(int *a, int *b, int return_value, int error)
-{
-	if (a)
-		free(a);
-	if (b)
-		free(b);
-	if (error)
-		write(2, "Error\n", 6);
-	return (return_value);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-}
-
-int	is_arg_number(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[0] == '-')
-		i++;
-	while (str[i] != '\0')
-		if (!ft_isdigit(str[i++]))
-			return (0);
-	return (1);
-}
 
 int	main(int argc, char **argv)
 {

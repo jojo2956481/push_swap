@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/17 09:43:40 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 13:17:18 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include "libft.h"
 #include <unistd.h>
 #include "get_next_line.h"
+#include <stdlib.h>
+
+void replace_end_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i] != '\n' || str[i] == '\0')
+		i++;
+	str[i] = '\0';	
+}
 
 void	applied_rules(int nb, t_stacks *stacks, t_actions *actions)
 {
@@ -75,21 +86,26 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 	char	*check;
 	int		nb;
 	int		size;
+	int		ifmalloc;
 
-	check = NULL;
-	while (!(check))
+	check = "echo";
+	ifmalloc = 0;
+	while (1)
 	{
-		check = get_next_line(0);
+		check = get_next_line(0, &ifmalloc);
+		if (ifmalloc == -1)
+		{
+			write(1, "Error\n", 6);
+			return (-1);
+		}
+		if (!check)
+			break;
+		replace_end_line(check);
 		size = ft_strlen(check);
 		nb = check_rules(check, size);
 		if (nb == 0)
-		{
 			write(1, "Error\n", 6);
-			free(check);
-			return (1);
-		}
-		else 
-			applied_rules(nb, stacks, actions);
+		applied_rules(nb, stacks, actions);
 		free(check);
 	}
 	return (0);
@@ -107,19 +123,21 @@ int	main(int argc, char **argv)
 	int 		size;
 	int			nb;
 	t_actions	actions;
+	char		**args;
 	
 	init_actions(&actions);
 	if (argc <= 1)
 		return (0);
-	size = check_args(argc, argv, 1);
+	args = parse_args(argc, argv, 1);
+	size = check_args(args);
 	if (size <= 0)
 		return (0);
 	if (init_tab(&stacks, size) == 1)
 		return (1);
-	if (fill_tab(stacks.tab_a, argv, 1) == 0)
+	if (fill_tab(stacks.tab_a, args) == 0)
 		return (free_all(stacks.tab_a, stacks.tab_b, 1, 1));
 	nb = read_standard_input(&stacks, &actions);
-	if (nb == 1)
+	if (nb == -1)
 		return(free_all(stacks.tab_a, stacks.tab_b, 1, 1));
 	if (is_sorted(stacks.tab_a, size) == 1)
 		write(1, "OK\n", 3);

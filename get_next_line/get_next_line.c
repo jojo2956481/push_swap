@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:43:07 by pgougne           #+#    #+#             */
-/*   Updated: 2025/11/27 10:43:09 by pgougne          ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 13:14:34 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	get_first_line_until_newline(int fd, char **reste, char *buf)
+int	get_first_line_until_newline(int fd, char **reste, char *buf, int *ifmalloc)
 {
 	int		n;
 	char	*tmp;
@@ -33,12 +33,16 @@ int	get_first_line_until_newline(int fd, char **reste, char *buf)
 		if (tmp)
 			free(tmp);
 		if (!*reste)
+		{
+			*ifmalloc = -1;
 			return (-1);
+		}
+		
 	}
 	return (0);
 }
 
-void	get_first_line(char **reste, char **line)
+void	get_first_line(char **reste, char **line, int *ifmalloc)
 {
 	char	*newline;
 	char	*tmp;
@@ -53,6 +57,8 @@ void	get_first_line(char **reste, char **line)
 		*line = ft_substr(*reste, 0, line_len);
 		tmp = ft_substr(*reste, line_len, new_reste_len);
 		free(*reste);
+		if (!line)
+			*ifmalloc = -1;
 		*reste = tmp;
 	}
 	else
@@ -71,7 +77,7 @@ static void	free_all(char **reste, char **buf)
 	*reste = NULL;
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int *ifmalloc)
 {
 	static char	*reste;
 	char		*line;
@@ -80,12 +86,15 @@ char	*get_next_line(int fd)
 	line = NULL;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
+	{
+		*ifmalloc = -1;
 		return (NULL);
-	if (get_first_line_until_newline(fd, &reste, buf) == -1)
+	}
+	if (get_first_line_until_newline(fd, &reste, buf, ifmalloc) == -1)
 		return (free_all(&reste, &buf), NULL);
 	if (!reste || *reste == '\0')
 		return (free_all(&reste, &buf), NULL);
-	get_first_line(&reste, &line);
+	get_first_line(&reste, &line, ifmalloc);
 	free(buf);
 	return (line);
 }

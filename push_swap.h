@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:24:34 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 13:14:09 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 11:59:33 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ int		init_tab(t_stacks *stacks, int max_size);
 int		fill_tab(int *tab, char **str);
 char	**parse_args(int argc, char **argv, int start);
 void	free_split(char **split);
+int		is_arg_number(char *str);
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 09:23:07 by lebeyssa          #+#    #+#              #
-#    Updated: 2026/01/17 09:55:45 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2026/01/17 12:00:13 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,17 @@ OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		block_based/block_based_sort.c block_based/sorting_copy.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
+		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
-		disorder.c insertion/insertion_sort.c bench.c init_main.c adaptive.c
+		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c
 
-BONUS := checker
-SRC_BONUS := checker.c
+BONUS := checker 
+SRC_BONUS := checker.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
+		block_based/block_based_sort.c block_based/sorting_copy.c\
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
+		parsing.c action_list.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
+		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
+		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c
 
 OBJ := $(SRC:.c=.o)
 OBJ_BONUS := $(patsubst %.c, %.o, $(SRC_BONUS))
@@ -68,5 +73,7 @@ fclean: clean
 	$(MAKE) -C printf fclean --no-print-directory
 
 re : fclean all
+
+re_bonus : fclean bonus
 
 .PHONY : clean fclean re all bonus

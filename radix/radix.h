@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 09:59:48 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 10:05:14 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 11:57:03 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	copy_tab_radix(int *tab_a, int *tab_sort, int size);
 void	indexation(int *tab_sort, int *tab, int *tab_index, int size);
 int		init_bit_max(int *tab_sort, int size);
 int		radix(t_stacks *stack, t_actions *actions);
-
+int		is_sorted(int *tab_a, int size);
 #endif

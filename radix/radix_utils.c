@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:00:09 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 10:04:54 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 11:56:37 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,17 @@ int	init_bit_max(int *tab_sort, int size)
 	while ((max_index >> max_bit) != 0)
 		max_bit++;
 	return (max_bit);
+}
+
+int is_sorted(int *tab_a, int size)
+{
+	int i;
+	i = 0;
+	while (i < size - 1)
+	{
+		if (tab_a[i] > tab_a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

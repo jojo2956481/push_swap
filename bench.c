@@ -13,22 +13,6 @@
 #include "ft_printf.h"
 #include "push_swap.h"
 
-static int	get_action(t_order *lst, int type)
-{
-	int	c;
-
-	c = 0;
-	if (lst == NULL)
-		return (0);
-	while (lst)
-	{
-		if (lst->action == type)
-			c++;
-		lst = lst->next;
-	}
-	return (c);
-}
-
 static void	print_adaptive(int algo)
 {
 	ft_printf("[bench] strategy: Adaptive ");
@@ -59,9 +43,7 @@ void	display_bench(float disorder, int strat, t_actions *a, int algo)
 		print_adaptive(algo);
 	ft_printf("[bench] total_ops: %d\n", a->nb_op);
 	ft_printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
-		get_action(a->lst, 0), get_action(a->lst, 1), get_action(a->lst, 2),
-		get_action(a->lst, 3), get_action(a->lst, 4));
+		a->sa, a->sb, a->ss, a->pa, a->pb);
 	ft_printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
-		get_action(a->lst, 5), get_action(a->lst, 6), get_action(a->lst, 7),
-		get_action(a->lst, 8), get_action(a->lst, 9), get_action(a->lst, 10));
+		a->ra, a->rb, a->rr, a->rra, a->rrb, a->rrr);
 }

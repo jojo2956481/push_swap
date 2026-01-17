@@ -27,7 +27,6 @@ int	get_actions(int (*f)(t_stacks*, t_actions*), t_stacks stack, t_actions a)
 	stack.tab_a = temp_tab;
 	err = f(&stack, &a);
 	free(temp_tab);
-	ft_lstdelete(&a.lst);
 	if (err == -1)
 		return (-1);
 	return (a.nb_op);
@@ -41,7 +40,6 @@ int	adaptive(t_stacks stack)
 	t_actions	a;
 
 	a.nb_op = 0;
-	a.lst = NULL;
 	chunk = get_actions(chunk_sort, stack, a);
 	radix_val = get_actions(radix, stack, a);
 	insertion = get_actions(insertion_sort, stack, a);

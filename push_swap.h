@@ -16,16 +16,20 @@
 # include <stdlib.h>
 
 //0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
-typedef struct s_order
-{
-	int				action;
-	struct s_order	*next;
-}	t_order;
-
 typedef struct s_actions
 {
-	int		nb_op;
-	t_order	*lst;
+	int nb_op;
+	int pa;
+	int sa;
+	int ra;
+	int rra;
+	int pb;
+	int sb;
+	int rb;
+	int rrb;
+	int	ss;
+	int	rr;
+	int rrr;
 }	t_actions;
 
 typedef struct s_stacks
@@ -59,11 +63,6 @@ int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
 int		is_arg_number(char *str);
 int		free_all(int *a, int *b, int return_value, int error);
 int		get_nb_args(char **argv, t_options *opt);
-t_order	*ft_lstcreate(int content);
-t_order	*ft_lst_get_last(t_order *lst);
-void	ft_lst_add_back(t_order **lst, t_order *new);
-void	ft_lstdelete(t_order **lst);
-void	ft_lstprint(t_order *lst);
 int		insertion_sort(t_stacks *stack, t_actions *actions);
 int		get_actions(int (*f)(t_stacks*, t_actions*),
 			t_stacks stack, t_actions a);

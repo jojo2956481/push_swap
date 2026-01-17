@@ -93,7 +93,17 @@ int	init_tab(t_stacks *stacks, int max_size)
 void	init_struct_action(t_actions *actions, t_options *opt)
 {
 	actions->nb_op = 0;
-	actions->lst = NULL;
+	actions->pa = 0;
+	actions->sa = 0;
+	actions->ra = 0;
+	actions->rra = 0;
+	actions->sb = 0;
+	actions->pb = 0;
+	actions->rb = 0;
+	actions->rrb = 0;
+	actions->ss = 0;
+	actions->rr = 0;
+	actions->rrr = 0;
 	opt->strategy = 0;
 	opt->display = 0;
 }

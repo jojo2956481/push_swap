@@ -86,10 +86,8 @@ int	choose_strategy(t_stacks *stack, t_actions *actions, t_options *opt)
 	error = execute_algo(algo, stack, actions);
 	if (error != -1)
 	{
-		ft_lstprint(actions->lst);
 		if (opt->display == 1)
 			display_bench(dis, opt->strategy, actions, algo);
-		ft_lstdelete(&actions->lst);
 	}
 	return (error);
 }

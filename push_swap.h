@@ -18,18 +18,18 @@
 //0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
 typedef struct s_actions
 {
-	int nb_op;
-	int pa;
-	int sa;
-	int ra;
-	int rra;
-	int pb;
-	int sb;
-	int rb;
-	int rrb;
+	int	nb_op;
+	int	pa;
+	int	sa;
+	int	ra;
+	int	rra;
+	int	pb;
+	int	sb;
+	int	rb;
+	int	rrb;
 	int	ss;
 	int	rr;
-	int rrr;
+	int	rrr;
 }	t_actions;
 
 typedef struct s_stacks
@@ -75,6 +75,5 @@ int		fill_tab(int *tab, char **str);
 char	**parse_args(int argc, char **argv, int start);
 void	free_split(char **split);
 int		is_arg_number(char *str);
-
 
 #endif

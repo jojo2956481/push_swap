@@ -37,7 +37,6 @@ int	get_first_line_until_newline(int fd, char **reste, char *buf, int *ifmalloc)
 			*ifmalloc = -1;
 			return (-1);
 		}
-		
 	}
 	return (0);
 }

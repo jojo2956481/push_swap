@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/17 13:52:07 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 14:35:07 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (0);
-	init_actions(&actions);
+	actions.nb_op = 0;
 	args = parse_args(argc, argv, 1);
 	size = check_args(args);
 	if (size <= 0)

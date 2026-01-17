@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/17 14:05:53 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 14:49:10 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,27 @@ void	replace_end_line(char *str)
 void	applied_rules(int nb, t_stacks *stacks, t_actions *actions)
 {
 	if (nb == 2)
-		sa(stacks->tab_a, stacks->size_a, actions);
+		sa(stacks->tab_a, stacks->size_a, actions, 1);
 	if (nb == 3)
-		sb(stacks->tab_b, stacks->size_b, actions);
+		sb(stacks->tab_b, stacks->size_b, actions, 1);
 	if (nb == 4)
-		ra(stacks->tab_a, stacks->size_a, actions);
+		ra(stacks->tab_a, stacks->size_a, actions, 1);
 	if (nb == 5)
-		rb(stacks->tab_b, stacks->size_b, actions);
+		rb(stacks->tab_b, stacks->size_b, actions, 1);
 	if (nb == 6)
-		rra(stacks->tab_a, stacks->size_a, actions);
+		rra(stacks->tab_a, stacks->size_a, actions, 1);
 	if (nb == 7)
-		rrb(stacks->tab_a, stacks->size_a, actions);
+		rrb(stacks->tab_a, stacks->size_a, actions, 1);
 	if (nb == 8)
-		pa(stacks, actions);
+		pa(stacks, actions, 1);
 	if (nb == 9)
-		pb(stacks, actions);
+		pb(stacks, actions, 1);
 	if (nb == 10)
-		ss(stacks, actions);
+		ss(stacks, actions, 1);
 	if (nb == 11)
-		rr(stacks, actions);
+		rr(stacks, actions, 1);
 	if (nb == 12)
-		rrr(stacks, actions);
+		rrr(stacks, actions, 1);
 }
 
 int	check_rules(char *check, int size)
@@ -77,7 +77,8 @@ int	check_rules(char *check, int size)
 		return (11);
 	else if (ft_strncmp(check, "rrr", size) == 0)
 		return (12);
-	return (0);
+	else
+		return (0);
 }
 
 int	read_standard_input(t_stacks *stacks, t_actions *actions)
@@ -89,8 +90,10 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 
 	check = "echo";
 	ifmalloc = 0;
+	size = 0;
 	while (1)
 	{
+		nb = 0;
 		check = get_next_line(0, &ifmalloc);
 		if (ifmalloc == -1)
 		{
@@ -101,21 +104,19 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 			break ;
 		replace_end_line(check);
 		size = ft_strlen(check);
+		if (size < 2)
+		{
+			free(check);
+			return (-1);
+		}
 		nb = check_rules(check, size);
 		if (nb == 0)
 		{
-			write(1, "Error\n", 6);
 			free(check);
-			return (-1)
+			return (-1);
 		}
 		applied_rules(nb, stacks, actions);
 		free(check);
 	}
 	return (0);
-}
-
-void	init_actions(t_actions *actions)
-{
-	actions->nb_op = 0;
-	actions->lst = NULL;
 }

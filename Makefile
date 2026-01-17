@@ -6,13 +6,13 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 09:23:07 by lebeyssa          #+#    #+#              #
-#    Updated: 2026/01/17 14:13:24 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2026/01/17 14:35:43 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 FLAG := -Wall -Wextra -Werror -g
-INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line -Ichunk_based -Iradix
+INC := -I. -Ilibft -Iprintf -Iblock_based -Iget_next_line -Ichunk_based -Iradix -Ichecker
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
@@ -22,12 +22,12 @@ SRC := main.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c
 
 BONUS := checker 
-SRC_BONUS := checker/checker.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
+SRC_BONUS := checker_bonus/checker.c bubble_sort.c rules_a.c rules_b.c rules_both.c\
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c\
-		checker/checker_utils.c
+		checker_bonus/checker_utils.c
 
 OBJ := $(SRC:.c=.o)
 OBJ_BONUS := $(patsubst %.c, %.o, $(SRC_BONUS))

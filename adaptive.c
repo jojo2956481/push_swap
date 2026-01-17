@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adaptive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgougne <pgougne@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 09:24:51 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/17 09:24:58 by pgougne          ###   ########lyon.fr   */
+/*   Updated: 2026/01/17 14:52:48 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 int	adaptive(float disorder)
 {
-	__builtin_printf("disorder: %f\n", disorder);
 	if (disorder < 0.2)
 		return (1);
 	if (disorder >= 0.2 && disorder < 0.5)

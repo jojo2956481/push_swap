@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	char		**args;
 
 	if (argc <= 1)
-		return (free_all(NULL, NULL, 0, 1));
+		return (0);
 	init_struct_action(&actions, &opt);
 	args = parse_args(argc, argv, get_nb_args(argv, &opt));
 	if (!args || !args[0])

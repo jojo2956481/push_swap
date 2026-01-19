@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	char		**args;
 
 	if (argc <= 1)
-		return (free_all(NULL, NULL, 0, 1));
+		return (0);
 	actions.nb_op = 0;
 	args = parse_args(argc, argv, 1);
 	if (!args || !args[0])

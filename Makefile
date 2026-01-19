@@ -6,13 +6,13 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 09:23:07 by lebeyssa          #+#    #+#              #
-#    Updated: 2026/01/19 09:40:01 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2026/01/19 12:12:33 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 FLAG := -Wall -Wextra -Werror
-INC := -I. -Ilibft -Iprintf -Iget_next_line -Ichunk_based -Iradix -Ichecker
+INC := -I. -Ilibft -Iprintf -Iget_next_line -Ichunk_based -Iradix
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c rules_a.c rules_b.c rules_both.c\
@@ -28,6 +28,8 @@ SRC_BONUS := checker_bonus/checker_bonus.c rules_a.c rules_b.c rules_both.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c\
 		checker_bonus/checker_utils_bonus.c
+HEADERS := push_swap.h checker_bonus/checker_bonus.h chunk_based/chunk_sort.h radix/radix.h\
+			get_next_line/get_next_line.h
 
 OBJ := $(SRC:.c=.o)
 OBJ_BONUS := $(patsubst %.c, %.o, $(SRC_BONUS))
@@ -46,12 +48,12 @@ all : $(NAME)
 bonus : $(BONUS)
 
 $(BONUS): $(OBJS_BONUS) $(LIBS)
-	$(CC) $(FLAG) $(OBJS_BONUS) $(LIBS) -o $(BONUS)
+	$(CC) $(FLAG) $(OBJS_BONUS) $(LIBS) -Ichecker -o $(BONUS)
 
-$(NAME): $(OBJS) $(LIBS)
+$(NAME): $(OBJS) $(LIBS) 
 	$(CC) $(FLAG) $(OBJS) $(LIBS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(FLAG) $(INC) -c $< -o $@
 

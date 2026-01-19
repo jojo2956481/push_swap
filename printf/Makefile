@@ -6,7 +6,7 @@
 #    By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 15:05:06 by lebeyssa          #+#    #+#              #
-#    Updated: 2025/12/17 13:14:58 by lebeyssa         ###   ########lyon.fr    #
+#    Updated: 2026/01/19 11:59:28 by lebeyssa         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(SRC) $(INC) Makefile
+$(NAME) : $(OBJS) $(SRC) $(INC) Makefile ft_printf.h
 	@$(AR) $@ $^
 
 $(OBJ_DIR)/%.o: %.c

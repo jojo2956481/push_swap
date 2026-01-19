@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	if (size <= 0)
 		return (free_all(NULL, args, 1, 1));
 	if (init_tab(&stacks, size) == 1)
-		return (1);
+		return (free_all(&stacks, args, 1, 1));
 	if (fill_tab(stacks.tab_a, args) == 0)
 		return (free_all(&stacks, args, 1, 1));
 	if (!is_sorted(stacks.tab_a, stacks.size_a))

@@ -21,6 +21,7 @@ Compilation is directed by a Makefile with this commands :
 - make re : remove like make fclean & recompile like make all
 
 Run the program by passing a list of integers as arguments:
+
 >./push_swap 5 6 3 2 1 4 7 8 9
 
 Example of output: 

@@ -27,10 +27,13 @@ void	free_split(char **split)
 
 int	free_all(t_stacks *stack, char **str, int return_value, int error)
 {
-	if (stack->tab_a)
-		free(stack->tab_a);
-	if (stack->tab_b)
-		free(stack->tab_b);
+	if (stack)
+	{
+		if (stack->tab_a)
+			free(stack->tab_a);
+		if (stack->tab_b)
+			free(stack->tab_b);
+	}
 	if (str)
 		free_split(str);
 	if (error)

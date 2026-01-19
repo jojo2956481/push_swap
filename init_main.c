@@ -51,11 +51,6 @@ char	**parse_args(int argc, char **argv, int start)
 		return (NULL);
 	clean_args = ft_split(big_string, ' ');
 	free(big_string);
-	if (check_args(clean_args) < 0)
-	{
-		free_split(clean_args);
-		return (NULL);
-	}
 	return (clean_args);
 }
 

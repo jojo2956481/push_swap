@@ -55,7 +55,7 @@ static int	push_max_from_b(t_stacks *stack, t_actions *actions, int silent)
 	return (0);
 }
 
-void	push_chunk_from_a(t_stacks *stack,
+static void	push_chunk_from_a(t_stacks *stack,
 			t_actions *actions, int k, int silent)
 {
 	int	y;

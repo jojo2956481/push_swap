@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <limits.h>
 
-char	*join_args(int argc, char **argv, int start)
+static char	*join_args(int argc, char **argv, int start)
 {
 	char	*tmp;
 	char	*joined;

@@ -23,14 +23,16 @@ int	main(int argc, char **argv)
 	char		**args;
 
 	if (argc <= 1)
-		return (0);
+		return (free_all(NULL, NULL, 0, 1));
 	actions.nb_op = 0;
 	args = parse_args(argc, argv, 1);
+	if (!args || !args[0])
+		return (free_all(NULL, NULL, 1, 1));
 	size = check_args(args);
 	if (size <= 0)
-		return (0);
+		return (free_all(NULL, args, 1, 1));
 	if (init_tab(&stacks, size) == 1)
-		return (1);
+		return (free_all(NULL, args, 1, 1));
 	if (fill_tab(stacks.tab_a, args) == 0)
 		return (free_all(&stacks, args, 1, 1));
 	if (!is_sorted(stacks.tab_a, stacks.size_a))

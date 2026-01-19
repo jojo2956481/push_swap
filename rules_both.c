@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   rules_both.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 11:17:20 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 16:41:40 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:09:40 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ss(t_stacks *stack, t_actions *actions, int silent)
 	stack->tab_b[1] = tmp;
 	actions->ss += 1;
 	if (silent == 0)
-		ft_printf("ss\n");
+		ft_printf(1, "ss\n");
 	actions->nb_op += 1;
 	return (1);
 }
@@ -53,7 +53,7 @@ int	rr(t_stacks *stack, t_actions *actions, int silent)
 	stack->tab_b[stack->size_b - 1] = tmp;
 	actions->rr += 1;
 	if (silent == 0)
-		ft_printf("rr\n");
+		ft_printf(1, "rr\n");
 	actions->nb_op += 1;
 	return (1);
 }
@@ -78,7 +78,7 @@ int	rrr(t_stacks *stack, t_actions *actions, int silent)
 	stack->tab_b[0] = tmp;
 	actions->rrr += 1;
 	if (silent == 0)
-		ft_printf("rrr\n");
+		ft_printf(1, "rrr\n");
 	actions->nb_op += 1;
 	return (1);
 }

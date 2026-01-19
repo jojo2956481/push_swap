@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   rules_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 11:17:20 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 16:41:40 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:09:32 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	sb(int *b, int size_b, t_actions *actions, int silent)
 
 	actions->sb += 1;
 	if (silent == 0)
-		ft_printf("sb\n");
+		ft_printf(1, "sb\n");
 	actions->nb_op += 1;
 	if (size_b <= 1)
 		return (0);
@@ -54,7 +54,7 @@ int	pb(t_stacks *stack, t_actions *actions, int silent)
 	stack->size_b++;
 	actions->pb += 1;
 	if (silent == 0)
-		ft_printf("pb\n");
+		ft_printf(1, "pb\n");
 	actions->nb_op += 1;
 	return (1);
 }
@@ -67,7 +67,7 @@ int	rb(int *b, int size_b, t_actions *actions, int silent)
 
 	actions->rb += 1;
 	if (silent == 0)
-		ft_printf("rb\n");
+		ft_printf(1, "rb\n");
 	actions->nb_op += 1;
 	if (size_b < 2)
 		return (0);
@@ -90,7 +90,7 @@ int	rrb(int *b, int size_b, t_actions *actions, int silent)
 
 	actions->nb_op += 1;
 	if (silent == 0)
-		ft_printf("rrb\n");
+		ft_printf(1, "rrb\n");
 	actions->rrb += 1;
 	if (size_b < 2)
 		return (0);

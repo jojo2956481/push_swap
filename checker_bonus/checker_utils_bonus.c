@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_utils.c                                    :+:      :+:    :+:   */
+/*   checker_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/17 16:17:20 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:00:17 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	check_rules(char *check, int size)
 static int	return_error(int write_messsage, char *check)
 {
 	if (write_messsage == 1)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 	free(check);
 	return (-1);
 }

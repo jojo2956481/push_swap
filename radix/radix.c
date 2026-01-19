@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:13:11 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 10:05:57 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:34:15 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ int	radix(t_stacks *stack, t_actions *actions, int silent)
 		return (free_all(NULL, NULL, 1, 1));
 	tab_index = ft_calloc(size, sizeof(int));
 	if (tab_index == NULL)
-		return (free_all(tab_sort, NULL, 1, 1));
+	{
+		free(tab_sort);
+		return (free_all(NULL, NULL, 1, 1));
+	}
 	copy_tab_radix(stack->tab_a, tab_sort, size);
 	sort_tab(tab_sort, size);
 	indexation(tab_sort, stack->tab_a, tab_index, size);
@@ -92,5 +95,7 @@ int	radix(t_stacks *stack, t_actions *actions, int silent)
 		radix_sort_silent(stack, actions, tab_sort, tab_index);
 	else
 		radix_sort(stack, actions, tab_sort, tab_index);
-	return (free_all(tab_sort, tab_index, 0, 0));
+	free(tab_sort);
+	free(tab_index);
+	return (0);
 }

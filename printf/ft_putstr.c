@@ -6,14 +6,14 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 08:55:43 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/10 10:01:12 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:08:49 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_putstr(char *s)
+int	ft_putstr(int fd, char *s)
 {
 	long int	i;
 
@@ -25,7 +25,7 @@ int	ft_putstr(char *s)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar(s[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
 	return (ft_strlen_p(s));

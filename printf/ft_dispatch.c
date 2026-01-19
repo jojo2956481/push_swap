@@ -6,14 +6,14 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:27:14 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/09 09:17:32 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:08:07 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_loop(char *str, va_list args)
+int	ft_loop(int fd, char *str, va_list args)
 {
 	int		i;
 	int		n;
@@ -25,7 +25,7 @@ int	ft_loop(char *str, va_list args)
 		if (str[i] == '%')
 		{
 			i++;
-			n += ft_dipatch(str[i], args);
+			n += ft_dipatch(fd, str[i], args);
 		}
 		else
 		{
@@ -37,14 +37,14 @@ int	ft_loop(char *str, va_list args)
 	return (n);
 }
 
-int	ft_dipatch(char c, va_list args)
+int	ft_dipatch(int fd, char c, va_list args)
 {
 	int	n;
 
 	if (c == 'c')
 		n = ft_putchar((int)va_arg(args, int));
 	if (c == 's')
-		n = ft_putstr((char *)va_arg(args, char *));
+		n = ft_putstr(fd, (char *)va_arg(args, char *));
 	if (c == 'p')
 		n = ft_putptr((unsigned long)va_arg(args, unsigned long));
 	if (c == 'i' || c == 'd')

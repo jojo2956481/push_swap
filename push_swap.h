@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:24:34 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/17 11:59:33 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 10:31:09 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		rrr(t_stacks *stack, t_actions *actions, int silent);
 int		check_args(char **argv);
 int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
 int		is_arg_number(char *str);
-int		free_all(int *a, int *b, int return_value, int error);
+int		free_all(t_stacks *stack, char **str, int return_value, int error);
 int		get_nb_args(char **argv, t_options *opt);
 int		insertion_sort(t_stacks *stack, t_actions *actions, int silent);
 int		adaptive(float disorder);

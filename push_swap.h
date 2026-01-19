@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:24:34 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:31:09 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 16:27:44 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int		fill_tab(int *tab, char **str);
 char	**parse_args(int argc, char **argv, int start);
 void	free_split(char **split);
 int		is_arg_number(char *str);
+int		sort_3(t_stacks *stack, t_actions *actions, int silent);
+int		sort_5(t_stacks *stack, t_actions *actions, int silent);
 
 #endif

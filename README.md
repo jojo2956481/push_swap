@@ -17,7 +17,7 @@ Compilation is directed by a Makefile with this commands :
 - make (make all) : compile the executable file push_swap
 - make bonus : compile the executable of the checker (bonus)
 - make clean : remove every .o files
-- make fclean : remove every .o files in additoin of executable files (push_swap & checker) 
+- make fclean : remove every .o files in addition of executable files (push_swap & checker) 
 - make re : remove like make fclean & recompile like make all
 
 Run the program by passing a list of integers as arguments:

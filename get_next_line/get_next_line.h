@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:19:42 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/17 12:59:01 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 11:21:52 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 4
 # endif
 
 typedef struct s_line

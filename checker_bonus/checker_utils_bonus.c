@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:00:17 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 11:25:05 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,8 @@ static int	check_rules(char *check, int size)
 	return (0);
 }
 
-static int	return_error(int write_messsage, char *check)
+static int	return_error(char *check)
 {
-	if (write_messsage == 1)
-		write(2, "Error\n", 6);
 	free(check);
 	return (-1);
 }
@@ -101,16 +99,16 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 	{
 		check = get_next_line(0, &ifmalloc);
 		if (ifmalloc == -1)
-			return (return_error(1, check));
+			return (return_error(check));
 		if (!check)
 			break ;
 		replace_end_line(check);
 		size = ft_strlen(check);
 		if (size < 2)
-			return (return_error(1, check));
+			return (return_error(check));
 		nb = check_rules(check, size);
 		if (nb == 0)
-			return (return_error(0, check));
+			return (return_error(check));
 		applied_rules(nb, stacks, actions);
 		free(check);
 	}

@@ -37,16 +37,6 @@ int	main(int argc, char **argv)
 		return (free_all(&stacks, args, 1, 1));
 	if (fill_tab(stacks.tab_a, args) == 0)
 		return (free_all(&stacks, args, 1, 1));
-	if (stacks.size_a == 3)
-	{
-		sort_3(&stacks, &actions, 0);
-		return (free_all(&stacks, args, 0, 0));
-	}
-	if (stacks.size_a == 5)
-	{
-		sort_5(&stacks, &actions, 0);
-		return (free_all(&stacks, args, 0, 0));
-	}
 	if (!is_sorted(stacks.tab_a, stacks.size_a))
 	{
 		if (choose_strategy(&stacks, &actions, &opt) == -1)

@@ -20,7 +20,6 @@ SRC := main.c rules_a.c rules_b.c rules_both.c\
 		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c insertion/insertion_sort.c bench.c adaptive.c init_main.c main_utils.c\
-		sort_under_5/sort_5.c sort_under_5/sort_3.c
 
 BONUS := checker 
 SRC_BONUS := checker_bonus/checker_bonus.c rules_a.c rules_b.c rules_both.c\

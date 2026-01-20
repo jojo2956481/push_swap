@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 09:06:32 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:06:35 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:15 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,3 @@ int	ft_toupper(int c)
 		c = c - 32;
 	return (c);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_toupper(99));
-	return (0);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:28:53 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 08:50:09 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:38 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
-/*
-int	main(void)
-{
-	const char	*str = "fblknlkfgh";
-	char	c;
-	c = '\0';
-
-	printf("%s", (char *)ft_memchr(str, c, 10));
-	printf("%c", '\n');
-	printf("%s", (char *)memchr(str, c, 10));
-	return (0);
-}
-*/

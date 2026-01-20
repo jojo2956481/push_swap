@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 09:01:09 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:01:15 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:00 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,3 @@ int	ft_strlcat(char *dest, const char *src, size_t size)
 		return (len_dest + len_src);
 	}
 }
-
-/*
-int	main(void)
-{
-	size_t    size;
-	const char    src[] = "peluche";
-    //char    dest[45] = "la";
-    char    dest1[45] = "la";
-
-    size = -1;
-    printf("%d", ft_strlcat(dest1, src, size));
-    printf("%s", dest1);
-    printf("%c", '\n');
-    //printf("%zu", strlcat(dest, src, size));
-    //printf("%s", dest);
-    return (0);
-}
-*/

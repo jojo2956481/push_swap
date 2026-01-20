@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:50:36 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:11:36 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:48 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
-/*
-int	main(void)
-{
-	size_t n;
-	n = 33;
-	const char	*src = "thi\xffs i\xfas \0a g\xde\xadood \0nyan\0cat\0 !\r\n";
-	char	*dest;
-	char	*dest1;
-	dest1 = calloc(sizeof(char) * 45, '8');
-	dest = calloc(sizeof(char) * 45, '8');
-	memmove(dest, src, n);
-	//memcpy(dest1, src, n);
-	ft_memmove(dest1, src, n);
-
-	printf("%s", dest);
-	printf("%c", '\n');
-	printf("%s", dest1);	
-}
-*/

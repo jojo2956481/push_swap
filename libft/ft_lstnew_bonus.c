@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 10:19:51 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:17:09 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:44 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,3 @@ t_list	*ft_lstnew(void *content)
 	lstnew->next = NULL;
 	return (lstnew);
 }
-
-/*
-int	main(void)
-{
-	t_list	*list1;
-	char	*str;
-	
-	list1 = ft_lstnew("je suis leo");
-	str = list1->content;
-	printf("%s", str);
-	return (0);
-}
-*/

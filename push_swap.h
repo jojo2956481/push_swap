@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:24:34 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 16:27:44 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:19:03 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 
-//0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
 typedef struct s_actions
 {
 	int	nb_op;
@@ -60,10 +59,9 @@ int		rr(t_stacks *stack, t_actions *actions, int silent);
 int		rrr(t_stacks *stack, t_actions *actions, int silent);
 int		check_args(char **argv);
 int		choose_strategy(t_stacks *stacks, t_actions *actions, t_options *opt);
-int		is_arg_number(char *str);
 int		free_all(t_stacks *stack, char **str, int return_value, int error);
 int		get_nb_args(char **argv, t_options *opt);
-int		insertion_sort(t_stacks *stack, t_actions *actions, int silent);
+int		selection_sort(t_stacks *stack, t_actions *actions, int silent);
 int		adaptive(float disorder);
 int		execute_algo(int algo, t_stacks *stack, t_actions *actions);
 int		is_sorted(int *tab_a, int size);
@@ -75,7 +73,5 @@ int		fill_tab(int *tab, char **str);
 char	**parse_args(int argc, char **argv, int start);
 void	free_split(char **split);
 int		is_arg_number(char *str);
-int		sort_3(t_stacks *stack, t_actions *actions, int silent);
-int		sort_5(t_stacks *stack, t_actions *actions, int silent);
 
 #endif

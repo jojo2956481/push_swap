@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 08:47:54 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 08:48:04 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:13 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,3 @@ int	ft_isalpha(int c)
 	else
 		return (1);
 }
-
-/*int	main(void)
-{
-	printf("%d", ft_isalpha(100));
-	printf("%s", "\n");
-	printf("%d", isalpha(100));
-	return (0);
-}
-*/

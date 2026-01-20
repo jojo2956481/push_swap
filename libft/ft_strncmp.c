@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 09:03:55 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:14:41 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:05 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (((unsigned char)s1[i] - (unsigned char)s2[i]));
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_strncmp("abcdef", "abc\375xx", 5));
-}
-*/

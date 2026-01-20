@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebeyssa <lebeyssa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 12:20:27 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/13 12:27:15 by lebeyssa         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:46:32 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,3 @@ t_list	*ft_lstlast(t_list *lst)
 	}
 	return (lst);
 }
-
-/*
-int	main(void)
-{
-	t_list *temp;
-
-	t_list	*list0 = ft_lstnew("premier");
-	t_list	*list1 = ft_lstnew("deuxieme");
-	t_list	*list2 = ft_lstnew("troisieme");
-
-	list0->next = list1;
-	list1->next = list2; 
-
-	temp = ft_lstlast(list0);
-	printf("%s\n", (char *)temp->content);
-}
-*/

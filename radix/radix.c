@@ -6,15 +6,14 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:13:11 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:34:15 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:42:50 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 #include "radix.h"
 
-void	radix_sort(t_stacks *stack, t_actions *actions,
+static void	radix_sort(t_stacks *stack, t_actions *actions,
 		int *tab_sort, int *tab_index)
 {
 	int	size;
@@ -43,7 +42,7 @@ void	radix_sort(t_stacks *stack, t_actions *actions,
 	}
 }
 
-void	radix_sort_silent(t_stacks *stack, t_actions *actions,
+static void	radix_sort_silent(t_stacks *stack, t_actions *actions,
 		int *tab_sort, int *tab_index)
 {
 	int	size;

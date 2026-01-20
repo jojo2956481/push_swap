@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 08:49:19 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 08:49:22 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:16 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/*
-int	main(void)
-{
-	printf("%s", ft_itoa(-6868));
-}
-*/

@@ -6,11 +6,10 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:06:26 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:35:00 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:17:30 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
 #include "push_swap.h"

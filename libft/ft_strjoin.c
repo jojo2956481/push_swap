@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 09:00:38 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:00:45 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:57 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcpy(&str[len], (char *)s2, ft_strlen((char *)s2) + 1);
 	return (str);
 }
-
-/*
-int	main(void)
-{
-	const char	*str1 = "je ";
-	const char	*str2 = "suis";
-
-	printf("%s", ft_strjoin(str1, str2));
-	return (0);
-}
-*/

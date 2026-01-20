@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 11:17:20 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:09:32 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:45:54 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,20 +104,3 @@ int	rrb(int *b, int size_b, t_actions *actions, int silent)
 	b[0] = temp;
 	return (1);
 }
-/*
-int main(void)
-{
-	int tab_a[10] = {1,2,3,4,5};
-	int tab_b[10] = {11,22,33,44,55};
-	rrb( tab_b, 10);
-	int i = 0;
-	__builtin_printf("|-----------------|\n");
-	__builtin_printf("| tab_a     tab_b |\n");
-	__builtin_printf("|-----------------|\n");
-	while (i < 10)
-	{
-		__builtin_printf("|% 4d   || % 4d   |\n", tab_a[i], tab_b[i]);
-		i++;
-	}
-	return (0);
-}*/

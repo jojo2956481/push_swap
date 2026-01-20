@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:33:29 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 11:32:18 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:51 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,23 +114,3 @@ char	**ft_split(char const *s, char c)
 	boul = 0;
 	return (fill_tab((char *)s, c, str, boul));
 }
-
-/*
-int	main(void)
-{
-	const char	*s = "hello!";
-	char	p;
-	int		i;
-
-	i = 0;
-	p = ' ';
-	char **str = ft_split(s, p);
-	while (i < 2)
-	{
-		printf("%s\n", str[i]);
-		i++;
-	}
-	free_all(str, i);
-	return (0);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:27:31 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/12/10 10:28:05 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:48:28 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,3 @@ long	ft_atoi(const char *nptr)
 	}
 	return (resultat * sign);
 }
-
-/*
-int main(void)
-{
-	char	*str = "-1000043a";
-	printf("%d", atoi(str));
-	printf("%c", '\n');
-	printf("%d", ft_atoi(str));
-	return (0);
-}
-*/

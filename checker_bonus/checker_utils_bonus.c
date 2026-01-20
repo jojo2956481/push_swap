@@ -6,16 +6,13 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 11:25:05 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:22:04 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
 #include "radix.h"
-#include <unistd.h>
 #include "get_next_line.h"
-#include <stdlib.h>
 
 static void	replace_end_line(char *str)
 {

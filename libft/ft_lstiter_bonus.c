@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:26:56 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/14 11:09:17 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:36 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,3 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		lst = lst->next;
 	}
 }
-
-/*
-int	main(void)
-{
-	t_list	*list0 = ft_lstnew(ft_strdup("premier"));
-	t_list	*list1 = ft_lstnew(ft_strdup("dexieme"));
-	t_list	*list2 = ft_lstnew(ft_strdup("troisieme"));
-
-	list0->next = list1;
-	list1->next = list2;
-
-	ft_lstiter(list0, f);
-
-	t_list *temp = list0;
-    while (temp != NULL)
-    {
-        printf("%s\n", (char *)temp->content);
-        temp = temp->next;
-    }
-}
-*/

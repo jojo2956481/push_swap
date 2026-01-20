@@ -6,14 +6,13 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 09:24:51 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/17 14:52:48 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:14:34 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "chunk_sort.h"
 #include "radix.h"
-#include "libft.h"
 
 int	adaptive(float disorder)
 {
@@ -29,7 +28,7 @@ int	adaptive(float disorder)
 int	execute_algo(int algo, t_stacks *stack, t_actions *actions)
 {
 	if (algo == 1)
-		return (insertion_sort(stack, actions, 0));
+		return (selection_sort(stack, actions, 0));
 	if (algo == 2)
 		return (chunk_sort(stack, actions, 0));
 	if (algo == 3)

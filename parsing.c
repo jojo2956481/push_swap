@@ -6,18 +6,13 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:36:09 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/15 11:59:51 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:16:46 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "chunk_sort.h"
 #include "push_swap.h"
-#include "radix.h"
-#include "ft_printf.h"
-#include <unistd.h>
 
-//0 sa | 1 sb | 2 ss | 3 pa | 4 pb | 5 ra | 6 rb | 7 rr | 8 rra | 9 rrb | 10 rrr
 static int	set_strategy(t_options *opt, int value, int *c)
 {
 	*c += 1;

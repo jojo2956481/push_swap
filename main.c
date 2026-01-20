@@ -6,15 +6,11 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:23:30 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 16:29:02 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:27:26 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "get_next_line.h"
 #include "push_swap.h"
-#include "ft_printf.h"
-#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {

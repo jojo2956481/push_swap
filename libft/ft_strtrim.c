@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:03:37 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/15 11:07:19 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:10 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(str, s1 + start, (end - start) + 1);
 	return (str);
 }
-
-/*
-int	main(void)
-{
-	char	*str1 = "";
-	char	*str2 = "";
-
-	printf("%s", ft_strtrim(str1, str2));
-	return (0);
-}
-*/

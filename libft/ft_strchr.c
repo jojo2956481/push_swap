@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 09:23:02 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:13:30 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:46:55 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)&s[i]);
 	return (0);
 }
-
-/*
-int main(void)
-{
-	const char	*str = "teste";
-	char	c;
-	c = 'e';
-
-	printf("%s", ft_strchr(str, c));
-	printf("%c", '\n');
-	printf("%s", strchr(str, c));
-	return (0);
-}
-*/

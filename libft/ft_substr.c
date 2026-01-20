@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 08:51:55 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:05:54 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:12 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-
-/*
-int	main(void)
-{
-	const char	*str = "01234";
-
-	printf("%s", ft_substr(str, 1, 3));
-	return (0);
-}
-*/

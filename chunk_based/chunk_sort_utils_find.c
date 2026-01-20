@@ -6,11 +6,10 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:47:36 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 09:31:04 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:20:34 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "chunk_sort.h"
 
 int	find_index(int *shunk, int size, int value)

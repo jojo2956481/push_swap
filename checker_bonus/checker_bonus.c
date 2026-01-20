@@ -6,13 +6,11 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/19 11:16:21 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:22:13 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "checker_bonus.h"
-#include <unistd.h>
 
 static int	return_checker(t_stacks *stacks, t_actions *actions, char **args)
 {

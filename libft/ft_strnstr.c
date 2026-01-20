@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:07:36 by lebeyssa          #+#    #+#             */
-/*   Updated: 2025/11/17 09:15:45 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:47:02 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (0);
 }
-
-/*
-int main(void)
-{
-	const char	*big = "";
-	const char	*little = "";
-
-	printf("%s\n", ft_strnstr(big, little, 0));
-	printf("%s\n", strnstr(big, little, 3));
-}
-*/

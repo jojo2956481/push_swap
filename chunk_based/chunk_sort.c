@@ -6,11 +6,10 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:59:41 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/16 12:19:23 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 09:20:21 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "chunk_sort.h"
 
 static int	calcul_index(int *tab_sort, t_stacks *stack, int chunk_size)

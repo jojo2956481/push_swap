@@ -12,11 +12,10 @@
 
 CC := cc
 FLAG := -Wall -Wextra -Werror
-INC := -I. -Ilibft -Iprintf -Iget_next_line -Ichunk_based -Iradix -Isort_under_5
+INC := -I. -Ilibft -Iprintf -Iget_next_line -Ichunk_based -Iradix
 NAME := push_swap
 OBJ_DIR := .objet
 SRC := main.c rules_a.c rules_b.c rules_both.c\
-		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 		parsing.c chunk_based/chunk_sort.c chunk_based/chunk_sort_utils.c\
 		chunk_based/chunk_sort_utils_find.c radix/radix.c radix/radix_utils.c\
 		disorder.c selection/selection_sort.c bench.c adaptive.c init_main.c main_utils.c\

@@ -126,6 +126,8 @@ Compilation is directed by a Makefile with this commands :
 - make fclean : remove every .o files in addition of executable files (push_swap & checker) 
 - make re : remove like make fclean & recompile like make all
 
+If the input is invalid, the program returns "Error".
+
 Run the program by passing a list of integers as arguments:
 ~~~
 ./push_swap 5 6 3 2 1 4 7 8 9
@@ -149,6 +151,8 @@ Example :
 ## **Instructions checker**
 
 We made a checker to test if the stack is correctly sorted.
+The program returns "ok" if the stack is sorted and "ko" otherwise.
+If the input is invalid, the program returns "Error".
 
 to create the executable :
 ~~~
@@ -171,8 +175,6 @@ rb
 pb
 ok
 ~~~
-
-
 ___
 # **Resources**
 For this project, we used many tutorials, to understand the difference between algorithms and algorithms itself.\

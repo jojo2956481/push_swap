@@ -28,28 +28,28 @@ static int	ft_intlen(int n)
 	return (count);
 }
 
-int	ft_putnbr(int n)
+int	ft_putnbr(int fd, int n)
 {
 	int	sign;
 
 	sign = 0;
 	if (n == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		write(fd, "-2147483648", 11);
 		return (11);
 	}
 	if (n < 0)
 	{
-		ft_putchar('-');
+		ft_putchar(fd, '-');
 		n = n * -1;
 		sign = 1;
 	}
 	if (n <= 9)
-		ft_putchar(n + '0');
+		ft_putchar(fd, n + '0');
 	else
 	{
-		ft_putnbr((n / 10));
-		ft_putchar((n % 10) + '0');
+		ft_putnbr(fd, (n / 10));
+		ft_putchar(fd, (n % 10) + '0');
 	}
 	return (ft_intlen(n) + sign);
 }

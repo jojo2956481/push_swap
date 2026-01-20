@@ -28,19 +28,19 @@ static int	ft_intlen_u(unsigned int n)
 	return (count);
 }
 
-int	ft_putnbr_unsigned(unsigned int n)
+int	ft_putnbr_unsigned(int fd, unsigned int n)
 {
 	if (n == 2147483648)
 	{
-		write(1, "2147483648", 10);
+		write(fd, "2147483648", 10);
 		return (10);
 	}
 	if (n <= 9)
-		ft_putchar(n + '0');
+		ft_putchar(fd, n + '0');
 	else
 	{
-		ft_putnbr_unsigned((n / 10));
-		ft_putchar((n % 10) + '0');
+		ft_putnbr_unsigned(fd, (n / 10));
+		ft_putchar(fd, (n % 10) + '0');
 	}
 	return (ft_intlen_u(n));
 }

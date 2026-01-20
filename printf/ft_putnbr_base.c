@@ -13,13 +13,13 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_putnbr_base(unsigned int n, int swbase)
+int	ft_putnbr_base(int fd, unsigned int n, int swbase)
 {
 	unsigned int	base_len;
 
 	base_len = ft_strlen_p(base(swbase));
 	if (n >= base_len)
-		ft_putnbr_base((n / base_len), swbase);
-	write(1, &base(swbase)[n % base_len], 1);
+		ft_putnbr_base(fd, (n / base_len), swbase);
+	write(fd, &base(swbase)[n % base_len], 1);
 	return (ft_intlen_base(n));
 }

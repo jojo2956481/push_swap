@@ -29,7 +29,7 @@ int	ft_loop(int fd, char *str, va_list args)
 		}
 		else
 		{
-			write(1, &str[i], 1);
+			write(fd, &str[i], 1);
 			n++;
 		}
 		i++;
@@ -42,22 +42,22 @@ int	ft_dipatch(int fd, char c, va_list args)
 	int	n;
 
 	if (c == 'c')
-		n = ft_putchar((int)va_arg(args, int));
+		n = ft_putchar(fd, (int)va_arg(args, int));
 	if (c == 's')
 		n = ft_putstr(fd, (char *)va_arg(args, char *));
 	if (c == 'p')
 		n = ft_putptr((unsigned long)va_arg(args, unsigned long));
 	if (c == 'i' || c == 'd')
-		n = ft_putnbr((int)va_arg(args, int));
+		n = ft_putnbr(fd, (int)va_arg(args, int));
 	if (c == 'u')
-		n = ft_putnbr_unsigned((unsigned int)va_arg(args, unsigned int));
+		n = ft_putnbr_unsigned(fd, (unsigned int)va_arg(args, unsigned int));
 	if (c == 'x')
-		n = ft_putnbr_base((unsigned int)va_arg(args, unsigned int), 1);
+		n = ft_putnbr_base(fd,(unsigned int)va_arg(args, unsigned int), 1);
 	if (c == 'X')
-		n = ft_putnbr_base((unsigned int)va_arg(args, unsigned int), 0);
+		n = ft_putnbr_base(fd, (unsigned int)va_arg(args, unsigned int), 0);
 	if (c == '%')
 	{
-		write(1, "%", 1);
+		write(fd, "%", 1);
 		n = 1;
 	}
 	return (n);

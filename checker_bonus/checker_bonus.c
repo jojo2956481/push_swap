@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/20 09:22:13 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 15:17:29 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	return_checker(t_stacks *stacks, t_actions *actions, char **args)
 {
 	int	nb;
 
+	nb = 0;
 	if (!is_sorted(stacks->tab_a, stacks->size_a))
 	{
 		nb = read_standard_input(stacks, actions);

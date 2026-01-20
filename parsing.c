@@ -54,7 +54,7 @@ int	get_nb_args(char **argv, t_options *opt)
 		res = handle_strategy_flags(argv[i], opt, &c);
 		if (res == -1)
 			return (-1);
-		if (argv[i][0] == '\0')
+		if (argv[i][0] == '\0' || (argv[i][0] == '-' && argv[i][1] == '\0'))
 			return (-1);
 	}
 	return (c);

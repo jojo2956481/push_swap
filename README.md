@@ -184,7 +184,7 @@ AI was use to discover the project, find response that is very specific, and rar
 ___
 ## **Technical choices**
 We decided to choose these three algorithms :\
---simple : Insertion sort\
+--simple : selection sort\
 --medium : chunk sort\
 --complex : radix sort\
 --adaptive : choosing between the previous algorithms depending of the disorder

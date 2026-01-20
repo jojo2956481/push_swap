@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:27:14 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/19 10:08:07 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 15:49:18 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	ft_loop(int fd, char *str, va_list args)
 {
-	int		i;
-	int		n;
+	int	i;
+	int	n;
 
 	i = 0;
 	n = 0;
@@ -52,7 +52,7 @@ int	ft_dipatch(int fd, char c, va_list args)
 	if (c == 'u')
 		n = ft_putnbr_unsigned(fd, (unsigned int)va_arg(args, unsigned int));
 	if (c == 'x')
-		n = ft_putnbr_base(fd,(unsigned int)va_arg(args, unsigned int), 1);
+		n = ft_putnbr_base(fd, (unsigned int)va_arg(args, unsigned int), 1);
 	if (c == 'X')
 		n = ft_putnbr_base(fd, (unsigned int)va_arg(args, unsigned int), 0);
 	if (c == '%')

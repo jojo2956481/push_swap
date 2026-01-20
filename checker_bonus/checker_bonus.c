@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/20 15:17:29 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 15:32:40 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	return_checker(t_stacks *stacks, t_actions *actions, char **args)
 		if (nb == -1)
 			return (free_all(stacks, args, 1, 1));
 	}
-	if (is_sorted(stacks->tab_a, stacks->size_a) == 1)
+	if (is_sorted(stacks->tab_a, stacks->size_a) == 1 && stacks->size_b == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

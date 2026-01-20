@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 13:44:52 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/20 15:17:17 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 15:46:26 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,8 @@ int	read_standard_input(t_stacks *stacks, t_actions *actions)
 			break ;
 		replace_end_line(check);
 		size = ft_strlen(check);
-		if (check[0] == '\0')
-			break ;
-		if (size < 2)
-			return (return_error(check));
 		nb = check_rules(check, size);
-		if (nb == 0)
+		if (nb == 0 || check[0] == '\0')
 			return (return_error(check));
 		applied_rules(nb, stacks, actions);
 		free(check);

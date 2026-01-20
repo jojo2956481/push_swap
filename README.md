@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by pgougne [, lebeyssa]*
+_This project has been created as part of the 42 curriculum by pgougne, lebeyssa_
 ___
 # **Description**
 
@@ -16,32 +16,37 @@ With only these eleven actions, we are able to sort a stacks full of arguments.
 To handle different input sizes efficiently, the project implements sorting algorithms from three distinct complexity classes. Each class represents a trade-off between simplicity of implementation and performance.
 
 ---
-
 ### 1. Simple Algorithms (O(n²))
 
 Simple algorithms are based on repeated comparisons and local rearrangements of elements.  
 They are easy to implement and understand but become inefficient as the number of elements increases.
 
 **Typical behavior:**
-- Elements are compared one by one.
-- Multiple passes are required to reach a sorted state.
+- Elements are scanned repeatedly to find a target value.
+- One element is placed in its final position per pass.
 - The number of operations grows quadratically with input size.
 
-### 1. Insertion Sort (Non-Optimized) — O(n²)
+### 1. Selection Sort (Optimized for Small Sizes) O(n²)
 
 **Adaptation to push_swap:**
 - The algorithm operates exclusively on stack A.
-- Sorting is performed using only swap (`sa`) and rotation (`ra`, `rra`) operations.
-- No elements are pushed to stack B.
+- At each pass, the smallest element in the unsorted part of stack A is located.
+- This element is brought to the top using rotations (`ra` / `rra`), then placed in position using swaps (`sa`) if needed.
+- Stack B is not used.
 
-**Why it is not optimized:**
-- The algorithm does not take advantage of stack B.
-- Many redundant rotations and swaps are required.
-- The number of operations increases rapidly with input size.
+**Why It Is More Efficient Than Naïve Selection Sort**
+- Stack B is actively used to temporarily store sorted elements.
+- Rotations are optimized by choosing `ra` or `rra`.
+- Small input sizes (≤3) are handled with dedicated logic.
+- Avoids redundant swaps and full-stack scans at the end.
 
-**Use case:**
-This version of insertion sort is used only as a baseline algorithm for very small datasets and to illustrate the limitations of simple O(n²) approaches under push_swap constraints
+**Use Case**
+This algorithm is well suited for:
+- Small to medium input sizes
+- Early stages of a push_swap project
+- Demonstrating how classic algorithms can be adapted and improved using stack-aware strategies
 
+  It serves as a bridge between simple O(n²) algorithms and more advanced chunk-based or radix-based solutions.
 ---
 
 ### 2. Medium Algorithms (O(n√n))
@@ -108,7 +113,7 @@ They significantly reduce the number of required operations and scale efficientl
 ### Conclusion
 
 Within the constraints of *push_swap*, different algorithmic strategies are required depending on input size.  
-Insertion sort serves as a simple baseline for small datasets.  
+selection sort serves as a simple baseline for small datasets.  
 Chunk sort provides an efficient intermediate solution using value partitioning.  
 Radix sort offers the best performance for large datasets while strictly respecting the project rules.
 ___
@@ -122,9 +127,9 @@ Compilation is directed by a Makefile with this commands :
 - make re : remove like make fclean & recompile like make all
 
 Run the program by passing a list of integers as arguments:
-
->./push_swap 5 6 3 2 1 4 7 8 9
-
+~~~
+./push_swap 5 6 3 2 1 4 7 8 9
+~~~
 Example of output: 
 >ra\
 >pb\
@@ -138,7 +143,35 @@ Multiple options can be added in the command :\
 --bench : display informations
 
 Example :
->./push_swap --simple --bench 5 6 2 4 7 8 9
+~~~
+./push_swap --simple --bench 5 6 2 4 7 8 9
+~~~
+## **Instructions checker**
+
+We made a checker to test if the stack is correctly sorted.
+
+to create the executable :
+~~~
+make bonus
+~~~
+
+
+to test with push_swap :
+~~~
+./push_swap 5 6 3 2 1 4 7 8 9 | ./checker 5 6 3 2 1 4 7 8 9
+~~~
+
+test manually :
+~~~
+ ~/Documents/push_swap>> ./checker 5 6 3 2 1 4 7 8 9
+pa 
+pb
+rra
+rb
+pb
+ok
+~~~
+
 
 ___
 # **Resources**
@@ -147,10 +180,34 @@ For example, Geekforgeeks for algorithms demonstrations, stackoverflow/stackexch
 AI was use to discover the project, find response that is very specific, and rarely debugging edge cases.
 
 ___
-# **Technical choices**
+## **Technical choices**
 We decided to choose these three algorithms :\
 --simple : Insertion sort\
 --medium : chunk sort\
 --complex : radix sort\
 --adaptive : choosing between the previous algorithms depending of the disorder
+
+### 🔹 Selection-based Algorithms
+
+**Selection sort**  
+  Classic O(n²) sorting algorithm that repeatedly selects the minimum element.  
+  https://en.wikipedia.org/wiki/Selection_sort
+
+**Bucket sort**  
+  Sorting algorithm that distributes elements into buckets (chunks), then sorts each bucket.  
+  https://en.wikipedia.org/wiki/Bucket_sort
+
+**Block sort**  
+  Sorting technique based on dividing data into blocks.  
+  https://en.wikipedia.org/wiki/Block_sort
+
+**Radix sort**  
+  Non-comparative sorting algorithm based on digit or bit processing (very common in push_swap).  
+  https://en.wikipedia.org/wiki/Radix_sor
+
+### 🔹 General References
+
+**Sorting algorithm (overview)**  
+  General classification and comparison of sorting algorithms.  
+  https://en.wikipedia.org/wiki/Sorting_algorith
 ___

@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:59:41 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/20 09:20:21 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 13:50:18 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	chunk_sort(t_stacks *stack, t_actions *actions, int silent)
 				calcul_index(tab_sort[j], stack, chunk_size), silent);
 		j++;
 	}
+	while (stack->size_a > 0)
+		pb(stack, actions, silent);
 	while (stack->size_b > 0)
 		push_max_from_b(stack, actions, silent);
 	free_take_index(NULL, NULL, tab_sort);

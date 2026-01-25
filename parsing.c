@@ -51,6 +51,8 @@ int	get_nb_args(char **argv, t_options *opt)
 
 	c = 1;
 	i = 0;
+	empty.strategy = 0;
+	c_empty = 0;
 	while (argv[++i])
 	{
 		res = handle_strategy_flags(argv[i], opt, &c);

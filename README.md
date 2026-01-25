@@ -12,8 +12,8 @@ We have got stack a and stack b, and the actions was :
 With only these eleven actions, we are able to sort a stacks full of arguments.
 
 **Project distribution :**\
-pgougne did all the parsing of the project and also a block based sort algorithm that we decided to delete because it was less efficient than the actual medium algorithm.
-lebeyssa made chunk, radix and the bonus
+pgougne did all the parsing of the project and also a block based sort algorithm that we decided to delete because it was less efficient than the actual medium algorithm.\
+lebeyssa made chunk, radix and the bonus\
 We both made the selection sort algorithm, to be more efficient on short lists of numbers
 
 ## Algorithmic Strategy

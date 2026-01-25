@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:06:26 by lebeyssa          #+#    #+#             */
-/*   Updated: 2026/01/20 09:17:30 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 10:45:44 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ int	free_all(t_stacks *stack, char **str, int return_value, int error)
 	if (error)
 		write(2, "Error\n", 6);
 	return (return_value);
+}
+
+int	is_valid_number(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] == ' ' || s[i] == '\t')
+			i++;
+		if (s[i] == '-' || s[i] == '+')
+			i++;
+		if (!ft_isdigit(s[i]))
+			return (-1);
+		while (ft_isdigit(s[i]))
+			i++;
+		while (s[i] == ' ' || s[i] == '\t')
+			i++;
+	}
+	return (0);
 }
 
 int	is_arg_number(char *str)

@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:36:09 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/20 09:16:46 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 10:52:59 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ static int	handle_strategy_flags(char *arg, t_options *opt, int *c)
 
 int	get_nb_args(char **argv, t_options *opt)
 {
-	int	i;
-	int	c;
-	int	res;
+	int			i;
+	int			c;
+	int			res;
+	t_options	empty;
+	int			c_empty;
 
 	c = 1;
 	i = 0;
@@ -54,7 +56,9 @@ int	get_nb_args(char **argv, t_options *opt)
 		res = handle_strategy_flags(argv[i], opt, &c);
 		if (res == -1)
 			return (-1);
-		if (argv[i][0] == '\0' || (argv[i][0] == '-' && argv[i][1] == '\0'))
+		if ((is_valid_number(argv[i]) == -1
+				&& handle_strategy_flags(argv[i], &empty, &c_empty) == 1)
+			|| argv[i][0] == '\0')
 			return (-1);
 	}
 	return (c);

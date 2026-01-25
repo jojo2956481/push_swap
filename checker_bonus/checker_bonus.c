@@ -6,7 +6,7 @@
 /*   By: lebeyssa <lebeyssa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:24:27 by pgougne           #+#    #+#             */
-/*   Updated: 2026/01/20 15:32:40 by lebeyssa         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 10:32:59 by lebeyssa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static int	return_checker(t_stacks *stacks, t_actions *actions, char **args)
 	return (free_all(stacks, args, 0, 0));
 }
 
+int	get_nb_args_checker(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[++i])
+	{
+		if (is_valid_number(argv[i]) == -1 || argv[i][0] == '\0')
+			return (-1);
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stacks	stacks;
@@ -40,7 +53,7 @@ int	main(int argc, char **argv)
 	if (argc <= 1)
 		return (0);
 	actions.nb_op = 0;
-	args = parse_args(argc, argv, 1);
+	args = parse_args(argc, argv, get_nb_args_checker(argv));
 	if (!args || !args[0])
 		return (free_all(NULL, NULL, 1, 1));
 	size = check_args(args);

@@ -85,14 +85,13 @@ int	chunk_sort(t_stacks *stack, t_actions *actions, int silent)
 	tab_sort = take_index(stack->tab_a, stack->size_a, chunk_size, chunk_len);
 	if (!tab_sort)
 		return (1);
-	j = 0;
-	while (j < chunk_len)
+	j = -1;
+	while (++j < chunk_len)
 	{
 		i = -1;
 		while (++i < chunk_size)
 			push_chunk_from_a(stack, actions,
 				calcul_index(tab_sort[j], stack, chunk_size), silent);
-		j++;
 	}
 	while (stack->size_a > 0)
 		pb(stack, actions, silent);
